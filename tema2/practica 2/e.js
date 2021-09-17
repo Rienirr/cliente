@@ -13,7 +13,7 @@ function curso(pNombreCurso,pAnyo,pDescripcion, pAlumnado) {
     }
   }
    function mostrarCualquiera (objeto){// mostrar objeto genérico
-    for(const propiedad in objeto){
+    for(let propiedad in objeto){
        return console.log(`${propiedad} : ${objeto[propiedad]} `);
     }
   
