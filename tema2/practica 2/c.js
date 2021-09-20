@@ -7,10 +7,11 @@ let v2;
 let resultado;
 
 function crearyrellenarArrays() {
-let longitud= numeroaletorio();
- v1= new Array(longitud);
- v2= new Array(longitud);
-         for(let i=0;i<longitud;i++){
+//si queremos que los arrays se creen y se rellenen de forma aleatoria
+//let longitud numeroaletorio(); y cambiar 100 por longitud 
+ v1= new Array(100);
+ v2= new Array(100);
+         for(let i=0;i<100;i++){
              v1[i]=numeroaletorio();
              v2[i]=numeroaletorio();
          }
@@ -27,7 +28,7 @@ let longitud= numeroaletorio();
  }
  function mostrar() {
     
-            console.log(`los arrays creados son [${v1}] y [${v2}] dando la suma como resultado [${resultado}]`);
+            console.log(`los arrays creados son vector 1:[${v1}] y vector 2:[${v2}] dando la suma como resultado [${resultado}]`);
     
      
  }
