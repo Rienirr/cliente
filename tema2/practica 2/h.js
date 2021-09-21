@@ -27,9 +27,10 @@ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funcion
        console.log(` Array ${propiedad} : ${objeto[propiedad]}`);
       }
   
-      else if(typeof propiedad === 'object'){//comprobar objeto 
+      else if(typeof objeto[propiedad] === 'object'){//comprobar objeto 
+       console.log("Objeto embebido");
           for(let prop in objeto[propiedad]){
-            console.log(` Objeto embebido ${prop} : ${objeto[propiedad][prop]}`);
+            console.log(`  ${prop} : ${objeto[propiedad][prop]}`);
           
               }
           }
@@ -55,5 +56,5 @@ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funcion
 let tardio={ nombre: "Listo", apellidos: "siempre"};
 
 daw2.matricular(tardio);
-console.log(daw2.alumnado);
+console.log(typeof daw2.alumnado);
 console.log(mostrarCualquiera(daw2));

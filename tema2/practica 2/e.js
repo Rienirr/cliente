@@ -20,12 +20,13 @@ function curso(pNombreCurso,pAnyo,pDescripcion, pAlumnado) {
        console.log(` Array ${propiedad} : ${objeto[propiedad]}`);
       }
 
-      else if(typeof propiedad === 'object'){//comprobar objeto 
-          for(let prop in objeto[propiedad]){
-            console.log(` Objeto embebido ${prop} : ${objeto[propiedad][prop]}`);
-          
-              }
-          }
+      else if(typeof objeto[propiedad] === 'object'){//comprobar objeto 
+        console.log("Objeto embebido");
+           for(let prop in objeto[propiedad]){
+             console.log(`  ${prop} : ${objeto[propiedad][prop]}`);
+           
+               }
+           }
         
        else if(typeof objeto[propiedad] ==='function'){
        //  console.log(`Funcion ${propiedad}`)
