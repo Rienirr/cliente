@@ -1,10 +1,12 @@
 'use strict';
 function curso(pNombreCurso,pAnyo,pDescripcion) {
+  let nombre=new Array();
+  let apellidos=new Array();
     return {nombreCurso: pNombreCurso,
     anyo: pAnyo,
     descripcion: pDescripcion,
     // = {"color":"rojo","marca":"seat","modelo":"leon"}; para probar
-    alumnado: ([nombre: "",apellidos]),
+    alumnado:{nombre,apellidos},
     mostrarCurso: function(){// mostrar específico (sabiendo sus parámetros)
          console.log(`El nombre del curso es: ${this.nombreCurso}, el año de desarrollo es ${this.anyo}, 
         con la descripcion ${this.descripcion} y con los alumnos matriculados: ${this.alumnado}` );
@@ -53,4 +55,5 @@ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funcion
 let tardio={ nombre: "Listo", apellidos: "siempre"};
 
 daw2.matricular(tardio);
+console.log(daw2.alumnado);
 console.log(mostrarCualquiera(daw2));
