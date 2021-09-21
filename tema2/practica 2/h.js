@@ -3,7 +3,8 @@ function curso(pNombreCurso,pAnyo,pDescripcion) {
     return {nombreCurso: pNombreCurso,
     anyo: pAnyo,
     descripcion: pDescripcion,
-    alumnado: ([nombre,apellidos]),
+    // = {"color":"rojo","marca":"seat","modelo":"leon"}; para probar
+    alumnado: ([nombre: "",apellidos]),
     mostrarCurso: function(){// mostrar específico (sabiendo sus parámetros)
          console.log(`El nombre del curso es: ${this.nombreCurso}, el año de desarrollo es ${this.anyo}, 
         con la descripcion ${this.descripcion} y con los alumnos matriculados: ${this.alumnado}` );
