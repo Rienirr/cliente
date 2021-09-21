@@ -28,7 +28,7 @@ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funcion
       }
   
       else if(typeof objeto[propiedad] === 'object'){//comprobar objeto 
-       console.log("Objeto embebido");
+       console.log(`Objeto  ${propiedad}` );
           for(let prop in objeto[propiedad]){
             console.log(`  ${prop} : ${objeto[propiedad][prop]}`);
           
@@ -52,9 +52,12 @@ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funcion
   
   const  daw2= curso("2ºDAW",2021,"Desarrollo aplicaciones WEB",["antonio","pepito"]);
   const daw1=curso("1ºDAW",2020,"Desarrollo aplicaciones WEB",["Goku","Vegeta"]);
+ //por si quieres comprobar que los añade de forma correcta aquí se ve vacio  console.log(mostrarCualquiera(daw2));
   let estudiante ={ nombre: "Luis", apellidos: "Martinez GiL" };
 let tardio={ nombre: "Listo", apellidos: "siempre"};
+//así los añade de forma correcta 
 
+daw2.matricular(estudiante);
 daw2.matricular(tardio);
-console.log(typeof daw2.alumnado);
+
 console.log(mostrarCualquiera(daw2));
