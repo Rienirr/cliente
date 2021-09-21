@@ -8,7 +8,7 @@ function Cruz(num){
     for(let i=0;i<num;i++){
         for(let k=0;k<num;k++){
             let linea="";
-            if(i<cruz || i>fincruz>){
+            if(i<cruz || i>fincruz){
                 linea+=hastag;
             }
             else{
