@@ -11,7 +11,7 @@ function curso(pNombreCurso,pAnyo,pDescripcion, pAlumnado) {
   
   }
 }
- function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funciona correctamente 
+ function mostrarCualquiera (objeto){// mostrar objeto genérico creo que funciona correctamente de hecho en el último ejercicio le pasamos otro objeto y va bien
   for(let propiedad in objeto){
      if(Array.isArray(objeto[propiedad])){//comprobar Array primero puesto que es objeto y si comprobamos un objeto antes da problemas  lo único 
                                             // que no se como quieres el formateo por eso lo he dejado así 
@@ -47,5 +47,5 @@ const daw1=curso("1ºDAW",2020,"Desarrollo aplicaciones WEB",["Goku","Vegeta"]);
 //console.log(daw2.mostrarCurso());
 //console.log(daw1.mostrarCurso());
 console.log(mostrarCualquiera(daw2));
-console.log(Array.isArray(daw2.alumnado));
-console.log(typeof daw2.mostrarCurso=== 'function');
+//console.log(Array.isArray(daw2.alumnado));
+//console.log(typeof daw2.mostrarCurso=== 'function');

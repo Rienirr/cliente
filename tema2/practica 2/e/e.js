@@ -46,8 +46,8 @@ function curso(pNombreCurso,pAnyo,pDescripcion, pAlumnado) {
   const daw1=curso("1ºDAW",2020,"Desarrollo aplicaciones WEB",["Goku","Vegeta"]);
 
   
-  //console.log(daw2.mostrarCurso());
-  //console.log(daw1.mostrarCurso());
-  console.log(mostrarCualquiera(daw2));
-  console.log(Array.isArray(daw2.alumnado));
-  console.log(typeof daw2.mostrarCurso=== 'function');
+  console.log(daw2.mostrarCurso());
+  console.log(daw1.mostrarCurso());
+  //console.log(mostrarCualquiera(daw2)); dejamos sabiendo las propiedades del objeto
+  //console.log(Array.isArray(daw2.alumnado));
+  //console.log(typeof daw2.mostrarCurso=== 'function');

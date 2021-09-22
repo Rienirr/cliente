@@ -7,4 +7,4 @@ function curso(pNombreCurso,pAnyo,pDescripcion, pAlumnado) {
     }
   }
   var daw= curso("2ºDAW",2021,"Desarrollo aplicaciones WEB",["antonio","pepito"]);
-  console.log(daw);
+  console.log(daw);//no he creado función para mostrar puesto que está en el siguiente 

@@ -3,7 +3,7 @@ function alumnado(p_Id,p_Nombre,p_Apellidos1, p_Aficiones,p_Notas) {
     return {Id: p_Id,
     nombre: p_Nombre,
     apellido1: p_Apellidos1,
-    apellido2: p_Apellidos2,
+    
     aficiones: p_Aficiones,
     notas: p_Notas,
     calcularMedia: function(){//
