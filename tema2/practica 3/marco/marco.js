@@ -1,13 +1,14 @@
 "use strict";
-function marco(num){
+function marco(num,area){
     let array  = new Array(num);
 
     for (let i = 0; i < array.length; i++) {
       array[i] = new Array(num);
     }
-    
-    let cruz =num/3;
-    let fincruz= cruz*2;
+    let mitad=num/2;
+    let mitadarea= area/2;
+    let iniarea=mitad-mitadarea;
+    let finarea= mitad+mitadarea;
     let hastag="#";
     let punto =".";
     
@@ -15,7 +16,7 @@ function marco(num){
     
         for(let j=0;j<num;j++){
         
-            if((i>=cruz && i<fincruz) &&(j>=cruz && j<fincruz)){
+            if((i>=iniarea && i<finarea) &&(j>=iniarea && j<finarea)){
               array[i][j]=punto;
             }
             else{
@@ -38,4 +39,4 @@ function marco(num){
     }
     
 }
-console.log(marco(18));
+console.log(marco(18,6));
