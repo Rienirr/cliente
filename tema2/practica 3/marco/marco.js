@@ -39,4 +39,4 @@ function marco(num,area){
     }
     
 }
-console.log(marco(18,6));
+console.log(marco(19,3));
