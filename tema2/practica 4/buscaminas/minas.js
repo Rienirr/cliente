@@ -14,7 +14,7 @@ function tableroCliente(minas){
                for(let k=i-1;k<=i+1;k++){
                 for(let z=0;z<3;z++ ){
                   
-                    if(typeof minas[k][i] == 'undefined'){continue;
+                    if(typeof minas[k][i] == 'undefined'){;
                if (minas[k][i]==1)   contadorMinasCercanas++;
                  } }
                }
