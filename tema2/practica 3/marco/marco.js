@@ -12,6 +12,7 @@ function marco(num,area){
     let hastag="#";
     let punto =".";
     
+    
     for(let i=0;i<num;i++){
     
         for(let j=0;j<num;j++){
@@ -27,16 +28,17 @@ function marco(num,area){
         }
         
     }
-    
-    let linea="";
+    let contador=1;
+    let linea=`${contador}`;
     for(let i=0; i<array.length; i++) {
+      contador=i+2;
       for(let j=0; j<array[i].length; j++) {
         linea = linea + array[i][j];
         
       }
       console.log(linea);
-      linea="";
+      linea=`${contador}`;
     }
     
 }
-console.log(marco(19,3));
+console.log(marco(21,7));

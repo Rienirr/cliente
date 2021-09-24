@@ -29,14 +29,16 @@ function cruz(num){
         
     }
     
-    let linea="";
+    let contador=1;
+    let linea=`${contador}`;
     for(let i=0; i<array.length; i++) {
+      contador=i+2;
       for(let j=0; j<array[i].length; j++) {
         linea = linea + array[i][j];
         
       }
       console.log(linea);
-      linea="";
+      linea=`${contador}`;
     }
     
 }
