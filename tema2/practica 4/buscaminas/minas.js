@@ -29,5 +29,5 @@ function tableroCliente(minas){
     }
     return minas;
   }   
-  // if(minas[i-1][j-1]==1 ||minas[i-1][j]==1 ||minas[i-1][j+1]==1 ||minas[i][j-1]==1 ||minas[i][j+1]==1 || minas[i-1][j-1]==1 ||minas[i-1][j]==1 ||minas[i-1][j+1]==1){}
+  
 console.log(tableroCliente(minas));
