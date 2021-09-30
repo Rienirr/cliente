@@ -2,9 +2,8 @@
 
 
 let minas=[[-1, 0, 0, 0],
-[ 0, 0, 0, 0],
-[ 0,-1, 0, 0],
-[ 0, 0, 0, 0],];
+[-1, 0, 0, 0]
+];
 function tableroCliente(minas){
 let dibujominascercanas= Array.from(minas);//para crear copia del array y mostar el dibujo.Así en caso de crear el juego tendríamos los dos tableros bien diferenciados
     let contadorMinasCercanas=0

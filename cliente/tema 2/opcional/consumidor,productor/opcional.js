@@ -120,7 +120,7 @@ function productor(){
 
 
       if (j <= 2) {
-      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 && subcuadriculasIzq.indexOf(aleatorio)==-1) {
+      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 ) {
         sudokucreado[i][j]=aleatorio ;
         sudokucreado[j][i]=aleatorio;
        
@@ -128,7 +128,7 @@ function productor(){
       }
     } 
     if (j <= 5) {
-      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 && subcuadriculasCentrales.indexOf(aleatorio)==-1) {
+      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 ) {
         sudokucreado[i][j]=aleatorio ;
         sudokucreado[j][i]=aleatorio;
       
@@ -136,7 +136,7 @@ function productor(){
       }
     } 
     if (j == 8) {
-      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 && subcuadriculasDerecha.indexOf(aleatorio)==-1) {
+      if(sudokucreado[i].indexOf(aleatorio)==-1 && sudokucreado[j].indexOf(aleatorio)==-1 ) {
         sudokucreado[i][j]=aleatorio ;
         sudokucreado[j][i]=aleatorio;
        
