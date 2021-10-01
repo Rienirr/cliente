@@ -14,8 +14,7 @@ function convertirCani(prueba){
               
         cani+= prueba.charAt(i).toLocaleUpperCase();  
            }else {
-               cani+= prueba.charAt(i).toLocaleLowerCase();  
-           }
+               cani+= prueba.charAt(i).toLocaleLowerCase();  // para asegurarnos que son minúsculas. El usuario por definición es idiota e igual nos pasa un string en mayúscula con esto lo tenemos controlado
        }
        cani+="HHH";
        return cani;
