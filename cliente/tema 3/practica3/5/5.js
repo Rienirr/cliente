@@ -1,7 +1,7 @@
 "use strict";
 function calcularDni(letra){
     let letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-    if(letras.indexOf(letra)<=0){//para controlar que sean letras Correctas 
+    if(letras.indexOf(letra)<0){//para controlar que sean letras Correctas 
         console.log("introduce una letra Correcta");
     }else{
       let num=  letras.indexOf(letra);
@@ -10,5 +10,6 @@ function calcularDni(letra){
      }
 }
 }
-calcularDni("L");
+calcularDni("T");
+
 
