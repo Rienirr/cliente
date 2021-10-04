@@ -18,6 +18,6 @@ function cliente(cli) {
 
 
 
-let cliente1 = cliente("Antonio:BONMATI:6855555:antoniobonmati@iespacomolla.es:0336");
+let cliente1 = cliente("Antonio:BONMATI ROBLES:6855555:antoniobonmati@iespacomolla.es:03660");
 
 cliente1.mostrar();

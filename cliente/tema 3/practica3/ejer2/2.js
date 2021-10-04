@@ -10,6 +10,7 @@ function temporizador(minutos, segundos){
             throw "introduce los nuneros correctamente los minutos y segundo deben estar entre 0 y 59 ";
         } var tempo = setInterval(() => {
             if (minutos<0 ) {
+                console.log("Se ha acabado el tiempo");
                clearInterval(tempo);
             }
             else{

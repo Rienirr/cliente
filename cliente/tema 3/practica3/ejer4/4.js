@@ -69,7 +69,7 @@
         function fechaActual(){
             setTimeout(() => {  
                 console.log(hoyFormateado);   
-               }, 1000);
+               }, 10000);
         
                 }
             fechaActual();

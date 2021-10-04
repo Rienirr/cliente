@@ -6,10 +6,11 @@ function primoyPaliidromo() {
   for (let i = 1; i <= 100000; i++) {
      numero = i.toString();
      numeroReves = "";
-     if(i==1 || i==2 || i==3 || i==5 || i==7 || i==11 || i==13 ){
-//Preguntar si estos números los muestro o no
+     if( i==2 || i==3 || i==5 || i==7 || i==11 ){
+      console.log(i.toString());// ya que estos numeros son los primeros primos lo pongo to String para que se muestren igual
+
      }
-    else if (                 //significa que no es primo
+    else if (                 //significa que no es primo pq estos son los primos menores 
       i % 2 != 0 &&
       i % 3 != 0 &&
       i % 5 != 0 &&

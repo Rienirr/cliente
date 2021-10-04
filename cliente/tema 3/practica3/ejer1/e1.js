@@ -1,9 +1,10 @@
 'use strict';
 
 var u ="una cadena cani es como esta";
-var muyCAni= "casi acabo comiendo en casa";
+var muyCAni= "casi acabo comiendo en casa compadre";
 ;
 function convertirCani(prueba){
+
     let cani="";
     do{
         prueba=  prueba.replace('c', 'k') ;// para que me cambie las c k mientras haya
@@ -16,10 +17,12 @@ function convertirCani(prueba){
            }else {
                cani+= prueba.charAt(i).toLocaleLowerCase();  // para asegurarnos que son minúsculas. El usuario por definición es idiota e igual nos pasa un string en mayúscula con esto lo tenemos controlado
        }
-       cani+="HHH";
-       return cani;
+       
 }
+cani+="HHH";
+       return cani;
 
+}
 
 console.log(convertirCani(u));
 
