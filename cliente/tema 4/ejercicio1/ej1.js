@@ -21,7 +21,7 @@ elemTexto.innerHTML=`El segundo parrafo es: ${textoSegundoParrafo}`;
 elemNumeroEnlaces.innerHTML= `Numero de enlaces en el texto: ${numeroEnlaces}` ;
 elemPrimer.innerHTML= `Primer enlace es : "${primerEnlace}"` ;
 elemPenultimo.innerHTML= `Penúltimo enlace es : "${penultimoEnlance}"` ;
-//los insertamos donde queramos 
+//los insertamos donde queramos que es dentro de la id de info que en este caso es un div 
 
 d.getElementById("info").appendChild(elemParrafos );
 d.getElementById("info").appendChild(elemTexto );
