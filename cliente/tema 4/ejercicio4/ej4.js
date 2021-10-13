@@ -1,6 +1,8 @@
 "use strict";
 function toCani(){
-let prueba= document.getElementsByTagName("input")[0].innerText;
+    let d=document;
+let prueba= d.getElementsByTagName("input")[0].innerText;
+
     let cani="";
     do{
         prueba=  prueba.replace('c', 'k') ;// para que me cambie las c k mientras haya
