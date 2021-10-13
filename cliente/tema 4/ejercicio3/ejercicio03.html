@@ -5,14 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 3 - Temporizador DOM</title>
+    <style type="text/css">
+
+
+#segundos, #minutos{
+   
+    border: 1px solid black;
+    
+}
+div {
+    width: 200px;
+}
+
+</style>
 </head>
 <body>
     <p>
-        Crea dos elementos  <p>  dentro del  <div>  temporizador  que indiquen los minutos y
+        Crea dos elementos   p dentro del  div  temporizador  que indiquen los minutos y
             segundos de un temporizador de modo que, al darle al botón  Comenzar , se muestre el
             temporizador por pantalla. 
-            La apariencia será similar a la siguiente:
-    </p>
+            La apariencia será similar a la siguiente:   </p>
+            
+
+<div id="temporizador">
+    <h3>temporizador</h3>
+    <label> Min</label>
+    <p id="minutos" >3 </p>
+        
+    <label> segundos</label>
+  <p id="segundos">45</p>
+
+
+</div>
+  
+            
+           
+           
+        
+
+    <button onclick="temporizador()" >  Enviar   </button> 
     <script src="ej3.js"> </script>
 </body>
 </html>
