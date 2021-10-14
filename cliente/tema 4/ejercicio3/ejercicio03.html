@@ -7,7 +7,9 @@
     <title>Ejercicio 3 - Temporizador DOM</title>
     <style type="text/css">
 
-
+fieldset{
+     border: 2px dotted black;
+}
 #segundos, #minutos{
    
     border: 1px solid black;
@@ -28,14 +30,16 @@ div {
             
 
 <div id="temporizador">
-    <h3>temporizador</h3>
-    <label> Min</label>
-    <p id="minutos" >3 </p>
+    <form action="">
+ <fieldset>
+    <legend> Temporizador</legend>
+ <label> Min</label>
+    <input type="number" name="minutos" id="minutos">
         
     <label> segundos</label>
-  <p id="segundos">45</p>
-
-
+<input type="number" name="segundos" id="segundos">
+</fieldset> 
+    </form>
 </div>
   
             
@@ -43,7 +47,7 @@ div {
            
         
 
-    <button onclick="temporizador()" >  Enviar   </button> 
+    <button id="boton" onclick="temporizador()"  >  Enviar   </button> 
     <script src="ej3.js"> </script>
 </body>
 </html>

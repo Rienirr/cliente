@@ -1,8 +1,10 @@
 "use strict";
-function toCani(){
-    let d=document;
-let prueba= d.getElementById("fila1").innerHTML;
-console.log(prueba);
+var contador=2;// pongo un contador para añadir filas de forma dinámica que cada una sea con un valor diferente al anterior
+let d=document;
+function toCani(filaParaConvertir){
+
+let prueba= d.getElementById(filaParaConvertir).innerText;
+
 
     let cani="";
     do{
@@ -21,6 +23,18 @@ console.log(prueba);
 cani+="HHH";
 
 
-d.getElementById("fila1").innerText= cani;
+d.getElementById(filaParaConvertir).innerText= cani;
 
+}
+function anyadir(){// el método recoge el valor y lo añade en la tabla con Inner html como lo queremos debidamente formateado
+let fila =d.getElementById("texto").value;
+
+let id=`fila${contador}`;
+let elemento=d.createElement("tr");
+elemento.innerHTML=`<td id="${id}"> ${fila}</td>  <td><button onclick="toCani('${id}')">Caniar</button> </td>`;
+
+d.getElementById("bodyTabla").appendChild(elemento);
+
+d.getElementById("texto").value="";// si lo hago con fila no funciona 
+contador++;
 }
