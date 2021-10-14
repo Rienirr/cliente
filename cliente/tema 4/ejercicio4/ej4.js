@@ -31,10 +31,10 @@ let fila =d.getElementById("texto").value;
 
 let id=`fila${contador}`;
 let elemento=d.createElement("tr");
-elemento.innerHTML=`<td id="${id}"> ${fila}</td>  <td><button onclick="toCani('${id}')">Caniar</button> </td>`;
+elemento.innerHTML=`<td id="${id}"> ${fila}</td>  <td><button onclick="toCani('${id}')">Caniar</button> </td>`;//añadimos todo lo que nos interesa para que el método funcione bien
 
 d.getElementById("bodyTabla").appendChild(elemento);
 
-d.getElementById("texto").value="";// si lo hago con fila no funciona 
+d.getElementById("texto").value="";// ponemos el valor en blanco de nuevo
 contador++;
 }
