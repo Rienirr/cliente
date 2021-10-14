@@ -1,7 +1,8 @@
 "use strict";
 function toCani(){
     let d=document;
-let prueba= d.getElementsByTagName("input")[0].innerText;
+let prueba= d.getElementById("fila1").innerHTML;
+console.log(prueba);
 
     let cani="";
     do{
@@ -18,6 +19,8 @@ let prueba= d.getElementsByTagName("input")[0].innerText;
        
 }
 cani+="HHH";
-       return cani;
+
+
+d.getElementById("fila1").innerText= cani;
 
 }
