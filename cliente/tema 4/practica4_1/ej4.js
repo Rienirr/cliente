@@ -4,7 +4,6 @@ let d=document;
 function toCani(filaParaConvertir){
    
 let prueba= d.getElementById(filaParaConvertir).innerText;
-//no había leido bien el enunciado y lo converti a cani igual que antes además de aplicar lo que dices que es cambiar el texto
 
     let cani="";
     do{
@@ -40,12 +39,12 @@ d.getElementById("bodyTabla").appendChild(elemento);
 d.getElementById("texto").value="";// ponemos el valor en blanco de nuevo
 contador++;
 }
-function fondo(filaParaConvertir){
+function fondo(filaParaConvertir){//para que cuando pase por encima le ponemos un fondo cani
 d.getElementById(filaParaConvertir).setAttribute("class","cani");
 }
 
 function eliminarCani(filaParaConvertir){
-    d.getElementById(filaParaConvertir).removeAttribute("class");
+    d.getElementById(filaParaConvertir).removeAttribute("class"); //le quitamos esa clase cani
 
 
 }
