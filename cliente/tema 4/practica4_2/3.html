@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="3.css">
 </head>
 <body>
-    <p onclick="desaparecer(0)" onmouseover="eliminar(0)">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In quis enim amet autem quae beatae!</p>
-    <p onclick="desaparecer(1)" ondblclick="eliminar(1)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, possimus.</p>
+    <!--He puesto el onmouseover y onmouseout puesto que no funciona con el double click pero si al ponerle otras propiedades
+    como las de poner el ratón encima o al quitar el ratón encima del texto pero no al double click   -->
+    <p onclick="desaparecer(0)" onmouseover="eliminar(0)" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. In quis enim amet autem quae beatae!</p>
+    <p onclick="desaparecer(1)" onmouseout="eliminar(1)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, possimus.</p>
     <p onclick="desaparecer(2)" ondblclick="eliminar(2)">Lorem ipsum dolor sit amet consectetur.</p>
     <p onclick="desaparecer(3)" ondblclick="eliminar(3)">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In quis enim amet autem quae beatae!</p>
     <p onclick="desaparecer(4)" ondblclick="eliminar(4)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, possimus.</p>
