@@ -1,12 +1,20 @@
 "use strict";
 
 function temporizador(){
- 
+  let segundos;
+  let minutos;
     let d= document;
-   let segundos=parseInt(d.getElementById("segundos").value);//para así convertir el número que recogemos por html a number
-   let minutos= parseInt(d.getElementById("minutos").value);//para así convertir el número que recogemos por html a number
+   let seg=(d.getElementById("segundos").value);//para así convertir el número que recogemos por html a number
+   let min= (d.getElementById("minutos").value);//para así convertir el número que recogemos por html a number
+   let elem=d.createElement("p");
+if(seg!=="" && min!==""){//para comprobar que si no sea vacío ya que si no da un error 
+ segundos= parseInt(seg);
+ minutos =parseInt (min);
+}
 
-let elem=d.createElement("p");
+
+
+
 
     try{
         if (segundos<0 || segundos>59 || minutos<0 || minutos>59 || typeof segundos!=="number" || typeof minutos!=="number" ){
