@@ -2,9 +2,9 @@
 var contador=2;// pongo un contador para añadir filas de forma dinámica que cada una sea con un valor diferente al anterior
 let d=document;
 function toCani(filaParaConvertir){
-    d.getElementById(filaParaConvertir).setAttribute("class","cani")
+   
 let prueba= d.getElementById(filaParaConvertir).innerText;
-
+//no había leido bien el enunciado y lo converti a cani igual que antes además de aplicar lo que dices que es cambiar el texto
 
     let cani="";
     do{
@@ -16,7 +16,8 @@ let prueba= d.getElementById(filaParaConvertir).innerText;
               
         cani+= prueba.charAt(i).toLocaleUpperCase();  
            }else {
-               cani+= prueba.charAt(i).toLocaleLowerCase();  // para asegurarnos que son minúsculas. El usuario por definición es idiota e igual nos pasa un string en mayúscula con esto lo tenemos controlado
+               cani+= prueba.charAt(i).toLocaleLowerCase();  
+               // para asegurarnos que son minúsculas. El usuario por definición es idiota e igual nos pasa un string en mayúscula con esto lo tenemos controlado
        }
        
 }
@@ -31,13 +32,18 @@ let fila =d.getElementById("texto").value;
 
 let id=`fila${contador}`;
 let elemento=d.createElement("tr");
-elemento.innerHTML=`<td id="${id}"> ${fila}  </td>  <td><button onmouseover="toCani('${id}')" onmouseout="eliminarCani('${id}')" >Caniar</button> </td>`;//añadimos todo lo que nos interesa para que el método funcione bien
+elemento.innerHTML=`<td id="${id}" onmouseover="fondo('${id}')" onmouseout="eliminarCani('${id}')"> ${fila}  </td>  <td><button onclick="toCani('${id}')" " >Caniar</button> </td>`;
+//añadimos todo lo que nos interesa para que el método funcione bien
 
 d.getElementById("bodyTabla").appendChild(elemento);
 
 d.getElementById("texto").value="";// ponemos el valor en blanco de nuevo
 contador++;
 }
+function fondo(filaParaConvertir){
+d.getElementById(filaParaConvertir).setAttribute("class","cani");
+}
+
 function eliminarCani(filaParaConvertir){
     d.getElementById(filaParaConvertir).removeAttribute("class");
 
