@@ -50,10 +50,10 @@ function crearTabla(){
       fila.appendChild(dato);
       contador++;
     }
-    table.appendChild(fila);
+    table.appendChild(fila);//insertamos una fila vez la tenemos completada de elementos 
     
   }
-  d.body.appendChild(table);
+  d.body.appendChild(table);//añadimos la tabla al body 
 }
 function recorrerTabla(){
   let primos= primo(); 
@@ -61,7 +61,8 @@ function recorrerTabla(){
   for (const valor in celdas) {
    
       let element = (celdas[valor].innerText);//tengo las celdas pero solo necesito su valor 
-     if(primos.includes(element)){//si su valor equivale a un primo para eso lo buscamos dentro del array de primos le ponemos la class primo
+     if(primos.includes(element)){
+       //si su valor equivale a un primo para eso lo buscamos dentro del array de primos le ponemos la class primo
        celdas[valor].setAttribute("class", "primo");
      }
       
