@@ -1,7 +1,5 @@
 "use strict";
-var textoReemplazado=document.body.innerHTML;
-do{
- (textoReemplazado.replace("sexo","Contenido BLOQUEADO"));
- console.log(textoReemplazado);
- } //while(textoReemplazado.search("sexo")==-1);
-   
+var d= document;
+var texto=d.body.innerHTML;
+var textoReemplazado= texto.replaceAll("sexo","<strong id='rojo'> Contenido bloqueado</strong>");
+d.body.innerHTML=textoReemplazado;
