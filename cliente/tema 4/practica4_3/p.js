@@ -2,7 +2,7 @@
 var d=document;
 window.onload =inicio();
 function crearTabla(){
-    let tamanyo=100;
+    let tamanyo=50;
     let table=d.createElement("table");
     
     for(let i=0;i<tamanyo;i++){//con esto hacemos 100 filas 
@@ -19,9 +19,10 @@ function crearTabla(){
     d.body.appendChild(table);//añadimos la tabla al body 
   }
 
-function botones() {// para crear los elementos como botones de ese color 
+function botones() {// para crear los elementos como botones de ese color dandole la clase para luego poder  recogerla con el onclick
    let  botonRojo= d.createElement("button");
     botonRojo.setAttribute("class", "rojo");
+    botonRojo.innerHTML="<input onclick='pintar'>";
     d.body.appendChild(botonRojo);
 
    let botonVerde= d.createElement("button");
@@ -35,7 +36,7 @@ function botones() {// para crear los elementos como botones de ese color
     let botonNegro= d.createElement("button");
     botonNegro.setAttribute("class", "negro");
     d.body.appendChild(botonNegro);
-    
+
     let botonBlanco=d.createElement("button");
     botonBlanco.setAttribute("class", "blanco");
     d.body.appendChild(botonBlanco);
