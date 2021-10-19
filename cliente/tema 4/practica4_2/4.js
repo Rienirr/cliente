@@ -16,17 +16,17 @@ d.body.appendChild(div);
 
 
 
-var imagenes = ["img/feo.jpg", "img/fea.jpg", "img/feos.jpg", "img/feas.jpg"];
-var carrusel = setInterval(() => {
+var imagenes = ["img/feo.jpg", "img/fea.jpg", "img/feos.jpg", "img/feas.jpg"];//imágenes libre de copyright
+var carrusel = setInterval(() => {//intervalo de imagen 
 
 
-  elem1.innerHTML=`<img id="mostrar" src="${imagenes[contador]}"></img>`;
+  elem1.innerHTML=`<img id="mostrar" src="${imagenes[contador]}"></img>`;// cogemos la posición que queramos cada vez
   
   d.getElementById("mostrar").style.absolute;
 
   let change=0;
 
-      var tempo= setInterval(()=>{
+      var tempo= setInterval(()=>{//intervalo de posición
        
         
       if(change>=100){
@@ -36,7 +36,7 @@ var carrusel = setInterval(() => {
        
       d.getElementById("mostrar").style.marginLeft= change+"vw";
 
-    
+  //para que salga de la forma más bonita posible le sumamos uno así se va moviendo de posición   
       change+=1;
        
         
@@ -44,7 +44,7 @@ var carrusel = setInterval(() => {
         },20);
         
 
-   
+   //para reiniciar
     contador++;
     if(contador>3){
       contador=0;

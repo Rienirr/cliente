@@ -1,5 +1,9 @@
 table ,td{
-    border: 2px solid black ;
+    border: 1px solid black ;
+}
+td{
+   min-height: 5px;
+   min-width: 5px;
 }
 .primo{
     background-color: red;
