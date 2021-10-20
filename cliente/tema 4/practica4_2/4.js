@@ -28,10 +28,13 @@ var carrusel = setInterval(() => {//intervalo de imagen
 
       var tempo= setInterval(()=>{//intervalo de posición
        
-        
-      if(change>=100){
+       
+      if(change>100){
         change=0;
         clearInterval(tempo);
+       
+        
+        d.getElementById("mostrar").style.display= none;
       }
        
       d.getElementById("mostrar").style.marginLeft= change+"vw";
@@ -41,7 +44,7 @@ var carrusel = setInterval(() => {//intervalo de imagen
        
         
        
-        },20);
+        },15);//lo hacemos con este intervalo ya que es el más apropiado con el para los 2 segundos 
         
 
    //para reiniciar
