@@ -14,7 +14,9 @@ de todos los números primos hasta el 10000 para luego recorrerlo y hacer las co
   if(i==1){
 //no hacemos nada pero controlamos que no entre en el segundo if 
   }
-     else if( i==2 || i==3 || i==5 || i==7 || i==11 ){
+     else if( i==2 || i==3 || i==5 || i==7 || i==11 || i==13){
+      /* lo he vuelto a reenviar puesto que al probarlo no había incluido el 13 
+       (En la práctica de primos y palíndromos no detecté el error puesto que no cumple el requisito de palíndromo) */
       array.push(numero);
 
      }
