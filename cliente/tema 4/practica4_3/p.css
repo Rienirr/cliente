@@ -1,7 +1,9 @@
 td{
     border: 2px solid black ;
-    padding: 0.5vw;
-   
+    padding: 0.5vw; 
+ }
+ table{
+     margin: 0 auto;
  }
  .rojo{
     background-color: red;
@@ -26,7 +28,7 @@ button{
     border-radius: 10px;
     border: 0.5vw solid orange;
     margin-right: 2vw;
-
+    
     min-height: 10vh;
     min-width: 5vw;
 }
@@ -40,6 +42,10 @@ h1{
     border: 0.5vw solid orange;
      min-width: 25ww;
     margin: 3vh auto;
+    font-size: 3vh;
    
     align-content: center;
+}
+button:first-child{
+margin-left: 25vw;
 }
