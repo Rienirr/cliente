@@ -1,7 +1,9 @@
 td{
     border: 2px solid black ;
-    padding: 0.5vw;
-   
+    padding: 0.5vw; 
+ }
+ table{
+     margin: 0 auto;
  }
  .rojo{
     background-color: red;
@@ -18,13 +20,15 @@ td{
 }
 .blanco{
     background-color: white;
+    color: black;
+   
 }
 button{
    
     border-radius: 10px;
-    border: 15px dotted orange;
+    border: 0.5vw solid orange;
     margin-right: 2vw;
-
+    
     min-height: 10vh;
     min-width: 5vw;
 }
@@ -33,8 +37,15 @@ p{
 }
 h1{
     min-height: 10vh;
-
- min-width: 25ww;
+    max-width: 20vw;
+    border-radius: 10px;
+    border: 0.5vw solid orange;
+     min-width: 25ww;
     margin: 3vh auto;
-    color: white;
+    font-size: 3vh;
+   
+    align-content: center;
+}
+button:first-child{
+margin-left: 25vw;
 }
