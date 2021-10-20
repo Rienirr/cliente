@@ -11,7 +11,8 @@ function crearTabla(){// creamos la tabla y el h1 dando los valores que nos conv
     let tamanyo=50;
     let table=d.createElement("table");
     
-    for(let i=0;i<30;i++){//para no hacerlo tan larga
+    for(let i=0;i<30;i++){
+      //para no hacerlo tan larga y que se vea de forma correcta con estos estilos si se quiere poner más grande o más pequeá cambiamos los valores de los for y listo
       let fila=d.createElement("tr");
       for(let j=0;j<tamanyo;j++){
         let dato=d.createElement("td");
