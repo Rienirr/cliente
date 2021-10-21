@@ -1,6 +1,6 @@
 td{
     border: 2px solid black ;
-    padding: 0.5vw; 
+    padding: 10px; 
  }
  table{
      margin: 0 auto;
@@ -29,7 +29,7 @@ button{
     border: 0.5vw solid orange;
     margin-right: 2vw;
     
-    min-height: 5vh;
+    min-height: 10vh;
     min-width: 5vw;
 }
 p{
@@ -48,4 +48,7 @@ h1{
 }
 button:first-child{
 margin-left: 25vw;
+}
+body{
+    background-color: wheat;
 }
