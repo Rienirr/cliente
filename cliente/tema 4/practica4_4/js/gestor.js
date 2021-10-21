@@ -70,8 +70,8 @@ function asignarCompleta(elemento){//asigna la tarea a completa
 
 
 
-    contadorTareasCompletadas++;
-    contadorTareasPendientes--;
+    contadorTareasCompletadas++;//hay sumar y restar para saber en que posición esta el que queramos borrar
+    contadorTareasPendientes--;//restar 
     divTareas.removeChild(tareaCambiada);
 }
 function borrar(elemento){//borra la tarea pendiente
