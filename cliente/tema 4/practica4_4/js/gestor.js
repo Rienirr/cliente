@@ -47,7 +47,7 @@ function recogerTarea() {//esta función recoge el texto del gestor de tareas
 }
 
 
-function asignarTarea(){//asigna la tarea a pendientes
+function asignarTarea(){//asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto
   if(recogerTarea() !=""){
 
   
@@ -73,8 +73,9 @@ function asignarTarea(){//asigna la tarea a pendientes
   }
     
 }
-/* Mirar bien pq necesito cambiarle las clases a los botones para que no de problemas  */
-function asignarCompleta(elemento){//asigna la tarea a completa Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto
+
+function asignarCompleta(elemento){
+    //asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes
     let divTareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
 
