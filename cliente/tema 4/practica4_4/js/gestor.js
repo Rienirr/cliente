@@ -87,7 +87,7 @@ function asignarCompleta(elemento){
     let botones= d.createElement("p");
     div.setAttribute("class","acabada");
     div.setAttribute("id", `acabada${contadorTareasCompletadas}`);
-    p.innerText= elemento.innerText;
+    p.innerText= elemento.innerText.trim();
     botones.setAttribute("class", "botones");
     botones.innerHTML=`<input type='button' value='volver' class='del' onclick='volver(acabada${contadorTareasCompletadas})' /> <input type='button' value='archivar' class='end' onclick='archivar(acabada${contadorTareasCompletadas})' />`;
     div.appendChild(p);
@@ -124,7 +124,7 @@ function volver(elemento){// devuelve una tarea completada a la lista de pendien
    let botones= d.createElement("p");
    div.setAttribute("class","tarea");
    div.setAttribute("id", `tarea${contadorTareasPendientes}`);
-   p.innerText= elemento.innerText;
+   p.innerText= elemento.innerText.trim();
    botones.setAttribute("class", "botones");
    botones.innerHTML=`<input type='button' value='Borrar' class='del' onclick='borrar(tarea${contadorTareasPendientes})' /> <input type='button' value='Acabar' class='end' onclick='asignarCompleta(tarea${contadorTareasPendientes})' />`;
    div.appendChild(p);
