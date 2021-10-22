@@ -5,7 +5,7 @@
   height: 60vh;
   overflow: auto;
   margin-right: 10vw;
- 
+
   padding: 10px;
 
 }
@@ -14,8 +14,7 @@
 
 #acabadas {
   float: left;
-  background-color: papayawhip;
-
+  background-color: papayawhip; 
   width: 30vw;
   height: 60vh;
   overflow: auto;
@@ -32,11 +31,18 @@
 .acabada{
 background-color: lightgreen;
 margin-bottom: 10px;
+
+}
+.acabada p:first-child{
+  text-decoration: line-through;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-shadow: azure;
 }
 .tarea{
   background-color: lightcoral;
   margin-bottom: 10px;
-  
+  font-style: italic;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 p{
   padding: 8px;
@@ -48,4 +54,5 @@ display: none;
   margin-left: 75%;
   margin-bottom: 5%;
   padding: 5px;
+  
 }
