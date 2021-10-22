@@ -74,7 +74,7 @@ function asignarTarea(){//asigna la tarea a pendientes
     
 }
 /* Mirar bien pq necesito cambiarle las clases a los botones para que no de problemas  */
-function asignarCompleta(elemento){//asigna la tarea a completa
+function asignarCompleta(elemento){//asigna la tarea a completa Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto
     let divTareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
 
@@ -115,7 +115,7 @@ function archivar(elemento){//archiva el elemento de las tareas completadas
     elemento.setAttribute("class", "archivado");
 
 }
-function volver(elemento){// devuelve una tarea completada a la lista de pendientes 
+function volver(elemento){// devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos 
     let divtareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
     let div= d.createElement("div");
