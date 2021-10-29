@@ -7,14 +7,14 @@ var iLlena=d.createElement("img");
 
  function crearImg(){
 
-     iVacia.setAttribute("src", "../img/vacia.jpeg");
+     iVacia.setAttribute("src", "img/vacia.jpeg");
      iVacia.setAttribute("class","vacia");
     
 
- iBola.setAttribute("src", "../img/papel.jpeg");
+ iBola.setAttribute("src", "img/papel.jpeg");
  iBola.setAttribute("draggable","true");
  
- iLlena.setAttribute("src", "../img/llena.jpg");
+ iLlena.setAttribute("src", "img/llena.jpg");
  iLlena.setAttribute("class", "invisible");
 
  d.body.appendChild(iVacia);
