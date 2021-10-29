@@ -1,6 +1,7 @@
 "use strict";
 window.onload= function() {
 var d =document;
+//creamos las imágenes para no tener que añadir nada con código estático de HTML
 var iVacia= d.createElement("img");
 var iBola= d.createElement("img");
 var iLlena=d.createElement("img");
