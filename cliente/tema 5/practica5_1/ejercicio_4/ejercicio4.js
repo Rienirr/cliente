@@ -47,8 +47,9 @@ var iLlena=d.createElement("img");
     function (evento) {
       evento.preventDefault(); // IMPORTANTE -> previene el funcionamiento por defecto
       if (evento.target.className == "vacia") {
-            evento.target.removeAttribute("vacia");
-            evento.target.setAttribute("class","invisible");
+              evento.target.setAttribute("class","invisible");//para hacer que no se vea
+            elementoArrastrado.setAttribute("class","invisible");//para hacer que no se vea
+            iLlena.setAttribute("class","visible");
       }
     },
     false

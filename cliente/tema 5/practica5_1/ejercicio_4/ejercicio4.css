@@ -1,0 +1,12 @@
+img{
+    margin-right: 15vw;
+    max-width: 250px;
+    max-height: 150px;
+}
+.invisible{
+    display: none;
+}
+.visible{
+    max-width: 2500px;
+    max-height: 1500px;
+}

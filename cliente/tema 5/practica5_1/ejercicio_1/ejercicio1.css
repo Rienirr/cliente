@@ -1,0 +1,19 @@
+.primero{
+    margin: 1vw  0px 0px 35vw;
+}
+h1{
+    max-width: 25%;
+    margin: 1vw  0px 0px 35vw;
+    
+    
+    border-radius: 15px;
+    border:5px solid black;
+}
+.mensaje{
+    border-radius: 15px;
+    color: white;
+    background-color: #010101c4;
+    
+    border:5px solid black;
+    max-width: 25%;
+}
