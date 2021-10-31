@@ -215,16 +215,8 @@ botones.appendChild(botonAcabar);
   
 
 }
-var posicionDelRaton;
-d.addEventListener("mousemove", function(event){ //nos da la posisición del ratón en cada momento
-    
-      posicionDelRaton= event.y;
-     
-     
-     
 
-  },false);
-function reemplazar(elemento){
+function reemplazar(elemento, elementosoltado){
  
     let divtareas= d.getElementById("pendientes");
 
@@ -260,23 +252,102 @@ botones.appendChild(botonAcabar);
 
    div.appendChild(p);
    div.appendChild(botones);
- //Lo siguiente es para reemplazrlo necesitamos su posición(y) que equivale a la altura y para eso nos valemos de las propiedades de los métodos
    divtareas.appendChild(div);
    contadorTareasPendientes++;
 
 
 }
+function despues(elemento, elementoSoltado){//pone el elemento  después que el que le pasamos 
+    let antes= d.getElementById(elementoSoltado);
+    let div= d.createElement("div");
+    div.setAttribute("draggable","true");
+   let p= d.createElement("p")
+   let botones= d.createElement("p");
+   div.setAttribute("class","tarea");
+   let id= `tarea${contadorTareasPendientes}`;
+   div.setAttribute("id", id);
+   let tareaCambiada= d.getElementById(elemento);
+   p.innerText= tareaCambiada.innerText.trim();
+   botones.setAttribute("class", "botones");
+   borrar(elemento);
+   let  botonBorrar= d.createElement("input");
+   botonBorrar.setAttribute("type", "button");
+   botonBorrar.setAttribute("value","borrar");
+   botonBorrar.setAttribute("class","del");
+  
+let botonAcabar=d.createElement("input");
+botonAcabar.setAttribute("type", "button");
+botonAcabar.setAttribute("value","Acabar");
+botonAcabar.setAttribute("class","end");
+botonBorrar.addEventListener("click", function(){
+    borrar(id);
+   },false);
+   botonAcabar.addEventListener("click", function(){
+    asignarCompleta(id);
+   },false);
+
+botones.appendChild(botonBorrar);
+botones.appendChild(botonAcabar);
+
+   div.appendChild(p);
+   div.appendChild(botones);
+ 
+   antes.insertAdjacentElement("afterend",div);
+   contadorTareasPendientes++;
 
 
+}
+function antes(elemento, elementoSoltado){//pone un elemento antes que otro 
+  
+       let antes= d.getElementById(elementoSoltado);
+   
+       let div= d.createElement("div");
+       div.setAttribute("draggable","true");
+      let p= d.createElement("p")
+      let botones= d.createElement("p");
+      div.setAttribute("class","tarea");
+      let id= `tarea${contadorTareasPendientes}`;
+      div.setAttribute("id", id);
+      let tareaCambiada= d.getElementById(elemento);
+      p.innerText= tareaCambiada.innerText.trim();
+      botones.setAttribute("class", "botones");
+      borrar(elemento);
+      let  botonBorrar= d.createElement("input");
+      botonBorrar.setAttribute("type", "button");
+      botonBorrar.setAttribute("value","borrar");
+      botonBorrar.setAttribute("class","del");
+     
+   let botonAcabar=d.createElement("input");
+   botonAcabar.setAttribute("type", "button");
+   botonAcabar.setAttribute("value","Acabar");
+   botonAcabar.setAttribute("class","end");
+   botonBorrar.addEventListener("click", function(){
+       borrar(id);
+      },false);
+      botonAcabar.addEventListener("click", function(){
+       asignarCompleta(id);
+      },false);
+   
+   botones.appendChild(botonBorrar);
+   botones.appendChild(botonAcabar);
+   
+      div.appendChild(p);
+      div.appendChild(botones);
+    //Lo siguiente es para reemplazrlo necesitamos su posición(y) que equivale a la altura y para eso nos valemos de las propiedades de los métodos
+      antes.insertAdjacentElement("beforebegin",div);
+      contadorTareasPendientes++;
+   
+   
+   }
+   
 
-
-var posicionAlEmpezar;
-var posicionAlSoltar;
+var  posicionInicial;
+var posicionFinal;
 d.addEventListener("drag",(event)=> {
  //he puesto esta vez funciones flecha para acostumbrarme a su uso ya que las funciones anónimas son más fáciles para mí ya que las he utilizado infinitamente más
 elemntoArrastrado= event.target.id;
-
-
+ posicionInicial= d.getElementById(elemntoArrastrado).getBoundingClientRect();//este método lo he usado para saber en la posción en la que se encuentra el ratón
+console.log(posicionInicial.y);
 
 }, false);
 d.addEventListener("dragover",(event)=>{
@@ -289,16 +360,33 @@ d.getElementById("acabadas").addEventListener("drop", (event)=>{
 
 },false);
 d.getElementById("pendientes").addEventListener("drop", (event)=>{
- 
+    console.log(event.target);
+ posicionFinal= event.target.getBoundingClientRect();
     if(elemntoArrastrado.includes("acabada") ){//así solo ponemos de vuelta las acabadas
         volver(elemntoArrastrado);
     }
     else{
-      
-        reemplazar(elemntoArrastrado);
-    }
+        if(event.target.id.includes("tarea")){
 
-  
+       
+       if(posicionFinal.y>posicionInicial.y){//si la posición final de la y(altura es mayor) lo insertamos después 
+console.log("insert After");
+/* Controlar que si lo ponemos encima del p o de los inputs no de errores inesperados  */
+
+despues(elemntoArrastrado,event.target.id);
+       } else if(posicionFinal.y<posicionInicial.y){//si la posición final de la y(altura es menor) lo insertamos antes 
+        console.log("insert before");
+        console.log(event.target.id);
+        antes(elemntoArrastrado,event.target.id);
+       }
+      
+    } 
+
+
+reemplazar(elemntoArrastrado);// para poner al final una tarea 
+}
+
+    
 
 },false);
 
