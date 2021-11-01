@@ -342,6 +342,7 @@ function antes(elemento, elementoSoltado){//pone un elemento antes que otro
    
 
 var  posicionInicial;
+//para saber la posción del ratón al arrastrar los elementos en tareas pendientes y decidir si hacer un insert before o after
 var posicionFinal;
 d.addEventListener("drag",(event)=> {
  //he puesto esta vez funciones flecha para acostumbrarme a su uso ya que las funciones anónimas son más fáciles para mí ya que las he utilizado infinitamente más
@@ -360,31 +361,50 @@ d.getElementById("acabadas").addEventListener("drop", (event)=>{
 
 },false);
 d.getElementById("pendientes").addEventListener("drop", (event)=>{
-    console.log(event.target);
+ /*para saber el ID que darle y funcione correctamente tenemos que comprobar donde suelta el ratón
+ si en el div con id, en el parrafo o en algunos de los inputs para ajustar acorde*/
+   var idTarea="final";
+ 
+  if (event.target.parentNode.id.includes("tarea")){//si lo recibe el p que es el hijo del div
+   idTarea=event.target.parentNode.id;
+  }
+  else if(event.target.parentNode.parentNode.id.includes("tarea")){//si lo recibe culaquiera de los inputs que son nietos del div
+   idTarea=event.target.parentNode.parentNode.id;
+  }
+  else if(event.target.id.includes("tarea")){//si es el div
+   idTarea=event.target.id;
+  }
+  
+  
+  
  posicionFinal= event.target.getBoundingClientRect();
     if(elemntoArrastrado.includes("acabada") ){//así solo ponemos de vuelta las acabadas
         volver(elemntoArrastrado);
     }
-    else{
-        if(event.target.id.includes("tarea")){
+    else if(idTarea.includes("tarea")){
+        
 
        
-       if(posicionFinal.y>posicionInicial.y){//si la posición final de la y(altura es mayor) lo insertamos después 
-console.log("insert After");
-/* Controlar que si lo ponemos encima del p o de los inputs no de errores inesperados  */
-
-despues(elemntoArrastrado,event.target.id);
+       if(posicionFinal.y>posicionInicial.y){
+          //si la posición final de la y(altura es mayor) lo insertamos después 
+//console.log("insert After");
+despues(elemntoArrastrado,idTarea);
        } else if(posicionFinal.y<posicionInicial.y){//si la posición final de la y(altura es menor) lo insertamos antes 
-        console.log("insert before");
-        console.log(event.target.id);
-        antes(elemntoArrastrado,event.target.id);
+         
+         //console.log("insert before");
+       
+        
+        antes(elemntoArrastrado,idTarea);
        }
       
+    }
+    else{//para insertar al final si arrastramos y cae en el div
+      reemplazar(elemntoArrastrado);
     } 
 
 
-reemplazar(elemntoArrastrado);// para poner al final una tarea 
-}
+ 
+
 
     
 
