@@ -1,3 +1,6 @@
+*{
+  transition:  0.5s;
+}
 #pendientes {/* pone todo el div de pendientes y el de tareas*/
   float: left;
   background-color: papayawhip;
@@ -66,5 +69,10 @@ text-align: center;
   font-weight: lighter;
   font-style: italic;
   text-align: center;
+  }
+  .encima{
+    
+outline: 5px double red;
+outline-offset: -15px;
   }
   

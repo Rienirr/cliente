@@ -1,12 +1,12 @@
 "use strict";
 var d=document;
 window.onload= function(){
-inicio();
+
 var contadorTareasPendientes=0;
 var contadorTareasCompletadas=0;
 var elemntoArrastrado;
 
-function mostrarArchivados(){//muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar
+function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
     
     let archivados= d.getElementsByClassName("archivado");
     
@@ -15,7 +15,7 @@ function mostrarArchivados(){//muestra todas las tareas archivadas quitando su c
     }
     
     }
-function limpiarPendientesYAcabadas(){// eliminos las tareas que nos dan de ejemplo
+function limpiarPendientesYAcabadas(){// Eliminos las tareas que nos dan de ejemplo.
    let pendientes= d.getElementsByClassName("tarea");
    d.getElementById("pendientes").removeChild(pendientes[1]);
    d.getElementById("pendientes").removeChild(pendientes[0]);
@@ -23,7 +23,7 @@ function limpiarPendientesYAcabadas(){// eliminos las tareas que nos dan de ejem
    d.getElementById("acabadas").removeChild(acabadas[0]);
 }
 
-function botones(){//para poner funcionalidad al inicio 
+function botones(){//Para poner funcionalidad al inicio. 
    let anyadir= d.getElementById("add");
    let mostrar= d.getElementById("sho")
    anyadir.addEventListener("click",function(){
@@ -36,12 +36,12 @@ function botones(){//para poner funcionalidad al inicio
 
 }
 
-function inicio(){//añadimos las funciones que se ejecutan al iniciar el programa
+function inicio(){//Añadimos las funciones que se ejecutan al iniciar el programa.
     limpiarPendientesYAcabadas();
     botones();
 }
-
-function recogerTarea() {//esta función recoge el texto del gestor de tareas
+inicio();
+function recogerTarea() {//Esta función recoge el texto del gestor de tareas.
     let prueba= d.getElementsByTagName("textarea")[0].value;
     if(prueba.trim().length !== 0 ){
          return prueba;
@@ -53,10 +53,10 @@ function recogerTarea() {//esta función recoge el texto del gestor de tareas
     }
           
     }   
- function limpiarTarea() {//pone el texto del gestor en blanco para añadir más 
+ function limpiarTarea() {//Pone el texto del gestor en blanco para añadir más. 
    d.getElementsByTagName("textarea")[0].value ="";
 }
-function asignarTarea(){//asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto
+function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto.
   if(recogerTarea() !=""){ 
     let divtareas= d.getElementById("pendientes");
 
@@ -103,7 +103,7 @@ botones.appendChild(botonAcabar);
 }
 
 function asignarCompleta(elemento){
-    //asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes lo hemos cambiado para que funcione con eventos 
+    //Asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes lo hemos cambiado para que funcione con eventos.
     let divTareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
 
@@ -150,16 +150,16 @@ function asignarCompleta(elemento){
 
 
     
-    divTareas.removeChild(tareaCambiada);//eliminamos 
+    divTareas.removeChild(tareaCambiada);
     
     divCompletadas.appendChild(div);
 
-   contadorTareasCompletadas++;//hay sumar y restar para saber en que posición esta el que queramos borrar
+   contadorTareasCompletadas++;//Hay sumar y restar para saber en que posición esta el que queramos borrar.
    
 
     
 }
-function borrar(elemento){//borra la tarea pendiente
+function borrar(elemento){//Borra la tarea pendiente.
     let divTareas= d.getElementById("pendientes");
  
     
@@ -167,16 +167,16 @@ function borrar(elemento){//borra la tarea pendiente
     
 } 
 
-function archivar(elemento){//archiva el elemento de las tareas completadas
+function archivar(elemento){//Archiva el elemento de las tareas completadas.
     let tareaCambiada= d.getElementById(elemento);
     tareaCambiada.setAttribute("class", "archivado");
 
 }
-function volver(elemento){// devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos 
+function volver(elemento){// Devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos. 
     let divtareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
     let div= d.createElement("div");
-    div.setAttribute("draggable","true");//añadimos el atributo draggable para la nueva funcionalidad
+    div.setAttribute("draggable","true");//Añadimos el atributo draggable para la nueva funcionalidad.
    let p= d.createElement("p")
    let botones= d.createElement("p");
    div.setAttribute("class","tarea");
@@ -257,7 +257,7 @@ botones.appendChild(botonAcabar);
 
 
 }
-function despues(elemento, elementoSoltado){//pone el elemento  después que el que le pasamos 
+function despues(elemento, elementoSoltado){//Pone el elemento  después que el que le pasamos. 
     let antes= d.getElementById(elementoSoltado);
     let div= d.createElement("div");
     div.setAttribute("draggable","true");
@@ -297,7 +297,7 @@ botones.appendChild(botonAcabar);
 
 
 }
-function antes(elemento, elementoSoltado){//pone un elemento antes que otro 
+function antes(elemento, elementoSoltado){//Pone un elemento antes que otro. 
   
        let antes= d.getElementById(elementoSoltado);
    
@@ -333,7 +333,7 @@ function antes(elemento, elementoSoltado){//pone un elemento antes que otro
    
       div.appendChild(p);
       div.appendChild(botones);
-    //Lo siguiente es para reemplazrlo necesitamos su posición(y) que equivale a la altura y para eso nos valemos de las propiedades de los métodos
+    //Lo siguiente es para reemplazrlo necesitamos su posición(y) que equivale a la altura y para eso nos valemos de las propiedades de los métodos.
       antes.insertAdjacentElement("beforebegin",div);
       contadorTareasPendientes++;
    
@@ -345,9 +345,9 @@ var  posicionInicial;
 //para saber la posción del ratón al arrastrar los elementos en tareas pendientes y decidir si hacer un insert before o after
 var posicionFinal;
 d.addEventListener("drag",(event)=> {
- //he puesto esta vez funciones flecha para acostumbrarme a su uso ya que las funciones anónimas son más fáciles para mí ya que las he utilizado infinitamente más
+ //He puesto esta vez funciones flecha para acostumbrarme a su uso ya que las funciones anónimas son más fáciles para mí ya que las he utilizado infinitamente más.
 elemntoArrastrado= event.target.id;
- posicionInicial= d.getElementById(elemntoArrastrado).getBoundingClientRect();//este método lo he usado para saber en la posción en la que se encuentra el ratón
+ posicionInicial= d.getElementById(elemntoArrastrado).getBoundingClientRect();// Para saber en la posción en la que se encuentra el ratón.
 console.log(posicionInicial.y);
 
 }, false);
@@ -361,24 +361,25 @@ d.getElementById("acabadas").addEventListener("drop", (event)=>{
 
 },false);
 d.getElementById("pendientes").addEventListener("drop", (event)=>{
- /*para saber el ID que darle y funcione correctamente tenemos que comprobar donde suelta el ratón
+
+ /*Para saber el ID que darle y funcione correctamente tenemos que comprobar donde suelta el ratón
  si en el div con id, en el parrafo o en algunos de los inputs para ajustar acorde*/
    var idTarea="final";
  
-  if (event.target.parentNode.id.includes("tarea")){//si lo recibe el p que es el hijo del div
+  if (event.target.parentNode.id.includes("tarea")){//Si lo recibe el p que es el hijo del div.
    idTarea=event.target.parentNode.id;
   }
-  else if(event.target.parentNode.parentNode.id.includes("tarea")){//si lo recibe culaquiera de los inputs que son nietos del div
+  else if(event.target.parentNode.parentNode.id.includes("tarea")){//Si lo recibe culaquiera de los inputs que son nietos del div.
    idTarea=event.target.parentNode.parentNode.id;
   }
-  else if(event.target.id.includes("tarea")){//si es el div
+  else if(event.target.id.includes("tarea")){//Si es el div.
    idTarea=event.target.id;
   }
-  
+
   
   
  posicionFinal= event.target.getBoundingClientRect();
-    if(elemntoArrastrado.includes("acabada") ){//así solo ponemos de vuelta las acabadas
+    if(elemntoArrastrado.includes("acabada") ){//Así solo ponemos de vuelta las acabadas.
         volver(elemntoArrastrado);
     }
     else if(idTarea.includes("tarea")){
@@ -386,10 +387,10 @@ d.getElementById("pendientes").addEventListener("drop", (event)=>{
 
        
        if(posicionFinal.y>posicionInicial.y){
-          //si la posición final de la y(altura es mayor) lo insertamos después 
+          //Si la posición final de la y(altura es mayor) lo insertamos después.
 //console.log("insert After");
 despues(elemntoArrastrado,idTarea);
-       } else if(posicionFinal.y<posicionInicial.y){//si la posición final de la y(altura es menor) lo insertamos antes 
+       } else if(posicionFinal.y<posicionInicial.y){//Si la posición final de la y(altura es menor) lo insertamos antes. 
          
          //console.log("insert before");
        
@@ -398,18 +399,25 @@ despues(elemntoArrastrado,idTarea);
        }
       
     }
-    else{//para insertar al final si arrastramos y cae en el div
+    else{//Para insertar al final si arrastramos y cae en el div.
       reemplazar(elemntoArrastrado);
     } 
-
-
- 
-
-
-    
-
 },false);
-
+d.addEventListener("dragenter", (event)=>{//Añado las 
+event.target.classList.add("encima");
+},false);
+d.addEventListener("dragleave", (event)=>{//Para quitar los efectos que voy poniendo.
+event.target.classList.remove("encima");
+},false);
+d.addEventListener("dragexit", (event)=>{//Para quitar los efectos que voy poniendo.
+   
+   event.target.classList.remove("encima");//No funciona, te lo comenté en clase, y no quita la clase.
+},false);
+d.addEventListener("dragend",(event)=>{
+   //Para quitar los efectos que voy poniendo.No funciona, te lo comenté en clase, y no quita la clase.
+  
+   event.target.classList.remove("encima");
+},false);
 
 }
 
