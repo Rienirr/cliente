@@ -72,7 +72,9 @@ text-align: center;
   }
   .encima{
     
-outline: 5px double red;
-outline-offset: -15px;
+outline: 3px dotted plum;
+
+outline-offset: -10px;
+box-shadow: 0px 0px 0px 3px plum inset;
   }
   

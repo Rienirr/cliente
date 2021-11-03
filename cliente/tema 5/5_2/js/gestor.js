@@ -352,16 +352,24 @@ console.log(posicionInicial.y);
 
 }, false);
 d.addEventListener("dragover",(event)=>{
+   
     event.preventDefault();
 }, false);
-d.getElementById("acabadas").addEventListener("drop", (event)=>{
+d.getElementById("acabadas").addEventListener("drop", (event)=>{//Para colocar los elementos en acabadas.
+   event.target.classList.remove("encima");//Para eliminar los estilos que doy al soltar y solucionar el fallo que tenía al darle estilos.
     
 
     asignarCompleta(elemntoArrastrado); 
 
 },false);
-d.getElementById("pendientes").addEventListener("drop", (event)=>{
+d.addEventListener("drop", (event)=>{
+   event.target.classList.remove("encima");//para eliminar los efectos
+},false);
 
+d.getElementById("pendientes").addEventListener("drop", (event)=>{//Para colocar los elementos en pendientes.
+   event.target.classList.remove("encima");
+
+ 
  /*Para saber el ID que darle y funcione correctamente tenemos que comprobar donde suelta el ratón
  si en el div con id, en el parrafo o en algunos de los inputs para ajustar acorde*/
    var idTarea="final";
@@ -409,15 +417,16 @@ event.target.classList.add("encima");
 d.addEventListener("dragleave", (event)=>{//Para quitar los efectos que voy poniendo.
 event.target.classList.remove("encima");
 },false);
-d.addEventListener("dragexit", (event)=>{//Para quitar los efectos que voy poniendo.
+d.addEventListener("dragexit", (event)=>{//Para quitar los efectos que voy poniendo, al salir de los contextos.
    
-   event.target.classList.remove("encima");//No funciona, te lo comenté en clase, y no quita la clase.
+   event.target.classList.remove("encima");
 },false);
 d.addEventListener("dragend",(event)=>{
-   //Para quitar los efectos que voy poniendo.No funciona, te lo comenté en clase, y no quita la clase.
+   //Para quitar los efectos que voy poniendo. 
   
    event.target.classList.remove("encima");
 },false);
+//He conseguido los efectos si los dejamos dentro de la Tareas ;
 
 }
 
