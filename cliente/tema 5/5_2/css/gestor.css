@@ -1,7 +1,7 @@
 *{
-  transition:  0.5s;
+  transition:  0.5s;/*para que todos los elementos tengan las transiciones del drag*/
 }
-#pendientes {/* pone todo el div de pendientes y el de tareas*/
+#pendientes {
   float: left;
   background-color: papayawhip;
   width: 30vw;
@@ -9,6 +9,8 @@
   overflow: auto;
   margin-right: 10vw;
   padding: 10px;
+  border-radius: 15px;
+border:4px solid peachpuff;
 }
 
 #acabadas {
@@ -18,6 +20,8 @@
   height: 68vh;
   overflow: auto;
   padding: 10px;
+  border-radius: 15px;
+  border:4px solid peachpuff;
  
 }
 #gestor {
@@ -63,18 +67,30 @@ text-decoration: underline;
 font-weight: lighter;
 font-style: italic;
 text-align: center;
+background:  linear-gradient(to bottom, papayawhip, peru);
+  
+border-radius: 15px;
+
+
+
 }
 #pendientes h1{
   text-decoration: underline;
   font-weight: lighter;
   font-style: italic;
   text-align: center;
+  background:  linear-gradient(to bottom, papayawhip, peru);
+  
+border-radius: 15px;
+
   }
   .encima{
     
-outline: 3px dotted plum;
 
-outline-offset: -10px;
-box-shadow: 0px 0px 0px 3px plum inset;
+box-shadow: 5px 5px 5px 3px plum inset;
+  }
+  input{
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 3px #f2f2f2 inset;
   }
   

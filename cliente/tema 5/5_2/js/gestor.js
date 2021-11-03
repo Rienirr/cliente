@@ -411,7 +411,7 @@ despues(elemntoArrastrado,idTarea);
       reemplazar(elemntoArrastrado);
     } 
 },false);
-d.addEventListener("dragenter", (event)=>{//Añado las 
+d.addEventListener("dragenter", (event)=>{//Añado la clase para darle un efecto 
 event.target.classList.add("encima");
 },false);
 d.addEventListener("dragleave", (event)=>{//Para quitar los efectos que voy poniendo.
@@ -426,7 +426,9 @@ d.addEventListener("dragend",(event)=>{
   
    event.target.classList.remove("encima");
 },false);
-//He conseguido los efectos si los dejamos dentro de la Tareas ;
+/*He conseguido los efectos funcionen de la forma deseada era debido a que en el drop controlo el lugar que sueltan.
+Al añadir un drop global al documento y eliminar esa clase funciona adecuadamente en todos los lugares.
+*/
 
 }
 
