@@ -5,8 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 3 - Discos</title>
+    <link rel="stylesheet" href="3.css">
+
 </head>
 <body>
-    
+    <form ></form>
+    <fieldset>
+<legend> Información necesaria</legend>
+
+<input type="text" name="disco" id="disco" > <label for="disco"> Nombre del disco</label>
+<input type="text" name="grupo" id="grupo" > <label for="grupo"> Grupo de música o intérprete</label>
+<input type="number" name="anyo" id="anyo"  step="1" > <label for="anyo"> Año de publicación</label>
+<fieldset><legend>Tipo de música</legend>
+<input type="checkbox" name="rock" id="rock" value="rock"> <label for="rock"> Rock</label>
+<input type="checkbox" name="progre" id="progre" value="progressive"> <label for="progre"> Progressive</label>
+<input type="checkbox" name="punk" id="punk" value="punk"> <label for="punk"> Punk</label>
+<input type="checkbox" name="trash" id="trash" value="trash"> <label for="trash">Trash </label>
+</fieldset>
+<input type="number" name="est" id="est" min="0" step="1"> <label for="est">Localización</label>
+<fieldset><legend>Estado del préstamo</legend>
+<input type="radio" name="prestado" id="true" value="true"> <label for="true"> Prestado</label>
+<input type="radio" name="prestado" id="false" value="false" checked> <label for="false"> Libro disponible</label>
+</fieldset>
+<input type="button" id="guardar" value="Guardar">
+</fieldset>
+   
+<script src="3.js"> </script>
+
 </body>
 </html>
