@@ -10,7 +10,7 @@ window.onload = () => {
        }
        crearComunicacionUsuario();
 
-    boton.addEventListener("click",(e)=>{
+    boton.addEventListener("click",(e)=>{//para mostrar los discos que se guardan correctamente
         let disco= d.getElementById("disco");
         let grupo=  d.getElementById("grupo");
         let anyo= d.getElementById("anyo");
@@ -22,7 +22,7 @@ window.onload = () => {
         let radio = document.getElementsByName("prestado");
         
        
-
+//Es muy largo la comprobación que miramos todos los escenarios posibles para que no haya ningún error.
     if(disco.value.trim().length == 0 || grupo.value.trim().length==0 ||anyo.value.trim().length==0 ||  parseInt(anyo.value)<1900 ||  parseInt(anyo.value)>=2022 || estanteria.value.trim().length==0|| parseInt(estanteria.value)<=0 ){
         let mensajeError= d.getElementById("mensajeAlUsuario");
         mensajeError.classList.remove("hidden");
@@ -49,7 +49,7 @@ window.onload = () => {
         if(cbox3.checked=== true) generosDelDisco+= ` ${cbox3.value}`;
         if(cbox4.checked=== true) generosDelDisco+= ` ${cbox4.value}`;;
         if( generosDelDisco===" los generos que tiene el disco son" ){
-            generosDelDisco="";//puesto que no se ha añadido nada
+            generosDelDisco="";//Puesto que no se ha añadido nada.
         }
 
         div.innerHTML=` <p> El disco: ${disco.value} creado por ${grupo.value} se lanzó en el año ${anyo.value} y se encuentra: ${mensajePrestado}${generosDelDisco} ${mensajeLocalizacion} </p>`;
