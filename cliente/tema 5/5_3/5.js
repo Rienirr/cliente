@@ -3,6 +3,7 @@
 window.onload = () => {
     let d= document;
     let segundoSelect= d.createElement("select");
+    segundoSelect.setAttribute("class","hidden");
     d.forms[0].appendChild(segundoSelect);
     let select= d.getElementsByTagName("select")[0];
     let ciudadesAlicante=["Alicante", "Elche","Petrer"];
@@ -25,7 +26,7 @@ window.onload = () => {
             provincia=ciudadesValencia;
           }
           segundoSelect.innerHTML=`<option value='${provincia[0]}'>${provincia[0]}</option> <option value='${provincia[1]}'>${provincia[1]}</option>  <option value='${provincia[2]}'>${provincia[2]}</option></select>  `
-          
+          segundoSelect.classList.remove("hidden");
            
            }
      , false);
