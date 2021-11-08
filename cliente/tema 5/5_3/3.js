@@ -2,7 +2,9 @@
 
 window.onload = () => {
     let d= document;
+    let form= d.getElementsByTagName("form")[0];
     let boton= d.getElementById("guardar");
+    let contador=0;
     function crearComunicacionUsuario(){//este método lo usaremos siempre para comunicarnos con el usuario.
         let mostrar = d.createElement("div");
               mostrar.innerHTML="<p id='mensajeAlUsuario' class='hidden'> Tienes que rellenar todos los campos melón y en los el año de publicación tiene que ser de 1901 a 2021(presente) y en la localización un número mayor o igual a 0</p>"
@@ -50,12 +52,37 @@ window.onload = () => {
         if(cbox4.checked=== true) generosDelDisco+= ` ${cbox4.value}`;;
         if( generosDelDisco===" los generos que tiene el disco son" ){
             generosDelDisco="";//Puesto que no se ha añadido nada.
+            form.reset();//Para resetear el formulario una vez enviado.
         }
+        function discoCompleto(pDisco, pGrupo, pAnyo, pMensajePrestado, pGenerosDelDisco, pMensajeLocalizacion){
+           
+             return {
+            disco: pDisco,
+            grupo: pGrupo,
+            anyo: pAnyo,
+            mensajePrestado: pMensajePrestado,
+            generosDelDisco: pGenerosDelDisco,
+            mensajeLocalizacion: pMensajeLocalizacion
+           } 
+        }
+        
 
-        div.innerHTML=` <p> El disco: ${disco.value} creado por ${grupo.value} se lanzó en el año ${anyo.value} y se encuentra: ${mensajePrestado}${generosDelDisco} ${mensajeLocalizacion} </p>`;
-        d.body.appendChild(div);
+        var ListadoDeDiscos= {
+            
+            
+            /*Meter método de añadir objetos dentro de otros*/
+           
+        };
+        
 
 
+        let disco= discoCompleto(disco.value, grupo.value, anyo.value, mensajePrestado, generosDelDisco, mensajeLocalizacion);
+        ListadoDeDiscos
+        
+        //div.innerHTML=` <p> El disco: ${disco.value} creado por ${grupo.value} se lanzó en el año ${anyo.value} y se encuentra: ${mensajePrestado}${generosDelDisco} ${mensajeLocalizacion} </p>`;
+        //d.body.appendChild(div);
+    
+      
     }
     }, false);
 }
