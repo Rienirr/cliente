@@ -12,10 +12,11 @@ window.onload = () => {
  
     
     
-     select.addEventListener("change", (e)=>{//
+     select.addEventListener("change", (e)=>{//Con el cambio se ejecuta la función para mostrar los resultados.
     
      let posicion=d.getElementById("provincia").selectedIndex;
-           let provincia;
+           let provincia="false";
+         
           if(posicion===1){
             provincia=ciudadesAlicante;
           }
@@ -25,8 +26,14 @@ window.onload = () => {
           else if(posicion===3){
             provincia=ciudadesValencia;
           }
-          segundoSelect.innerHTML=`<option value='${provincia[0]}'>${provincia[0]}</option> <option value='${provincia[1]}'>${provincia[1]}</option>  <option value='${provincia[2]}'>${provincia[2]}</option></select>  `
-          segundoSelect.classList.remove("hidden");
+          if(provincia!="false"){
+            segundoSelect.innerHTML=`<option value='${provincia[0]}'>${provincia[0]}</option> <option value='${provincia[1]}'>${provincia[1]}</option>  <option value='${provincia[2]}'>${provincia[2]}</option></select>  `
+            segundoSelect.classList.remove("hidden");
+          }
+          else{//Para ocultar el select si tenemos una opción seleccionada.
+            segundoSelect.setAttribute("class","hidden");
+          }
+          
            
            }
      , false);
