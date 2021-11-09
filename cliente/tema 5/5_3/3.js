@@ -5,14 +5,14 @@ window.onload = () => {
     let form= d.getElementsByTagName("form")[0];
     let boton= d.getElementById("guardar");
     let contador=0;
-    function crearComunicacionUsuario(){//este método lo usaremos siempre para comunicarnos con el usuario.
+    function crearComunicacionUsuario(){//Este método lo usaremos siempre para comunicarnos con el usuario.
         let mostrar = d.createElement("div");
               mostrar.innerHTML="<p id='mensajeAlUsuario' class='hidden'> Tienes que rellenar todos los campos melón y en los el año de publicación tiene que ser de 1901 a 2021(presente) y en la localización un número mayor o igual a 0</p>"
        d.body.appendChild(mostrar);
        }
        crearComunicacionUsuario();
 
-    boton.addEventListener("click",(e)=>{//para mostrar los discos que se guardan correctamente
+    boton.addEventListener("click",(e)=>{//Para mostrar los discos que se guardan correctamente
         let disco= d.getElementById("disco");
         let grupo=  d.getElementById("grupo");
         let anyo= d.getElementById("anyo");

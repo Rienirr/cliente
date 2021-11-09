@@ -1,0 +1,9 @@
+fieldset{
+    margin-top: 10px;
+     margin-bottom: 10px;
+ }.hidden{
+     display: none;
+ }
+ .error{
+     border: 3px solid red;
+ }
