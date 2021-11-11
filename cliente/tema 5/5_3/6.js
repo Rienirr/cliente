@@ -8,7 +8,7 @@ window.onload = () => {
    
     var form= d.getElementsByTagName("form")[0];
     var boton= d.getElementById("guardar");
-    let contador=0;
+ 
     let divListado= d.createElement("div");
 
     var ListadoDeDiscos=[];
@@ -26,7 +26,7 @@ window.onload = () => {
    
     function crearComunicacionUsuario(){//Este método lo usaremos siempre para comunicarnos con el usuario.
         let mostrar = d.createElement("div");
-              mostrar.innerHTML="<p id='mensajeAlUsuario' class='hidden'> Tienes que rellenar todos los campos debidamente melón </p>"
+              mostrar.innerHTML="<p id='mensajeAlUsuario' class='hidden'> Tienes que rellenar todos los campos debidamente melón. Consejo mira los apartados en ROJO!!! </p>"
        d.body.appendChild(mostrar);
        }
        crearComunicacionUsuario();
@@ -53,23 +53,25 @@ window.onload = () => {
         var radio = document.getElementsByName("prestado");
         
        
-//Es muy largo la comprobación que miramos todos los escenarios posibles para que no haya ningún error.
-    /* parseInt(anyo.value)<1900 ||  parseInt(anyo.value)>=2022 || estanteria.value.trim().length==0|| parseInt(estanteria.value)<=0 ){
-       
-    }*/
-    if(disco.trim().length <= 4){//Comprobación de disco.
-       let patron= /^[a-zA-Z]{4,16}$/;
+        let patronDiscoyGrupo = /^[a-zA-Z]{4,}[\s+[a-zA-Z]{1,}]*/;
+        let patronAnyo=/^[0-9]{4}$/;
+        let discoComprobacion= patronDiscoyGrupo.test(disco);
+        let grupoComprobacion=patronDiscoyGrupo.test(grupo);
+        let anyoComprobaccion=patronAnyo.test(anyo);
+        
+    if(!discoComprobacion){//Comprobación de disco.
+     
         elementoDisco.setAttribute("class","error");
         correcto=false;
     }
-    if(grupo.trim().length <= 4){//Comprobación de grupo.
-        let patron= /^[a-zA-Z]{4,16}$/;
+    if(!grupoComprobacion){//Comprobación de grupo.
+       
         elementoGrupo.setAttribute("class","error");
         correcto=false;
     }//Comprobaciones de 
    
-    if(anyo.trim().length < 4){
-        let patron= /^[0-9]{4}$/;
+    if(!anyoComprobaccion){
+      
         elementoAnyo.setAttribute("class","error");
         correcto=false;
     }
@@ -82,9 +84,10 @@ window.onload = () => {
     if(cbox1.checked=== true) generosDelDisco+= ` ${cbox1.value}`;
     if(cbox2.checked=== true) generosDelDisco+= ` ${cbox2.value}`;
     if(cbox3.checked=== true) generosDelDisco+= ` ${cbox3.value}`;
-    if(cbox4.checked=== true) generosDelDisco+= ` ${cbox4.value}`;;
+    if(cbox4.checked=== true) generosDelDisco+= ` ${cbox4.value}`;
     if( generosDelDisco===" los generos que tiene el disco son" ){
         generosDelDisco="";
+        d.getElementsByTagName("fieldset")[1].setAttribute("class","error");
         correcto= false;//Puesto que no se ha añadido nada.
 
     }
