@@ -65,7 +65,7 @@ inputTextArea.addEventListener("click",(event)=>{
      
 },false);
 
-inputLabel.addEventListener("click",(event)=>{    //Este método es el más largo ya que necesitamos hacer más cosas buscar el elemento y añadir el label antes para que tenga sentido.
+inputLabel.addEventListener("click",(event)=>{    //Este método es el más largo ya que necesitamos hacer más cosas buscar el elemento y añadir el label antes para que tenga sentido, si no existe mandamos un mensaje al usuario.
       var label= comprobar("label");
      if (d.getElementById(label)!=null){
       var labelAInsertar= d.createElement("label");
