@@ -1,0 +1,38 @@
+#mensajeAlUsuario{
+    display: inline-block;
+  background: #000;
+  border-radius: 4px;
+  font-family: "arial-black";
+  font-size: 14px;
+  color: #FFF;
+  padding: 8px 12px;
+  cursor: pointer; 
+}
+legend{
+    text-decoration: underline;
+}
+    form{
+        margin:50px;
+      
+        padding:16px;
+        border-radius:10px;
+        border:3px solid darkkhaki;
+        margin:auto;
+        background-color:lightgoldenrodyellow;
+    }
+
+    form label{
+        width:72px;
+        font-weight:bold;
+
+
+    }
+    .hidden{
+        display: none !important;
+    }
+    form {
+        max-height: 150px;
+    }
+    fieldset{
+        border-radius: 10px;
+    }
