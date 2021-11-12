@@ -1,6 +1,6 @@
 "use strict";  
 window.onload = () => {
-    var generosDelDisco=" los generos que tiene el disco son";
+    
     var d= document;
     var form= d.getElementsByTagName("form")[0];
     var boton= d.getElementById("guardar");
@@ -76,6 +76,7 @@ window.onload = () => {
      estanteria.setAttribute("class","error");
         correcto=false;
     }
+    var generosDelDisco=" los generos que tiene el disco son";
     if(cbox1.checked=== true) generosDelDisco+= ` ${cbox1.value}`;
     if(cbox2.checked=== true) generosDelDisco+= ` ${cbox2.value}`;
     if(cbox3.checked=== true) generosDelDisco+= ` ${cbox3.value}`;
