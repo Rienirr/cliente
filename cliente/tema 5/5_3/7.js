@@ -4,7 +4,7 @@ window.onload = () => {
    var d= document;
    function crearComunicacionUsuario(){//Este método lo usaremos siempre para comunicarnos con el usuario.
       let mostrar = d.createElement("div");
-            mostrar.innerHTML=`<p id='mensajeAlUsuario' class='hidden'>  </p>`;
+            mostrar.innerHTML=`<p id='mensajeAlUsuario' class='hidden'> No se pueden repetir IDs tuercebotas!! </p>`;
      d.body.appendChild(mostrar);
      }
      crearComunicacionUsuario();
@@ -23,13 +23,22 @@ window.onload = () => {
   form.setAttribute("class","hidden");
    form.innerHTML="<legend> Crea un formulario dinámicamente</legend>"
    d.body.appendChild(form);
-
+function mostrarError(){
+   let mensajeError= d.getElementById("mensajeAlUsuario");
+   mensajeError.classList.remove("hidden");
+   setTimeout(()=>{
+         mensajeError.classList.add("hidden");
+   }, 5000)
+}
 function comprobar(elemento){//creamos una función para reutilzar cuando necesitamos solo id.
    do{
       var inputUsuario= prompt( `¿Cuál es tu ${elemento}?(mínimo 5 caracteres)`);
       var patron=/^[a-zA-Z]{4,}[\s+[a-zA-Z]{1,}]*/;
    }while(!patron.test(inputUsuario));
-   return inputUsuario;
+   if(d.getElementById(inputUsuario)==null){
+      return inputUsuario;
+   }
+
 } 
 function comprobarDosVeces(elemento){//Otra si necesitamos value y id.
 
@@ -38,35 +47,51 @@ function comprobarDosVeces(elemento){//Otra si necesitamos value y id.
       var patron=/^[a-zA-Z]{4,}[\s+[a-zA-Z]{1,}]*/;
       var valueElemento=  prompt(`¿Cuál es el value del ${elemento} a crear?(mínimo 5 caracteres)`);
    }while(!patron.test(idElemento)|| !patron.test(valueElemento));
+   if(d.getElementById(idElemento)==null){
    return{
       id: idElemento,
       value:valueElemento
-   }
+   }}
 }
    inputNombre.addEventListener("click",(event)=>{
-      var nombre=comprobar("nombre");
-      form.classList="";//Para que siempre se muestre el formulario escondido.
-     form.innerHTML+= `<input type="text" id="${nombre}" >`; 
+      let nombre=comprobar("nombre");
+      if(nombre==undefined){
+        mostrarError();
+      }else{
+         form.classList="";//Para que siempre se muestre el formulario escondido.
+         form.innerHTML+= `<input type="text" id="${nombre}" >`; 
+      }
+   
    },false);
 
    inputContrasenya.addEventListener("click",(event)=>{
-    
-       var contraseyaa= comprobar("contraseña");
+      let contraseyaa= comprobar("contraseña");
+      if(contraseyaa==undefined){
+         mostrarError();
+       }else{
+      
        form.classList="";//Para que siempre se muestre el formulario escondido.
        form.innerHTML+= `<input type="password" id="${contraseyaa}" >`; 
-      
+       }
 },false);
 
 inputTextArea.addEventListener("click",(event)=>{
-   
-      var text= comprobar("textArea");
+   let text= comprobar("textArea");
+   if(text==undefined){
+      mostrarError();
+    }else{
+     
       form.classList="";//Para que siempre se muestre el formulario escondido.
       form.innerHTML+= `<textarea < id="${text}" cols="40" rows="5"></textarea>`; 
-     
+    }
 },false);
 
 inputLabel.addEventListener("click",(event)=>{    //Este método es el más largo ya que necesitamos hacer más cosas buscar el elemento y añadir el label antes para que tenga sentido, si no existe mandamos un mensaje al usuario.
-      var label= comprobar("label");
+     
+   do{
+      var label= prompt( `¿Cuál es la id para este label?(mínimo 5 caracteres)`);
+         var patronLabel=/^[a-zA-Z]{4,}[\s+[a-zA-Z]{1,}]*/;
+      }while(!patronLabel.test(label));
      if (d.getElementById(label)!=null){
       var labelAInsertar= d.createElement("label");
       labelAInsertar.innerText=`${label}:`;
@@ -96,19 +121,29 @@ inputImagen.addEventListener("click",(event)=>{//Aquí no se como controlar el e
 inputCheckBox.addEventListener("click",(event)=>{
  
  var checkBox=comprobarDosVeces("checkbox");
+ if(checkBox==undefined){
+   mostrarError();
+ }else{
  form.classList="";//Para que siempre se muestre el formulario escondido.
  form.innerHTML+= `<input type="checkbox" id="${checkBox.id}" value="${checkBox.value}" >`; 
-
+ }
 },false);
 inputRadio.addEventListener("click",(event)=>{
    var radio=comprobarDosVeces("radio button");
+   if(radio==undefined){
+      mostrarError();
+    }else{
    form.classList="";//Para que siempre se muestre el formulario escondido.
-   form.innerHTML+= `<input type="checkbox" id="${radio.id}" value="${radio.value}" >`; 
-
+   form.innerHTML+= `<input type="radio" id="${radio.id}" value="${radio.value}" >`; 
+    }
 },false);
 inputSubmit.addEventListener("click",(event)=>{
   var submit=comprobarDosVeces("submit");
+  if(submit==undefined){
+   mostrarError();
+ }else{
   form.classList="";//Para que siempre se muestre el formulario escondido.
-  form.innerHTML+= `<input type="checkbox" id="${submit.id}" value="${submit.value}" >`
+  form.innerHTML+= `<input type="submit" id="${submit.id}" value="${submit.value}" >`;
+ }
 },false);
 }
