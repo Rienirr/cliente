@@ -2,3 +2,14 @@
 		.rTableRow       { display: table-row; }
 	
 		.rTableCell { display: table-cell;    	padding: 3px 10px;}
+		p{
+			text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+	width: 45%;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+		}

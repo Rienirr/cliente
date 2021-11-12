@@ -59,7 +59,7 @@ function comprobarDosVeces(elemento){//Otra si necesitamos value y id.
         mostrarError();
       }else{
          form.classList="";//Para que siempre se muestre el formulario escondido.
-         form.innerHTML+= `<input type="text" id="${nombre}" >`; 
+         form.innerHTML+= `<label for="${nombre}"> Introduce tu nombre</label><input type="text" id="${nombre}" >`; 
       }
    
    },false);
@@ -71,7 +71,7 @@ function comprobarDosVeces(elemento){//Otra si necesitamos value y id.
        }else{
       
        form.classList="";//Para que siempre se muestre el formulario escondido.
-       form.innerHTML+= `<input type="password" id="${contraseyaa}" >`; 
+       form.innerHTML+= `<label for="${contraseyaa}"> Introduce tu contraseña</label> <input type="password" id="${contraseyaa}" >`; 
        }
 },false);
 
@@ -82,7 +82,7 @@ inputTextArea.addEventListener("click",(event)=>{
     }else{
      
       form.classList="";//Para que siempre se muestre el formulario escondido.
-      form.innerHTML+= `<textarea < id="${text}" cols="40" rows="5"></textarea>`; 
+      form.innerHTML+= `<label for="${text}"> Introduce un comentario/descripción</label><textarea < id="${text}" cols="40" rows="5"></textarea>`; 
     }
 },false);
 
@@ -113,7 +113,7 @@ inputImagen.addEventListener("click",(event)=>{//Aquí no se como controlar el e
   
        var img= prompt("¿Cuál es la ruta de la imagen?");
        form.classList="";//Para que siempre se muestre el formulario escondido.
-      form.innerHTML+= `<img id="${img}" src="${img}" width="250" ></img>`;
+      form.innerHTML+= `<img  id="${img}" src="${img}" alt="Pon una ruta que funcione correctamente" width="250  height="300"  ></img>`;
      
    
 
@@ -125,7 +125,7 @@ inputCheckBox.addEventListener("click",(event)=>{
    mostrarError();
  }else{
  form.classList="";//Para que siempre se muestre el formulario escondido.
- form.innerHTML+= `<input type="checkbox" id="${checkBox.id}" value="${checkBox.value}" >`; 
+ form.innerHTML+= `<label for="${checkBox.id}">  ${checkBox.value}</label> <input type="checkbox" id="${checkBox.id}" value="${checkBox.value}" >`; 
  }
 },false);
 inputRadio.addEventListener("click",(event)=>{
@@ -133,8 +133,8 @@ inputRadio.addEventListener("click",(event)=>{
    if(radio==undefined){
       mostrarError();
     }else{
-   form.classList="";//Para que siempre se muestre el formulario escondido.
-   form.innerHTML+= `<input type="radio" id="${radio.id}" value="${radio.value}" >`; 
+   form.classList="";//Para que siempre se muestre el formulario escondido. Si quisieramos poner más de un radio button necesitamos una función nueva lo pongo así puesto que entendí mal enunciado y esto es un apaño rápido.
+   form.innerHTML+= `<label for="${radio.id}"> ${radio.value} </label> <input type="radio" id="${radio.id}" name="boton" value="${radio.value}" >`; 
     }
 },false);
 inputSubmit.addEventListener("click",(event)=>{
