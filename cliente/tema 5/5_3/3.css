@@ -7,7 +7,7 @@ fieldset{
 }
 form{
             margin:50px;
-           
+            min-height: 350px;
             padding:16px;
             border-radius:10px;
             border:3px solid darkkhaki;
