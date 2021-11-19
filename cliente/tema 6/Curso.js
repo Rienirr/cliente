@@ -1,14 +1,19 @@
 "use strict";
 
 
-class Curso{
-    constructor( pNombre, pAula, pAlumnando ){
+export class Curso{
+    constructor( pNombre, pAula, pAlumnando,pModulos ){
      this.nombre= pNombre;
      this.aula=pAula;
      this.alumnando= new Array();
         pAlumnando.forEach(element => {//Comprobación que son de tipo de Alumno.
             this.alumnando.push(element);
            
+        });
+        this.modulos= pModulos;//Comprobación de array.
+        pModulos.forEach(element =>{
+            this.modulos.push(element);
+
         });
     }
     notaMedia= function(){//Nota media de toda la clase.
@@ -37,7 +42,7 @@ class Curso{
      impartir= function(){//Mues
 
         this.alumnando.forEach(element => {
-            element.mostarProfesores();
+            element.mostarProfesores();//Así mostramos los profesores de todos los alumnos.
         });
      }  
       
