@@ -1,8 +1,10 @@
 "use strict";
-window.onload= ()=>{
-    import { Modulos } from "./modulos";
-    import { Alumno } from "./imports/alumnado";
-    import { Curso } from "./Curso";
+import { Modulo } from "./imports/modulo.js";
+import { Alumno } from "./imports/alumnado.js";
+import { Curso } from "./imports/Curso.js";
+import { Profesorado } from "./imports/profesorado.js";
 
-    //Aquí va todas las comprobaciones 
+window.onload= ()=>{
+   
+    
 }

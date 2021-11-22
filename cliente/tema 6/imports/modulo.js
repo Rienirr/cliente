@@ -14,5 +14,5 @@ export class Modulo{
          
         this.idProfesorado.push(prof);
     }
-   
+    
 }

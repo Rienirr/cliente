@@ -42,7 +42,7 @@ export class Curso{
      impartir= function(){//Mues
 
         this.alumnando.forEach(element => {
-            element.mostarProfesores();//Así mostramos los profesores de todos los alumnos.
+            element.mostarProfesores();//Así mostramos los profesores de todos los módulos del curso
         });
      }  
       
