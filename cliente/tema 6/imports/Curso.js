@@ -25,24 +25,32 @@ export class Curso{
         return mediaClase/totalAlumnos;
         }
      listadoAlumnos= function(e){//Recibe un parámetro para ordenar
+        let listados= new Array();
+        this.alumnando.forEach(alumno =>{//Así los añadimos al listado;
+            listados.push(`${alumno.apellido}, ${$alumno.nombre} `);
+          });
+          listados.sort();
         if(e==="a"){//Orden alfabético.
-
+        return listados;
         }
-        else{//Si recibimos otra cosa nos da igual Mostramos a los alumnos por dni;
-
+        else{//Contrario al alfabético.
+            return listados.reverse();//De
         }
      }
-     matricular= function( modulos){
+     matricular= function( alu){
+        if(alu.constructor.name=="Alumno" && alu.nombre!=undefined ){
+        this.alumnando.push(alu);
+        return true;
+
+     }
+     }
+     impartir= function(){//Mostramos todos los módulos 
+        
+        this.modulos.forEach(modulo => {
+            modulo.nombre;//De cada módulo
+            modulo.profesorado.forEach(profesor=>{//En cada módulo recorremos los profesores que tiene;
  
-        this.alumnando.forEach(element=> {
-            element.elegirModulos(modulos);
-        });
-
-     } 
-     impartir= function(){//Mues
-
-        this.alumnando.forEach(element => {
-            element.mostarProfesores();//Así mostramos los profesores de todos los módulos del curso
+            });
         });
      }  
       
