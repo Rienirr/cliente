@@ -2,20 +2,40 @@
 
 
 export class Curso{
-    constructor( pNombre, pAula, pAlumnando,pModulos ){
+    constructor( pNombre, pAula, pAlumnando,pModulos ){//Creamos un curso si lo que nos pasan son arrays.
+  
+    
+     if(pModulos.constructor.name=="Array" && pModulos.constructor.name=="Array"){
+ this.alumnando= new Array();
+     this.modulos= new Array();
+     
+        pAlumnando.forEach(alu => {
+            if( alu.constructor.name=="Alumno" && alu.nombre!=undefined ){//Que además de ser un Array es de Alumnos.
+                this.alumnando.push(alu);}
+                else{
+                    return undefined;
+                }
+            });
+      
+        pModulos.forEach(modulo =>{
+            if( modulo.constructor.name=="Modulo" && modulo.nombre!=undefined ){//Que además de ser un Array es de Módulos.
+
+                this.modulos.push(modulo);
+                return true;
+            }else{
+                 return undefined;}
+           
+    
+        });
+              
      this.nombre= pNombre;
      this.aula=pAula;
-     this.alumnando= new Array();
-        pAlumnando.forEach(element => {//Comprobación que son de tipo de Alumno.
-            this.alumnando.push(element);
-           
-        });
-        this.modulos= pModulos;//Comprobación de array.
-        pModulos.forEach(element =>{
-            this.modulos.push(element);
-
-        });
+     return true;//Si todo ha ido bine 
+    }else{//Así controlamos que alumnado y curso sea un Array.
+        return undefined;
     }
+}
+
     notaMedia= function(){//Nota media de toda la clase.
         let mediaClase=0;
         let totalAlumnos=  this.alumnando.length
@@ -24,18 +44,23 @@ export class Curso{
         });
         return mediaClase/totalAlumnos;
         }
-     listadoAlumnos= function(e){//Recibe un parámetro para ordenar
+     listadoAlumnos= function(e =""){//Recibe un parámetro para ordenar.
         let listados= new Array();
-        this.alumnando.forEach(alumno =>{//Así los añadimos al listado;
-            listados.push(`${alumno.apellido}, ${$alumno.nombre} `);
+        let texto="";
+        let formatoElegido="ascendiente alfabéticamente";
+        this.alumnando.forEach(alumno =>{//Así los añadimos al listado.
+            listados.push(` ${alumno.apellidos}, ${alumno.nombre} `);
           });
-          listados.sort();
-        if(e==="a"){//Orden alfabético.
-        return listados;
-        }
-        else{//Contrario al alfabético.
-            return listados.reverse();//De
-        }
+          listados.sort();//Orden alfabético.
+        if(e!=="a"){//Comenzamos por el final.
+            listados.reverse();
+            formatoElegido="descendiente alfabéticamente";
+    }
+      
+        listados.forEach( alu =>{
+            texto+=`<li>${alu}</li>`;
+            });
+            return `Los alumnos del curso ${this.nombre} son en orden ${formatoElegido}:<ol>${texto} </ol>`;
      }
      matricular= function( alu){
         if(alu.constructor.name=="Alumno" && alu.nombre!=undefined ){
@@ -45,17 +70,23 @@ export class Curso{
      }
      }
      impartir= function(){//Mostramos todos los módulos 
-        
+       let contenidoTabla= "";
+       let table="";
+        contenidoTabla+=" <thead> <th> Mdulo </th>  <th>Profesores </th> </thead>";
+        let mo="";
         this.modulos.forEach(modulo => {
-            modulo.nombre;//De cada módulo
-            modulo.profesorado.forEach(profesor=>{//En cada módulo recorremos los profesores que tiene;
- 
+           mo+=` <td> ${modulo.nombre}</td>`;
+           let profesores="";
+            modulo.Profesorado.forEach(profesor=>{//En cada módulo recorremos los profesores que tiene;
+                profesores+=`${profesor.nombre} ${profesor.apellidos}`;
             });
+            contenidoTabla+=`<tr> <td> ${mo}</td> <td> ${profesores}</td> </tr>`;
         });
+        return table+= `<table> ${contenidoTabla}</table> `;
      }  
       
+    
     }
-
 
 
 

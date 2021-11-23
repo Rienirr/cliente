@@ -29,7 +29,7 @@ export class Alumno{
         return this.notaMedia;
     }
     elegirModulos= function(modulo){
-        if( modulo.constructor.name=="Profesorado" && modulo.nombre!=undefined ){//Así solo añadimos a módulos los objetos con clase Modulo.
+        if( modulo.constructor.name=="Modulo" && modulo.nombre!=undefined ){//Así solo añadimos a módulos los objetos con clase Modulo.
 
             this.modulos.push(modulo);
             return true;
@@ -48,15 +48,18 @@ export class Alumno{
         
     }
     mostrarProfesores =function(){//Recorremos el array de módulos y mostramos
-            let div= document.createElement("div");
+            let contenido="";
+          
         this.modulos.forEach(modulo => {
-           div.innerHTML+=`<p>El ${modulo} tiene de profesor/es:`;
-            modulo.idProfesorado.forEach(profesor => {
-                div.innerHTML+=` ${profesor.nombre} ${profesor.apellido}`;
+            contenido+=`El ${modulo.nombre} tiene de profesor/es:`;
+            modulo.Profesorado.forEach(profesor => {
+                let lista="";
+                lista +=` <li>${profesor.nombre} ${profesor.apellidos}</li>`;
+                contenido+=`<ul> ${lista}</ul>`;
             });
-            div.innerHTML+="</p>";
+         
         });
-        return div;//Devolvemos un div que tiene un párrafo por cada módulo;
+        return contenido;//Devolvemos un div que tiene un párrafo por cada módulo;
     }
     comprobarDni = function(dni) {
         
