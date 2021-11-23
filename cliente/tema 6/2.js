@@ -35,7 +35,7 @@ window.onload= ()=>{
     al3.elegirModulos(DWC);
  /*     texto= al3.mostrarProfesores();;//Nos muestra todos los módulos con todos los profesores de los alumnos.
     mostrarUsuario(mensajeUsuario,texto,5000); 
-    texto=alu.mostrarProfesores()
+    texto=alu.mostrarProfesores();
     mostrarUsuario(mensajeUsuario,texto,5000);*/
     var alumnos=[alu,al2, al3];
     var modulos=[DAWS,DIW,DWC];
@@ -50,12 +50,18 @@ window.onload= ()=>{
    var notamedia =`<p> La nota media del curso: ${DAW.nombre} es: ${DAW.notaMedia()}</p>` ;
     mostrarUsuario(mensajeUsuario,notamedia,5000); 
     var listado= DAW.listadoAlumnos();
-    mostrarUsuario(mensajeUsuario,listado,5000);*/
+    mostrarUsuario(mensajeUsuario,listado,5000);
     var modulosImpartidos=DAW.impartir();
     var divImpartir= d.getElementById("impartir");
-    mostrarUsuario(divImpartir,modulosImpartidos,50000);
-    
-
+    mostrarUsuario(divImpartir,modulosImpartidos,50000);*/
+  var cursoCompleto= DAW.CursoCompleto();
+   var encabezado= d.getElementById("encabezado");
+   var divImpartir= d.getElementById("impartir");
+   var divAlumnado= d.getElementById("alumnos");
+   mostrarUsuario(encabezado,cursoCompleto[0],50000);
+  mostrarUsuario(divImpartir,cursoCompleto[1],50000);
+  mostrarUsuario(divAlumnado,cursoCompleto[2],50000);
+  
 
 
 }

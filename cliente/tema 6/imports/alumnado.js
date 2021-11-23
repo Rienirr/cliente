@@ -48,7 +48,7 @@ export class Alumno{
         
     }
     mostrarProfesores =function(){//Recorremos el array de módulos y mostramos
-            let contenido="";
+            let contenido=`El alumno ${this.nombre} ${this.apellidos} está matriculado en los siguientes módulos:<br>`;
           
         this.modulos.forEach(modulo => {
             contenido+=`El ${modulo.nombre} tiene de profesor/es:`;

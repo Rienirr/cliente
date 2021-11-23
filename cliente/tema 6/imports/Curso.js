@@ -30,7 +30,7 @@ export class Curso{
               
      this.nombre= pNombre;
      this.aula=pAula;
-     return true;//Si todo ha ido bine 
+     return true;//Si todo ha ido bien. 
     }else{//Así controlamos que alumnado y curso sea un Array.
         return undefined;
     }
@@ -72,9 +72,10 @@ export class Curso{
      impartir= function(){//Mostramos todos los módulos 
        let contenidoTabla= "";
        let table="";
-        contenidoTabla+=" <thead> <th> Mdulo </th>  <th>Profesores </th> </thead>";
-        let mo="";
+        contenidoTabla+=" <thead> <th> </th> </th><th> Modulo </th>  <th>Profesores </th> </thead>";
+       
         this.modulos.forEach(modulo => {
+            let mo="";
            mo+=` <td> ${modulo.nombre}</td>`;
            let profesores="";
             modulo.Profesorado.forEach(profesor=>{//En cada módulo recorremos los profesores que tiene;
@@ -83,7 +84,22 @@ export class Curso{
             contenidoTabla+=`<tr> <td> ${mo}</td> <td> ${profesores}</td> </tr>`;
         });
         return table+= `<table> ${contenidoTabla}</table> `;
-     }  
+     } 
+     CursoCompleto= function(){/*Esto nos devuelve un array de 3 posiciones la primera el nombre del módulo 
+        la  2 el método impartir que muestra todos  módulos con sus profesores
+        la 3 el array de alumnos mostrados */
+
+        let ar=new Array();
+        ar.push(`${this.nombre} informe completo`);
+        ar.push(this.impartir());
+        let alums= `Los alumnos matriculados en el curos ${this.nombre} son:<br>`;
+        
+        this.alumnando.forEach(alu => {
+            alums+=alu.mostrarProfesores();
+        });
+        ar.push(alums);
+return ar;
+     }
       
     
     }
