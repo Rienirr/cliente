@@ -79,7 +79,7 @@ export class Curso{
            mo+=` <td> ${modulo.nombre}</td>`;
            let profesores="";
             modulo.Profesorado.forEach(profesor=>{//En cada módulo recorremos los profesores que tiene;
-                profesores+=`${profesor.nombre} ${profesor.apellidos}`;
+                profesores+=`${profesor.nombre} ${profesor.apellidos}  `;
             });
             contenidoTabla+=`<tr> <td> ${mo}</td> <td> ${profesores}</td> </tr>`;
         });
