@@ -2,16 +2,17 @@
 "use strict";
 var d=document;
 var contadorTareasPendientes=0;
+var contadorTareasCompletacontadorTareasPendientes=0;
 var contadorTareasCompletadas=0;
 var elemntoArrastrado;
- function limpiarPendientesYAcabadas(){// Eliminos las tareas que nos dan de ejemplo.
+ export function limpiarPendientesYAcabadas(){// Eliminos las tareas que nos dan de ejemplo.
     let pendientes= d.getElementsByClassName("tarea");
     d.getElementById("pendientes").removeChild(pendientes[1]);
     d.getElementById("pendientes").removeChild(pendientes[0]);
     let acabadas=d.getElementsByClassName("acabada");
     d.getElementById("acabadas").removeChild(acabadas[0]);
  }
- function botones(){//Para poner funcionalidad al inicio. 
+ export function botones(){//Para poner funcionalidad al inicio. 
     let anyadir= d.getElementById("add");
     let mostrar= d.getElementById("sho")
     anyadir.addEventListener("click",function(){
@@ -21,11 +22,11 @@ var elemntoArrastrado;
      mostrarArchivados();
     },false);
  }
- function inicio(){//Añadimos las funciones que se ejecutan al iniciar el programa.
+ export function inicio(){//Añadimos las funciones que se ejecutan al iniciar el programa.
     limpiarPendientesYAcabadas();
     botones();
 }
-function recogerTarea() {//Esta función recoge el texto del gestor de tareas.
+export function recogerTarea() {//Esta función recoge el texto del gestor de tareas.
     let prueba= d.getElementsByTagName("textarea")[0].value;
     if(prueba.trim().length !== 0 ){
          return prueba;
@@ -37,7 +38,7 @@ function recogerTarea() {//Esta función recoge el texto del gestor de tareas.
     }
           
     }  
-function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
+    export function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
     
     let archivados= d.getElementsByClassName("archivado");
     
@@ -47,10 +48,10 @@ function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su c
     
     }
  
- function limpiarTarea() {//Pone el texto del gestor en blanco para añadir más. 
+    export function limpiarTarea() {//Pone el texto del gestor en blanco para añadir más. 
    d.getElementsByTagName("textarea")[0].value ="";
 }
-function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto.
+export function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto.
     if(recogerTarea() !=""){ 
       let divtareas= d.getElementById("pendientes");
   
@@ -96,7 +97,7 @@ function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemos la ta
       
   }
 
-function asignarCompleta(elemento){
+  export function asignarCompleta(elemento){
     //Asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes lo hemos cambiado para que funcione con eventos.
     let divTareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
@@ -132,40 +133,26 @@ function asignarCompleta(elemento){
     },false);
  
  botones.appendChild(botonVolver);
- botones.appendChild(botonArchivar);
-
-
-
-
-
-   
+ botones.appendChild(botonArchivar);  
     div.appendChild(p);
     div.appendChild(botones);
-
-
-    
-    divTareas.removeChild(tareaCambiada);
-    
-    divCompletadas.appendChild(div);
-
-   contadorTareasCompletadas++;//Hay sumar y restar para saber en que posición esta el que queramos borrar.
-   
-
+      divTareas.removeChild(tareaCambiada);
+      divCompletadas.appendChild(div);
+ contadorTareasCompletadas++;//Hay sumar y restar para saber en que posición esta el que queramos borrar.
     
 }
-function borrar(elemento){//Borra la tarea pendiente.
+export function borrar(elemento){//Borra la tarea pendiente.
     let divTareas= d.getElementById("pendientes");
- 
-    
+
     divTareas.removeChild(d.getElementById(elemento));
     
 } 
-function archivar(elemento){//Archiva el elemento de las tareas completadas.
+export function archivar(elemento){//Archiva el elemento de las tareas completadas.
     let tareaCambiada= d.getElementById(elemento);
     tareaCambiada.setAttribute("class", "archivado");
 
 }
-function volver(elemento){// Devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos. 
+export  function volver(elemento){// Devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos. 
     let divtareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
     let div= d.createElement("div");
@@ -209,7 +196,7 @@ botones.appendChild(botonAcabar);
 
 }
 
-function reemplazar(elemento, elementosoltado){
+export function reemplazar(elemento, elementosoltado){
  
     let divtareas= d.getElementById("pendientes");
 
@@ -229,7 +216,7 @@ function reemplazar(elemento, elementosoltado){
    botonBorrar.setAttribute("value","borrar");
    botonBorrar.setAttribute("class","del");
   
-let botonAcabar=d.createElement("input");
+   let botonAcabar=d.createElement("input");
 botonAcabar.setAttribute("type", "button");
 botonAcabar.setAttribute("value","Acabar");
 botonAcabar.setAttribute("class","end");
@@ -250,7 +237,7 @@ botones.appendChild(botonAcabar);
 
 
 }
-function despues(elemento, elementoSoltado){//Pone el elemento  después que el que le pasamos. 
+export function despues(elemento, elementoSoltado){//Pone el elemento  después que el que le pasamos. 
     let antes= d.getElementById(elementoSoltado);
     let div= d.createElement("div");
     div.setAttribute("draggable","true");
@@ -290,7 +277,7 @@ botones.appendChild(botonAcabar);
 
 
 }
-function antes(elemento, elementoSoltado){//Pone un elemento antes que otro. 
+export function antes(elemento, elementoSoltado){//Pone un elemento antes que otro. 
   
        let antes= d.getElementById(elementoSoltado);
    
