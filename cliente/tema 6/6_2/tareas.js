@@ -1,56 +1,31 @@
-/*Esta biblioteca se encarga de mover los datos sin que haya problema */
+/*Esta biblioteca se encarga de mover los datos sin que haya problema ,es decir, que el gestor de tarea funcione correctamente.Así podríamos exportar el gestor de tareas a proyectos más grandes con muy pocos cambios. */
+
+/*El código tiene muchas mejoras sobre todo el no usar innerHTML más a menudo.
+Sin embargo, al no tener tiempo de hacerlo  puesto que  habría que cambiar todas las funciones he añadido otras mejoras
+ ejemplo: la comunicación con el usuario cuando hace algo mal ahora sale un párrafo que está escondido  */ 
 "use strict";
+import { archivar,mostrarUsuario  } from "./output.js";
 var d=document;
 var contadorTareasPendientes=0;
-var contadorTareasCompletacontadorTareasPendientes=0;
 var contadorTareasCompletadas=0;
 var elemntoArrastrado;
- export function limpiarPendientesYAcabadas(){// Eliminos las tareas que nos dan de ejemplo.
-    let pendientes= d.getElementsByClassName("tarea");
-    d.getElementById("pendientes").removeChild(pendientes[1]);
-    d.getElementById("pendientes").removeChild(pendientes[0]);
-    let acabadas=d.getElementsByClassName("acabada");
-    d.getElementById("acabadas").removeChild(acabadas[0]);
- }
- export function botones(){//Para poner funcionalidad al inicio. 
-    let anyadir= d.getElementById("add");
-    let mostrar= d.getElementById("sho")
-    anyadir.addEventListener("click",function(){
-     asignarTarea();
-    },false);
-    mostrar.addEventListener("click",function(){
-     mostrarArchivados();
-    },false);
- }
- export function inicio(){//Añadimos las funciones que se ejecutan al iniciar el programa.
-    limpiarPendientesYAcabadas();
-    botones();
-}
 export function recogerTarea() {//Esta función recoge el texto del gestor de tareas.
-    let prueba= d.getElementsByTagName("textarea")[0].value;
-    if(prueba.trim().length !== 0 ){
-         return prueba;
-
-    }
-    else{
-        prueba="";
+   let prueba= d.getElementsByTagName("textarea")[0].value;
+   if(prueba.trim().length !== 0 ){
         return prueba;
-    }
-          
-    }  
-    export function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
-    
-    let archivados= d.getElementsByClassName("archivado");
-    
-    for(let i=archivados.length-1;i>=0;i--){
-        archivados[i].classList.replace("archivado", "acabada");
-    }
-    
-    }
- 
-    export function limpiarTarea() {//Pone el texto del gestor en blanco para añadir más. 
-   d.getElementsByTagName("textarea")[0].value ="";
-}
+
+   }
+   else{
+       prueba="";
+       return prueba;
+   }
+         
+   }  
+   export function limpiarTarea() {//Pone el texto del gestor en blanco para añadir más. 
+      d.getElementsByTagName("textarea")[0].value ="";
+   }
+   
+   
 export function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemos la tarea, la añadimos y la limpiamos dejando el textarea sin texto.
     if(recogerTarea() !=""){ 
       let divtareas= d.getElementById("pendientes");
@@ -91,8 +66,9 @@ export function asignarTarea(){//Asigna la tarea a pendientes Para ello recogemo
      contadorTareasPendientes++;
     
     }
-    else{
-        alert("Introduce una Tarea no un espacio en Blanco");
+    else{//Esta en blacno y le mostramos el texto al usuari
+      var mensajeAlUsuario=d.getElementById("mensajeAlUsuario");
+        mostrarUsuario(mensajeAlUsuario, "Introduce algo zángano una tarea no puede estar en blanco!",5000);
     }
       
   }
@@ -147,11 +123,7 @@ export function borrar(elemento){//Borra la tarea pendiente.
     divTareas.removeChild(d.getElementById(elemento));
     
 } 
-export function archivar(elemento){//Archiva el elemento de las tareas completadas.
-    let tareaCambiada= d.getElementById(elemento);
-    tareaCambiada.setAttribute("class", "archivado");
 
-}
 export  function volver(elemento){// Devuelve una tarea completada a la lista de pendientes  para ello la copiamos la añadimos de vuelta a tareas y la borramos. 
     let divtareas= d.getElementById("pendientes");
     let divCompletadas= d.getElementById("acabadas");
@@ -337,19 +309,16 @@ d.addEventListener("dragover",(event)=>{
 }, false);
 d.getElementById("acabadas").addEventListener("drop", (event)=>{//Para colocar los elementos en acabadas.
    event.target.classList.remove("encima");//Para eliminar los estilos que doy al soltar y solucionar el fallo que tenía al darle estilos.
-    
-
     asignarCompleta(elemntoArrastrado); 
 
 },false);
 d.addEventListener("drop", (event)=>{
    event.target.classList.remove("encima");//para eliminar los efectos
+
 },false);
 
 d.getElementById("pendientes").addEventListener("drop", (event)=>{//Para colocar los elementos en pendientes.
    event.target.classList.remove("encima");
-
- 
  /*Para saber el ID que darle y funcione correctamente tenemos que comprobar donde suelta el ratón
  si en el div con id, en el parrafo o en algunos de los inputs para ajustar acorde*/
    var idTarea="final";
@@ -363,17 +332,12 @@ d.getElementById("pendientes").addEventListener("drop", (event)=>{//Para colocar
   else if(event.target.id.includes("tarea")){//Si es el div.
    idTarea=event.target.id;
   }
-
-  
-  
  posicionFinal= event.target.getBoundingClientRect();
     if(elemntoArrastrado.includes("acabada") ){//Así solo ponemos de vuelta las acabadas.
         volver(elemntoArrastrado);
     }
     else if(idTarea.includes("tarea")){
-        
-
-       
+            
        if(posicionFinal.y>posicionInicial.y){
           //Si la posición final de la y(altura es mayor) lo insertamos después.
 //console.log("insert After");
@@ -381,8 +345,6 @@ despues(elemntoArrastrado,idTarea);
        } else if(posicionFinal.y<posicionInicial.y){//Si la posición final de la y(altura es menor) lo insertamos antes. 
          
          //console.log("insert before");
-       
-        
         antes(elemntoArrastrado,idTarea);
        }
       
