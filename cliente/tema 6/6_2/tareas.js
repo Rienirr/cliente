@@ -16,6 +16,15 @@ export function limpiarPendientesYAcabadas(){// Eliminos las tareas que nos dan 
    let acabadas=d.getElementsByClassName("acabada");
    d.getElementById("acabadas").removeChild(acabadas[0]);
 }
+export function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
+   
+   let archivados= d.getElementsByClassName("archivado");
+   
+   for(let i=archivados.length-1;i>=0;i--){
+       archivados[i].classList.replace("archivado", "acabada");
+   }
+   
+   }
 export function botones(){//Para poner funcionalidad al inicio. 
    let anyadir= d.getElementById("add");
    let mostrar= d.getElementById("sho")
@@ -38,15 +47,7 @@ export function mostrarUsuario(contenedor,textoAMostrar,tiempo){//Así podemos e
    contenedor.classList.add("hidden");
   },tiempo); 
   }
-export function mostrarArchivados(){//Muestra todas las tareas archivadas quitando su clase para que se vuelvan a mostrar.
-   
-       let archivados= d.getElementsByClassName("archivado");
-       
-       for(let i=archivados.length-1;i>=0;i--){
-           archivados[i].classList.replace("archivado", "acabada");
-       }
-       
-       }
+
 
 export function recogerTarea(textarea="textarea",pos=0) {//Esta función recoge el texto del gestor de tareas.
    let prueba= d.getElementsByTagName(textarea)[pos].value;
@@ -112,7 +113,8 @@ let botonAcabar=d.createElement("input");
   }
 
   export function asignarCompleta(elemento,pendientes="pendientes", acabadas="acabadas"){
-    //Asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes lo hemos cambiado para que funcione con eventos.
+    /*Asigna la tarea a completa Para ello recogemos la tarea de pendientes la añadimos a completadas y la eliminamos de pendientes 
+    lo hemos cambiado para que funcione de forma más independiente.*/
     let divTareas= d.getElementById(pendientes);
     let divCompletadas= d.getElementById(acabadas);
     let div= d.createElement("div");
@@ -312,12 +314,8 @@ export function antes(elemento, elementoSoltado){//Pone un elemento antes que ot
     //Lo siguiente es para reemplazrlo necesitamos su posición(y) que equivale a la altura y para eso nos valemos de las propiedades de los métodos.
       antes.insertAdjacentElement("beforebegin",div);
       contadorTareasPendientes++;
-   
-   
    }
    
-
-
 //para saber la posción del ratón al arrastrar los elementos en tareas pendientes y decidir si hacer un insert before o after
 
 

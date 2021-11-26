@@ -1,15 +1,15 @@
-
+import {mostrarUsuario,crearComunicacionUsuario}  from "./output.js";
 import * as tarea from "./tareas.js";
-import * as output  from "./output.js";
-"use strict";
 
+"use strict";
+/*Añadimos solo los eventos de arrastrar los de click los se ejecutan al crear una tarea ya sea pendiente o acabada*/ 
 window.onload= function(){
     var d= document;
     var elemntoArrastrado;
 var  posicionInicial;
 var posicionFinal;
 tarea.inicio();
-output.crearComunicacionUsuario();
+crearComunicacionUsuario();
 //Esta función la necesitamos poner ya que es la que nos deja el documento para poder trabjar con las bibliotecas de la forma deseada.
 d.addEventListener("drag",(event)=> {
     //He puesto esta vez funciones flecha para acostumbrarme a su uso ya que las funciones anónimas son más fáciles para mí ya que las he utilizado infinitamente más.
