@@ -1,5 +1,5 @@
 "use strict";
-
+export function consulta(){
 const url = "https://swapi.dev/api/films";
 var httpRequest = new XMLHttpRequest();
 httpRequest.open("GET", url, true);
@@ -14,9 +14,9 @@ httpRequest.addEventListener(
     if (httpRequest.readyState == 4 && httpRequest.status == 200) {
       let peliculas=JSON.parse(httpRequest.response); 
       mostrar(peliculas);
-      personajes(4, peliculas);
+      /*personajes(4, peliculas);
       sinopsis(4,peliculas);
-      console.log();
+      console.log();*/
     }
   },
   true
@@ -30,7 +30,7 @@ function mostrar(peliculas) {
   });
   document.getElementById("peliculas").innerHTML =` <h1> Películas</h1> <ul>${cadena}</ul>`;
 
-} 
+} }
 function personajes (episode_id,pelicula){
    let cadena = "";
    document.getElementById("personajes");
