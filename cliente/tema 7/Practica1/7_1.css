@@ -16,8 +16,8 @@ h2, h1 {
 text-align: center;
 }
 img{
-    float: right;
+    float: right;/*la mejor forma de encuadrar la imagen */
 }
 body{
-    background-image:url(images/fondo.jpg);
+    background-image:url(images/fondo.jpg);/*fondo de la página */
 }
