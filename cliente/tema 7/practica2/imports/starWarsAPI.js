@@ -43,7 +43,7 @@ httpRequest.send(); //Envíamos la consulta.*/
       },
       true
     );
-    
+    httpRequest.send(); 
 });
 }
 
