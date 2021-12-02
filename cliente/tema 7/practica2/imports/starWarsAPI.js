@@ -79,7 +79,7 @@ function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la 
                       console.log(parrafos.length);
                       for(let i=parrafos.length-1;i<parrafos.length;i++){ 
                         console.log(actor);//probar para que vaya bien,
-                        console.log(i);//probar para que vaya bien,
+                        console.log(i);//probar para que vaya bien, cambiar i que esta arriba
                         parrafos[i-1].addEventListener("click",(event)=>{
                         masInfo(actor);
                         },false);
