@@ -21,3 +21,13 @@ img{
 body{
     background-image:url(images/fondo.jpg);/*fondo de la página */
 }
+aside{
+    width: 500px;  
+background: #000;
+border-radius: 4px;
+font-family: "arial-black";
+font-size: 14px;
+color: #FFF;
+padding: 8px 12px;
+cursor: pointer;  
+}
