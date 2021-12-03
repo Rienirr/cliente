@@ -95,8 +95,10 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
                   httpRequest.addEventListener(
                     "readystatechange",
                     () => { 
+
                       if (httpRequest.readyState == 4 && httpRequest.status == 200) {//Hemos cambiado
                         resolver(JSON.parse(httpRequest.response));   //nos devuelve un actor      
+
                       }
                     },
                     true
