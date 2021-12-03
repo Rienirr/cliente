@@ -1,19 +1,26 @@
+body{
+    text-shadow: 1px 1px 2px darkgray;
+}
 div{
-width: 500px;  
+width: 650px;  
 background: #000;
 border-radius: 4px;
 font-family: "arial-black";
 font-size: 14px;
 color: #FFF;
-padding: 8px 12px;
+padding: 6px 10px;
 cursor: pointer; 
+
 }
+
 .hidden{
     display: none;
   }
 
 h2, h1 {
 text-align: center;
+text-decoration: underline;
+text-shadow: 1px 1px 2px red;
 }
 img{
     float: right;/*la mejor forma de encuadrar la imagen */
@@ -22,12 +29,13 @@ body{
     background-image:url(images/fondo.jpg);/*fondo de la página */
 }
 aside{
-    width: 500px;  
+    width: 650px;  
 background: #000;
 border-radius: 4px;
 font-family: "arial-black";
 font-size: 14px;
 color: #FFF;
 padding: 8px 12px;
-cursor: pointer;  
+flex: auto;
+
 }

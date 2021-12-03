@@ -1,5 +1,7 @@
  "use strict";
 
+   let indice="";//Para asegurarnos que salgan 10 personajes.
+  
   export const getConsulta = () => {
   return new Promise((resolver, rechazar) => {
     const url = "https://swapi.dev/api/films";
@@ -37,32 +39,55 @@ function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la 
    document.getElementById("descripcion").classList="";
     }
 
-
-   export function masInfo(actor,id="info"){
+export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
+  let div =document.getElementById("personajes");
+  let parrafo= document.createElement("p");
+  //Se ha cambiado esto para poder crear los párrafos y tener más control sobre ellos en lugar de con innerHTML que daba problemas con el código asíncrono.
+                              parrafo.innerHTML =`${actor.name}`;  
+                              console.log(actor);
+                      div.classList="";
+                        parrafo.addEventListener("click",(event)=>{
+                        masInfo(actor);
+                        },false);
+                        div.appendChild(parrafo);
+}
+   export function masInfo(actor,id="info"){//Así añadimos información extra a los personajes.
     
-    console.log(actor);
+    
    
-    document.getElementById("info").innerHTML =`El género de  ${actor.name}  es: ${actor.gender}`;
+    document.getElementById("info").innerHTML =`<h2> Más información sobre ${actor.name}:</h2> Siendo su género es: ${actor.gender} con una altura ${actor.height} con un peso de  ${actor.mass} kg y tiene un color de pelo ${actor.hair_color} y con un color de ojos ${actor.eye_color} y su fecha de nacimiento es ${actor.birth_year}`;
     document.getElementById("info").classList="";
 
     
     }
 
 
-
-    function personajes (indice,pelicula,id ="personajes"){//Muestra 10 personajes de la película indicada.
+        function personajes (indice,pelicula,id ="personajes"){//Muestra 10 personajes de la película indicada.
       //Al tener como parámetro opcional una id luego podemos ponerlo en cualquier otro lugar si nos tenemos que ajustar a las plantilla.
-       let div =document.getElementById("personajes");
-     
-       pelicula.results.map((v, i, a) => {
-           if(i==indice){
-            div.innerHTML=      `<h2>10 Personajes de ${v.title} </h2>` ;
-               v.characters.map((v,i,a)=>{
-                if(i<10){
-                
-                 
-                  var httpRequest = new XMLHttpRequest();
-                  httpRequest.open("GET", v, true);
+      document.getElementById("info").innerHTML="";
+    
+        let div =document.getElementById("personajes");
+        pelicula.results.map((v, i, a) => {
+            if(i==indice){
+             div.innerHTML=      `<h2>10 Personajes de ${v.title} </h2>` ;
+                v.characters.map((v,i,a)=>{
+                 if(i<10){        
+                  getPersonajes(v).then((actor) => {
+                   anyadirPersonaje(actor);
+                 })
+                  
+                 }
+                });
+            } 
+        });
+        
+      }
+      
+      const getPersonajes=(direccion)=>{//La Api devuelve una dirección para saber los 
+      return new Promise((resolver, rechazar) => {
+       console.log(direccion);
+        var httpRequest = new XMLHttpRequest();
+                  httpRequest.open("GET", direccion, true);
                   httpRequest.setRequestHeader(
                     "Content-Type",
                     "application/x-www-form-urlencoded"
@@ -70,30 +95,19 @@ function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la 
                   httpRequest.addEventListener(
                     "readystatechange",
                     () => { 
-                      if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-                        let actor=JSON.parse(httpRequest.response);   //nos devuelve un actor      
-                              
-                      div.innerHTML+=` <p class='characters'>${actor.name}</p>`;  
-                      div.classList="";
-                      let parrafos= document.getElementsByClassName("characters");
-                      console.log(parrafos.length);
-                      for(let i=parrafos.length-1;i<parrafos.length;i++){ 
-                        console.log(actor);//probar para que vaya bien,
-                        console.log(i);//probar para que vaya bien,
-                        parrafos[i-1].addEventListener("click",(event)=>{
-                        masInfo(actor);
-                        },false);
-                      }
+                      if (httpRequest.readyState == 4 && httpRequest.status == 200) {//Hemos cambiado
+                        resolver(JSON.parse(httpRequest.response));   //nos devuelve un actor      
                       }
                     },
                     true
                   );
                   httpRequest.send(); 
-                }
-               });
-           } 
-       });
-     } 
+                });
+}
+
+
+
+
 export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y añadimos los manejadores de forma dinámica. 
   //Al tener como parámetro opcional una id luego podemos ponerlo en cualquier otro lugar si nos tenemos que ajustar a las plantilla.
   let cadena = " ";
@@ -106,8 +120,14 @@ export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y 
   console.log(listas);
    for(let i=0;i<listas.length;i++){
      listas[i].addEventListener("click",(event)=>{
-       sinopsis(i,peliculas);
-      personajes(i,peliculas);
+      if(indice!=i){//Así comprobamos que no pueda ser clicado más de una vez en la misma posción consiguiendo nuestro objetivo que se muestren 10.
+        indice=i;
+        sinopsis(i,peliculas);
+        personajes(i,peliculas);
+       
+      }
+     
+      
      },false);
    }
 
