@@ -73,7 +73,7 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
                 v.characters.map((v,i,a)=>{
                  if(i<10){        
                   getPersonajes(v).then((actor) => {
-                   anyadirPersonaje(actor);
+                   anyadirPersonaje(actor);//Si nos devuelve un actor lo añadimos. 
                  })
                   
                  }
