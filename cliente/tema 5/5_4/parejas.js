@@ -84,7 +84,7 @@ if(aciertos!=6){
           imgAnterior="";
           mensajeError.className="hidden";
           
-    }, 500)
+    }, 2500)
   } 
 
 

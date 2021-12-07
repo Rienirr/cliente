@@ -55,7 +55,7 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
     
     
    
-    document.getElementById("info").innerHTML =`<h2> Más información sobre ${actor.name}:</h2> Siendo su género es: ${actor.gender} con una altura ${actor.height} con un peso de  ${actor.mass} kg y tiene un color de pelo ${actor.hair_color} y con un color de ojos ${actor.eye_color} y su fecha de nacimiento es ${actor.birth_year}`;
+    document.getElementById("info").innerHTML =`<h2> Más información sobre ${actor.name}:</h2> Siendo su género  ${actor.gender} con una altura ${actor.height}cm con un peso de  ${actor.mass} kg y tiene un color de pelo ${actor.hair_color} y con un color de ojos ${actor.eye_color} y su fecha de nacimiento es ${actor.birth_year}`;
     document.getElementById("info").classList="";
 
     
