@@ -26,7 +26,7 @@ img{
     float: right;/*la mejor forma de encuadrar la imagen */
 }
 body{
-    background-image:url(images/fondo.jpg);/*fondo de la página */
+    background-image:url(../images/fondo.jpg);/*fondo de la página */
 }
 aside{
     float: right;
