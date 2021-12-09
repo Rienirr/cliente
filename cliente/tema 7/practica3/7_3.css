@@ -29,6 +29,7 @@ body{
     background-image:url(images/fondo.jpg);/*fondo de la página */
 }
 aside{
+    float: right;
     width: 650px;  
 background: #000;
 border-radius: 4px;

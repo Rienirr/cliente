@@ -1,9 +1,9 @@
-import {getConsulta, mostrar} from "./imports/starWarsAPI.js";
+import {peliculas, mostrar} from "./imports/starWarsAPI.js";
 "use strict";
  window.onload= ()=>{
 //Consultamos los datos de las películas.
 
-getConsulta()
+peliculas()//Ahora hacemos lo mismo pero con fecht
 .then((peliculas) => {
   mostrar(peliculas);
 })
