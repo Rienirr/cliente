@@ -9,14 +9,14 @@ window.onload= ()=>
     var d= document;
     let mmostrarCiudades= d.getElementById("ciudades");
 
-getCiudad().then((ciudades)=>{
+getCiudad().then((ciudades)=>{//Nos da las ciudades que queremos 
     mmostrarCiudades.innerHTML+= "<h2>Elige una ciudad y te daremos el tiempo actual que hay en ella</h2>";
     ciudades.forEach(ciudad => {
        let p= d.createElement("p");
         p.innerHTML=` ${ciudad.name}`;
         p.setAttribute("id", ciudad.id);
         p.setAttribute("class","ciudad");
-        p.addEventListener("click", (event)=>{
+        p.addEventListener("click", (event)=>{//Cada ciudad añadimos un evento para mostrar su tiempo hoy.
                 getTiempo(event.target.id).then((ciudadElegida)=>{
                            
                   let    divTiempo=  d.getElementById("tiempo");
