@@ -22,13 +22,28 @@
     });
   };
 
+  function vehiculos(vehicles,tipo)  {//Con un fethc se hace muy sencillo y con menos líneas ya que no tenemos que crear el objeto AJAX.
+     if(vehicles.length>0){ 
+    document.getElementById("info").innerHTML+=`<h2 > Vehículos y naves espaciales que usan:</h2>`;
+    vehicles.map((v, i, a) => {
+            peticionVehiculos(v).then((vehiculo) => {
+              document.getElementById("info").innerHTML+=(mostrarVehiculo(vehiculo, tipo));//Añadimos tantos vehículos a la lista como haya.
+           });
+     
+  });
+} 
+}
+
+
+
+
  
 function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la película indicada.
   //Al tener como parámetro opcional una id luego podemos ponerlo en cualquier otro lugar si nos tenemos que ajustar a las plantilla.
    let cadena = " ";
    pelicula.results.map((v, i, a) => {
       if(i==indice){
-       cadena+= `<h2> Sinopsis de ${v.title}</h2>   <p>${v.opening_crawl}</p> <img src='images/${i}.jpeg' alt="Star Wars"  width="250"> `;
+       cadena+= `<h2> Sinopsis de ${v.title}</h2>   <p>${v.opening_crawl}</p> <img src='../images/${i}.jpeg' alt="Star Wars"  width="250"> `;
        //Las películas estan ordenadas según la Api,es decir, en orden de salida.
        
       }       
@@ -46,28 +61,24 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
                               //console.log(actor);
                       div.classList="";
                         parrafo.addEventListener("click",(event)=>{
-                     
-                        masInfo(actor);
-                        console.log(actor.starships, actor.vehicles);
+                        masInfo(actor); 
+                        vehiculos(actor.starships,"Naves espacial");
+                       vehiculos(actor.vehicles,"Vehículo");
                         },false);
                         div.appendChild(parrafo);
 }
+
+
+
    export function masInfo(actor,id="info"){//Así añadimos información extra a los personajes.
-   let prueba="nada";
+ 
     document.getElementById("info").innerHTML =`<h2> Más información sobre ${actor.name}:</h2> Siendo su género  ${actor.gender} con una altura ${actor.height}cm con un peso de  ${actor.mass} kg y tiene un color de pelo ${actor.hair_color} y con un color de ojos ${actor.eye_color} y su fecha de nacimiento es ${actor.birth_year}`;
-    if(actor.starships.length>0 && actor.vehicles.length>0 ){ 
-      //Funciona ahora falta hacer las llamadas al servidos según nos convenga. primera peli luke 
-      prueba="tiene todo";
-  }
-  else if(actor.starships.length>0){ //primera peli darth Vader
-    prueba="tiene naves";
-  }
-  else if(actor.vehicles.length>0){ // primera peli leia 
-    prueba="tiene vehi";
-  }
-    document.getElementById("info").innerHTML+=prueba;
     document.getElementById("info").classList="";
     }
+
+
+
+
         function personajes (indice,pelicula,id ="personajes"){//Muestra 10 personajes de la película indicada.
       //Al tener como parámetro opcional una id luego podemos ponerlo en cualquier otro lugar si nos tenemos que ajustar a las plantilla.
       document.getElementById("info").innerHTML="";
@@ -107,7 +118,30 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
       });
   });
 }
-     
+const peticionVehiculos = (url)=>{//Con un fetch hacemos la petición de los personajes. 
+  //Como habíamos fragmentado el código no hemos tenido que cambiar nada apenas. Simplemente crearnos el objeto request y hacer un fethc dentro de la promesa
+   var peticion = new Request(url, {
+    method: "GET",
+    headers: new Headers({
+      "Content-type": "application/x-www-form-urlencoded",
+    }),
+  });
+  return new Promise((resolver, rechazar) => {
+    fetch(peticion)
+      .then((respuesta) => respuesta.json())
+      .then((datos) => {
+        resolver(datos);
+      })
+      .catch(() => {
+        rechazar(new Error("Ha habido un error de comunicacón."));
+      });
+  });
+}
+
+function mostrarVehiculo(vehiculo, tipo){
+    let li=`<li>El nombre del ${tipo} es :${vehiculo.name}  su modelo:${vehiculo.model} y el construsctor:${vehiculo.manufacturer} </li>`;
+    return li;
+}
 
 export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y añadimos los manejadores de forma dinámica. 
   //Al tener como parámetro opcional una id luego podemos ponerlo en cualquier otro lugar si nos tenemos que ajustar a las plantilla.
