@@ -21,21 +21,40 @@
         });
     });
   };
+  
 
-  function vehiculos(vehicles,tipo)  {//Con un fethc se hace muy sencillo y con menos líneas ya que no tenemos que crear el objeto AJAX.
-     if(vehicles.length>0){ 
-    document.getElementById("info").innerHTML+=`<h2 > Vehículos y naves espaciales que usan:</h2>`;
-    vehicles.map((v, i, a) => {
-            peticionVehiculos(v).then((vehiculo) => {
-              document.getElementById("info").innerHTML+=(mostrarVehiculo(vehiculo, tipo));//Añadimos tantos vehículos a la lista como haya.
-           });
-     
-  });
+  function vehiculos(vehicles, naves)  {//Con un fethc se hace muy sencillo y con menos líneas ya que no tenemos que crear el objeto AJAX.
+    
+  
+    document.getElementById("info").innerHTML+=`<h2 id="ve"> Vehículos  que usan: </h2>`;//Añadimos los dos encabezados de esta forma ya que el código asíncrono funciona de forma un poco extraña a veces.
+    if(naves.length>0){ 
+      document.getElementById("info").innerHTML+=`<h2 id="naves"> Naves  que usan:</h2>`;
+      let encabezadoNaves= document.getElementById("naves");
+      naves.map((v, i, a) => {
+              peticionVehiculos(v).then((nave) => {
+                encabezadoNaves.insertAdjacentElement("afterend",(mostrarVehiculo(nave, "Naves")));//Añadimos tantas naves a la lista como haya.
+             });    
+    });
+    }  
+
+if(vehicles.length>0){ 
+ 
+ 
+  let encabezadoVehiculos= document.getElementById("ve");
+  vehicles.map((v, i, a) => {
+          peticionVehiculos(v).then((vehiculo) => {
+            
+           encabezadoVehiculos.insertAdjacentElement("afterend",(mostrarVehiculo(vehiculo, "vehículos")));//Añadimos tantos vehículos a la lista como haya.
+         });
+   
+});
 } 
+else{//Esto es para ocultar vehículos si no hay.
+  let encabezadoVehiculos= document.getElementById("ve");
+  encabezadoVehiculos.setAttribute("class", "hidden");
 }
 
-
-
+}
 
  
 function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la película indicada.
@@ -63,8 +82,9 @@ export function anyadirPersonaje(actor){//Añadimos los personajes hasta 10;
                       div.classList="";
                         parrafo.addEventListener("click",(event)=>{
                         masInfo(actor); 
-                        vehiculos(actor.starships,"Naves espacial");
-                       vehiculos(actor.vehicles,"Vehículo");
+                        
+                       vehiculos(actor.vehicles,actor.starships);
+                       
                         },false);
                         div.appendChild(parrafo);
 }
@@ -140,7 +160,8 @@ const peticionVehiculos = (url)=>{//Con un fetch hacemos la petición de los per
 }
 
 function mostrarVehiculo(vehiculo, tipo){
-    let li=`<li>El nombre del ${tipo} es :${vehiculo.name}  su modelo:${vehiculo.model} y el construsctor:${vehiculo.manufacturer} </li>`;
+    let li= document.createElement("li");
+    li.innerHTML=`El nombre del ${tipo} es :${vehiculo.name}  su modelo:${vehiculo.model} y el construsctor:${vehiculo.manufacturer} `;
     return li;
 }
 

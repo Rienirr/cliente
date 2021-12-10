@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="trivial.css">
+    <title>Trivial</title>
+</head>
+<body>
+    <form action="nada" method="post">
+        <h2> Trivial  </h2>
+        <fieldset>  <legend> Cantidad de preguntas</legend>
+     <select name="preguntas" id="preguntas">
+         <option > Selecione la cantidad de preguntas  </option>
+         <option value="5"> 5 Preguntas(duración corta)</option>
+     <option value="10"> 10 Preguntas(duración media)</option>
+     <option value="20"> 20 Preguntas(duración larga)</option>
+    </select>
+</fieldset>
+<fieldset>  <legend> Dificultad </legend>
+    <select name="dificultad" id="dificultad">
+        <option > Selecione la dificultad de preguntas  </option>
+        <option value="easy"> Fácil </option>
+    <option value="medium"> Media</option>
+ 
+    <option value="hard"> Difícil</option>
+   </select>
+</fieldset>
+<fieldset>  <legend> Categoria  </legend>
+    <select name="categoria" id="categoria">
+        <option > Selecione la categoria para las preguntas preguntas  </option>
+    <option value="todas"> De todo tipo soy un valiente. </option>
+    <option value="21"> Dame deportes que lo sé todo.</option>
+    <option value="23"> Historia, sé más que GOOGLE</option>
+   </select>
+</fieldset>
+<input type="button" value="Comenzar el Trivial" id="empezar">
+ 
+</form>
+<script type="module" src="trivial.js"></script>
+</body>
+</html>
