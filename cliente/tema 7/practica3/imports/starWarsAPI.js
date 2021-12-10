@@ -44,6 +44,7 @@ function sinopsis(indice,pelicula,id="descripcion"){//Muestra la sinopsis de la 
    pelicula.results.map((v, i, a) => {
       if(i==indice){
        cadena+= `<h2> Sinopsis de ${v.title}</h2>   <p>${v.opening_crawl}</p> <img src='../images/${i}.jpeg' alt="Star Wars"  width="250"> `;
+       
        //Las películas estan ordenadas según la Api,es decir, en orden de salida.
        
       }       
