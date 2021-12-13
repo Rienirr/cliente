@@ -1,7 +1,6 @@
  "use strict";
 
    let indice="";//Para asegurarnos que salgan 10 personajes.
-   
   export const peliculas= () => {//Con un fethc se hace muy sencillo y con menos líneas ya que no tenemos que crear el objeto AJAX.
     const url = "https://swapi.dev/api/films";
    var peticionPeliculas = new Request(url, {
@@ -189,6 +188,16 @@ export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y 
    }
 
 } 
+
+export const mostrarPeliculas = async() => {
+  let todasLasPeliculas= await peliculas();
+  todasLasPeliculas().then((peliculas) => {
+    mostrar(peliculas);
+  }).catch((error) => {
+    console.log(error.message); // Si hay algún error, muestro el mensaje.
+  });
+
+}
 
 
 
