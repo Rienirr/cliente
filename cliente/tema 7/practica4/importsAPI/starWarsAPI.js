@@ -1,5 +1,5 @@
  "use strict";
-
+var arrayPersonajesDepiluca= new Array();
    let indice="";//Para asegurarnos que salgan 10 personajes.
   export const peliculas= () => {//Con un fethc se hace muy sencillo y con menos líneas ya que no tenemos que crear el objeto AJAX.
     const url = "https://swapi.dev/api/films";
@@ -35,14 +35,10 @@
              });    
     });
     }  
-
 if(vehicles.length>0){ 
- 
- 
   let encabezadoVehiculos= document.getElementById("ve");
   vehicles.map((v, i, a) => {
           peticionVehiculos(v).then((vehiculo) => {
-            
            encabezadoVehiculos.insertAdjacentElement("afterend",(mostrarVehiculo(vehiculo, "vehículos")));//Añadimos tantos vehículos a la lista como haya.
          });
    
@@ -191,6 +187,15 @@ export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y 
 export const mostrarPeliculas = async() => {
   let todasLasPeliculas= await peliculas();
   mostrar(todasLasPeliculas);
+}
+export const mostrarPersonaje= async(url)=>{
+  let personaje= await peticionPersonajes(url);
+  anyadirPersonaje(personaje);
+}
+export const mostrarVehiculoAsin= async(url)=>{
+  let vehiculo= await  peticionVehiculos(url);
+
+
 }
 
 
