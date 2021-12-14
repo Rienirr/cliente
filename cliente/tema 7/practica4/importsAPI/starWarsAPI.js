@@ -186,17 +186,11 @@ export function mostrar(peliculas,id="peliculas") {//Mostramos las películas y 
       
      },false);
    }
-
 } 
 
 export const mostrarPeliculas = async() => {
   let todasLasPeliculas= await peliculas();
-  todasLasPeliculas().then((peliculas) => {
-    mostrar(peliculas);
-  }).catch((error) => {
-    console.log(error.message); // Si hay algún error, muestro el mensaje.
-  });
-
+  mostrar(todasLasPeliculas);
 }
 
 
