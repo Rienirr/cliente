@@ -1,11 +1,17 @@
 "use strict";
 
-import { Crearpersona } from "./imports/plantillasAgenda.js";
+import { Agenda } from "./imports/Agenda.js";
+import {  Persona } from "./imports/Persona.js";
 
 window.onload = ()=>{
- 
-    console.log(Crearpersona("Toni","B","C/Valle Inclán nº 25 ",685515440));
 
+   let per = new Persona("toni","bonmati","calle valle Inclán", 685515440);
+   let per1 = new Persona("as","2cas","calle valle Inclán", 685515440);
+    console.log(per.mostrar());
+    let agenda= new Agenda(per);
+    let agendaMal = new Agenda(arra);
+    console.log(agenda);
+    console.log(agendaMal);
 
 
 }
