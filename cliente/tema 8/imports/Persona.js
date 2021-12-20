@@ -1,5 +1,5 @@
 "use strict";
-export class Persona{//Creamos la clave persona con los datos que necesitamos con sus getter y setters;
+export class Persona {//Creamos la clave persona con los datos que necesitamos con sus getter y setters;
     constructor( Nombre,Apellidos, Direccion , Telefono){//Creamos un curso si lo que nos pasan son arrays.
    this.nombre= Nombre;
    this.apellidos= Apellidos;
@@ -34,9 +34,13 @@ export class Persona{//Creamos la clave persona con los datos que necesitamos co
     setNombre=(Telefono)=>{
         this.telf= Telefono;
     }
+    equals=(Nombre, Apellidos)=>{//Si el nombre y el apellido coincide son iguales.
+        if(this.getNombre()=== Nombre&& this.getApellidos()===Apellidos) return true;
+        else return false;
+    }
 
     mostrar = () => {
-        return ` ${this.getNombre()} ,${this.getApellidos()},${this.getDireccion()},${this.getTelefono()}}`;
+        return ` Nombre: ${this.getNombre()} , Apellidos: ${this.getApellidos()}, Dirección ${this.getDireccion()} y Teléfono ${this.getTelefono()}`;
     }
   
 
