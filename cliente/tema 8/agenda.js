@@ -8,19 +8,25 @@ window.onload = ()=>{
    let borrar= document.getElementById("borrar");
    let ordenar= document.getElementById("ordenar");
    let  anyadir= document.getElementById("anyadir");
-
-   
-   buscar.addEventListener("click",(event)=>{
-
-   },false);
-   borrar.addEventListener("click",(event)=>{
+let agenda= new Agenda();
+       
+   buscar.addEventListener("click",(event)=>{//Añadir el formulario buscar.
 
    },false);
-   ordenar.addEventListener("click",(event)=>{
+   borrar.addEventListener("click",(event)=>{//Añadir el formulario de borrar.
 
    },false);
-   anyadir.addEventListener("click",(event)=>{
+   ordenar.addEventListener("click",(event)=>{//Añadir el formulario de ordenar.
 
+   },false);
+   anyadir.addEventListener("click",(event)=>{//Añadir el formulario de añadir.
+         let nombre= document.getElementById("nombre").value;
+          let apellido= document.getElementById("apellido").value;
+        let  dirreccion= document.getElementById("direccion").value;
+        let telf= document.getElementById("telefono");
+        agenda.anyadir( new Persona(nombre, apellido,dirreccion,telf));
+        agenda.setItem(agenda.listado);
+       
    },false);
   
 

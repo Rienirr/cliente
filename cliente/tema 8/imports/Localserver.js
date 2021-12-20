@@ -1,9 +1,9 @@
 export class localStorage{
     
-    setItem=(objeto)=>{//Añadimos un nuevo item .
-
+    setItem=(listado)=>{//Añadimos un nuevo item .
+        localStorage.setItem("listado",JSON.stringify(listado));
     }
-    getItem=(objeto)=>{//Leemos un item.
-
+    getItem=(clave="listado")=>{//Leemos un item.
+    localStorage.getItem(clave);
     }
 }
