@@ -1,0 +1,1 @@
+/*Se encarga de manejar los datos que vienen de la base de datos correspondientes a la lista de la compra */

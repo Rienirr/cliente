@@ -1,0 +1,1 @@
+/*Esta clase se encarga de consultar la base de datos de fileBase */
