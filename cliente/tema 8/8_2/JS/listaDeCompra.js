@@ -1,24 +1,15 @@
 /*Se encarga de manejar los datos que vienen de la base de datos correspondientes a la lista de la compra */
 "use strict;"
 import { app } from "./fileBase.js";
-import { crearfila } from "./plantillas.js";
+import { crearfila, mensajesUsuario } from "./plantillas.js";
 import {
   getFirestore,
   collection,
-  getDocs,
-  getDoc,
-  onSnapshot,
-  doc,
-  query,
-  where,
-  orderBy,
-  limit,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { obtenerProductos,filtrarPor } from "./conexionbd.js";
+import { obtenerProductos,filtrarPor, ordenarPor } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
  
-  var mensajesUsuario= d.getElementById("comunicacion_usuario");
     var mostrar= d.getElementById("mostrar");
   var filtrar= d.getElementById("filtrar");
   var ordenar= d.getElementById("ordenar")
@@ -32,4 +23,17 @@ obtenerProductos(productos);//Mostramos todos los productos al iniciar.
     filtrar.addEventListener("click",(event)=>{
     filtrarPor(productos,d.querySelector('input[name="filtro"]:checked').value);
     })
-    }
+  
+    ordenar.addEventListener("click",(event)=>{
+      var eleccion = d.getElementById("eleccion");
+      if(eleccion.options[eleccion.selectedIndex].value!=="nada"){
+        ordenarPor(productos,eleccion.options[eleccion.selectedIndex].value);
+      }else{
+        mensajesUsuario("Por favor si quieres los productos ordenados por favor seleciona una opción");
+      }
+
+    },false);
+  
+  
+  
+  }
