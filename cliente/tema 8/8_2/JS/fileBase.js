@@ -1,4 +1,4 @@
-/*Esta clase se encarga de proporcionar los datos necesarios para conectarnos a la base de datos */
+/*Esta clase se encarga de proporcionar los datos necesarios para conectarnos a la base de datos  Firebase*/
 "use strict";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";

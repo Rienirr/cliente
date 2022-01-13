@@ -14,23 +14,22 @@ import {
   orderBy,
   limit,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { obtenerProductos,filtrarPor } from "./conexionbd.js";
 window.onload =()=> {
-    
+  var d= document;
+ 
+  var mensajesUsuario= d.getElementById("comunicacion_usuario");
+    var mostrar= d.getElementById("mostrar");
+  var filtrar= d.getElementById("filtrar");
+  var ordenar= d.getElementById("ordenar")
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
-    const obtenerProductos = async () => {
-        
-        const productosDelDocumento = await getDocs(productos);
-        document.body.innerHTML+="<table> <th>Nombre </th> <th> Peso</th> <th> Precio</th> <th> Descripcion</th> <th> imagen</th>";
-        productosDelDocumento.docs.map((documento) => {
-            
-         
-            document.body.innerHTML+= crearfila(documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen);
-           
-        });
-        document.body.innerHTML+="</table>"
-      };
-obtenerProductos();
-   
-    
+
+obtenerProductos(productos);//Mostramos todos los productos al iniciar.
+   mostrar.addEventListener("click", (event)=>{//Mostramos todos los productos por si el usuario los quiere volver a ver.
+    obtenerProductos(productos);
+   },false);
+    filtrar.addEventListener("click",(event)=>{
+    filtrarPor(productos,d.querySelector('input[name="filtro"]:checked').value);
+    })
     }
