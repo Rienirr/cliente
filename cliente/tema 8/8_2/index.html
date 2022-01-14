@@ -6,22 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/estilos.css">
     
-    <title>Lista de la Compra</title>
+    <title>Lista de los productos</title>
 </head>
 <body>
   <button id="mostrar">Mostrar Todos los elementos</button>
-    <label for="filtrar">Elige por el precio o peso a filtrar:</label>
-    <input type="radio"  name="filtro"  value="mayor_precio">
-  <label >Precio mayor igual a 5 € </label>
-  <input type="radio"  name="filtro" value="menor_precio">
-  <label >Precio menor a 5 € </label>
-  
-  <input type="radio"  name="filtro"  value="mayor_peso">
-<label >Peso mayor igual a 1 KG </label>
-<input type="radio"  name="filtro" value="menor_peso">
-<label >Peso menor a 1KG  </label>
-    <button id="filtrar">Filtrar</button>
+  <div class="filtro">
+    <label for="filtrar">Elige por el precio o el peso  a filtrar:</label>
+    <input type="number"  id="numero" name="as"  min="0.1">
+  <label >Precio</label> </label>
+  <input type="radio"  name="filtro" value="precio">
+  <label >Peso</label>
+  <input type="radio"  name="filtro" value="peso">
+
+    <button id="filtrar">Filtrar </button>
+  </div>
+  <div class="filtro">
+    <label for="busqueda"> Busca por nombre:</label>
+    <input type="search" id="busqueda" placeholder="palabra a buscar"> 
+    <button id="buscar">Buscar</button>
+  </div>
+  <div class="filtro">
+
     <label for="eleccion">Ordena la lista según precio, nombre o peso.</label>
+ 
 
     <select  id="eleccion">
         <option value="nada">Elige una opción para ordenar</option>
@@ -31,10 +38,12 @@
      
     </select> 
     <button id="ordenar">Ordenar</button>
+  </div>
+  <div>
     <h1 >Listado de la compra </h1>
     <div id="lista"></div>
     
-
+</div>
     <div id="comunicacion_usuario" class="hidden"></div>
     
     <script type="module" src="JS/listaDeCompra.js"> </script>
