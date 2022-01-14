@@ -27,15 +27,19 @@ export const obtenerProductos = async (productos) => {
     var  lista= document.getElementById("lista");
     lista.innerHTML="";  
     var comparador="";
+    var condicion="";
+    var campo="";
  
-    if (filtro === "mayor") comparador=">=";
-    else if (filtro === "menor") comparador="<";
+    if (filtro.includes("mayor")) comparador=">=";
+    else if (filtro.includes("menor")) comparador="<" ;
+    if (filtro.includes("precio")){ campo="precio"; condicion=5;}
+    else if( filtro.includes("peso")) { campo="peso"; condicion=1;}
     try{
       lista.insertAdjacentElement("beforeend", cabecera());
           const consulta = query(
             productos,
-      where("precio", comparador, 5),
-      orderBy("precio", "desc"),
+      where(campo, comparador, condicion),
+      orderBy(campo, "desc"),
     ); 
   
     const productosDelDocumento = await getDocs(consulta);

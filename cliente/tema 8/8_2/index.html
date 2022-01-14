@@ -10,11 +10,16 @@
 </head>
 <body>
   <button id="mostrar">Mostrar Todos los elementos</button>
-    <label for="filtrar">Elige por el precio a filtrar:</label>
-    <input type="radio"  name="filtro"  value="mayor">
+    <label for="filtrar">Elige por el precio o peso a filtrar:</label>
+    <input type="radio"  name="filtro"  value="mayor_precio">
   <label >Precio mayor igual a 5 € </label>
-  <input type="radio"  name="filtro" value="menor">
+  <input type="radio"  name="filtro" value="menor_precio">
   <label >Precio menor a 5 € </label>
+  
+  <input type="radio"  name="filtro"  value="mayor_peso">
+<label >Peso mayor igual a 1 KG </label>
+<input type="radio"  name="filtro" value="menor_peso">
+<label >Peso menor a 1KG  </label>
     <button id="filtrar">Filtrar</button>
     <label for="eleccion">Ordena la lista según precio, nombre o peso.</label>
 
