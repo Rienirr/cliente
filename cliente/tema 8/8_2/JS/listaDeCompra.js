@@ -1,7 +1,7 @@
 /*Se encarga de manejar los datos que vienen de la base de datos correspondientes a la lista de la compra */
 "use strict;"
 import { app } from "./fileBase.js";
-import { crearfila, mensajesUsuario } from "./plantillas.js";
+import {  mensajesUsuario } from "./plantillas.js";
 import {
   getFirestore,
   collection,
@@ -21,13 +21,18 @@ obtenerProductos(productos);//Mostramos todos los productos al iniciar.
     obtenerProductos(productos);
    },false);
     filtrar.addEventListener("click",(event)=>{
-    filtrarPor(productos,d.querySelector('input[name="filtro"]:checked').value);
+      var filtro= d.querySelector('input[name="filtro"]:checked').value;
+    filtrarPor(productos,filtro);
+    mensajesUsuario(`Productos con precio precio ${filtro} a 5€ `);
     })
   
-    ordenar.addEventListener("click",(event)=>{
+    ordenar.addEventListener("click",(event)=>{//Ordena los productos según el parámetro que recibe
       var eleccion = d.getElementById("eleccion");
-      if(eleccion.options[eleccion.selectedIndex].value!=="nada"){
-        ordenarPor(productos,eleccion.options[eleccion.selectedIndex].value);
+      var valorEleccion= eleccion.options[eleccion.selectedIndex].value;
+      if(valorEleccion!=="nada"){
+        ordenarPor(productos,valorEleccion);
+        mensajesUsuario(`Prodcutos ordenados por ${valorEleccion}`);
+      
       }else{
         mensajesUsuario("Por favor si quieres los productos ordenados por favor seleciona una opción");
       }

@@ -1,7 +1,7 @@
 
 /*Esta biblioteca nos  permite hacer las consultas necesarias sobre la base de datos ahora es solo leer luego también nos permitirá escribir*/ 
 
-import { crearfila } from "./plantillas.js";
+import { cabecera, crearfila } from "./plantillas.js";
 import {getDocs,query,  where,orderBy,
  
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
@@ -10,6 +10,7 @@ export const obtenerProductos = async (productos) => {
     var  lista= document.getElementById("lista");
     lista.innerHTML="";   
     try{
+      lista.insertAdjacentElement("beforeend", cabecera()); 
     const productosDelDocumento = await getDocs(productos);
     productosDelDocumento.docs.map((documento) => {
       
@@ -26,9 +27,11 @@ export const obtenerProductos = async (productos) => {
     var  lista= document.getElementById("lista");
     lista.innerHTML="";  
     var comparador="";
+ 
     if (filtro === "mayor") comparador=">=";
     else if (filtro === "menor") comparador="<";
     try{
+      lista.insertAdjacentElement("beforeend", cabecera());
           const consulta = query(
             productos,
       where("precio", comparador, 5),
@@ -51,9 +54,10 @@ export const obtenerProductos = async (productos) => {
     var  lista= document.getElementById("lista");
     lista.innerHTML="";   
     try{
+      lista.insertAdjacentElement("beforeend", cabecera());
       const consulta = query(
         productos,
-  orderBy(filtro, "desc"),
+  orderBy(filtro, "asc"),
 ); 
 
 const productosDelDocumento = await getDocs(consulta);

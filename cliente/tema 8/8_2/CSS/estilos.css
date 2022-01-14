@@ -1,0 +1,36 @@
+.hidden{
+    display:  none;
+}
+#comunicacion_usuario{
+   text-align: center;
+    width: 500px;  
+background: #000;
+border-radius: 4px;
+margin:50px 0px 0px  33%;
+font-family: "arial-black";
+font-size: 14px;
+color: #FFF;
+padding: 8px 12px;
+flex: auto;
+}
+#cabecera_lista span{
+ text-decoration: underline;
+ font-style: italic;
+ font-size: 2em;
+}
+span{
+    font-style: italic;
+    display: inline-block;
+    margin: 25px 25px ;
+    min-width: 250px;
+}
+div, button:first-of-type, h1:first-of-type{
+    margin-left:100px ;
+}
+ h1:first-of-type{
+    text-align:center;
+    font-style: italic;
+}
+button:first-of-type{
+    margin-top: 25px;
+}
