@@ -4,13 +4,32 @@
 body{
     background-color: rgba(0, 255, 255, 0.24);
    
-    text-shadow: 1px 1px 1px white;
+    text-shadow: 1px 1px 2px white;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 .filtro{
-    display: inline-block;
+    display: inline;
     border: 2px solid salmon;
     border-radius: 12px;
    padding: 15px;
+   margin: 10px;
+   background-color: lightcyan;
+}
+#lista{
+    border: 2px solid salmon;
+    border-radius: 12px;
+    background-color: lightcyan;
+    margin-right: 100px;
 }
 .buscar{
     display: inline-block;
@@ -18,7 +37,9 @@ body{
     border-radius: 12px;
    padding: 15px;
 }
+
 #comunicacion_usuario{
+    
    text-align: center;
     width: 500px;  
 background: #000;
@@ -28,23 +49,41 @@ font-family: "arial-black";
 font-size: 14px;
 color: #FFF;
 padding: 8px 12px;
-flex: auto;
+
 }
 #cabecera_lista span{
  text-decoration: underline;
  font-style: italic;
  font-size: 2em;
+ text-align: center;
+ justify-content: center;
+align-content: center; 
+margin-left: 10px;
+
 }
+#cabecera_lista span.des{
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 2em;
+    text-align: center;
+    justify-content: center;
+   align-content: center; 
+   margin-left: 200px;
+   
+   }
+   .grid span:first-of-type{
+       font-size: 1.5em;
+   }
 span{
    
     font-style: italic;
     display: inline-block;
     margin: 25px 20px ;
-    min-width: 250px;
-    height: 65px;
+    min-width: 200px;
+   
 }
-div,  h1:first-of-type{
-    margin-left:100px ;
+div{
+    margin-left:70px ;
 }
 
  h1:first-of-type{
@@ -54,4 +93,33 @@ div,  h1:first-of-type{
 button:first-of-type{
     margin-top: 25px;
     
+}
+
+.grid{
+        display: grid;
+        grid-template-columns: 1.4fr 1.4fr 1.3fr 3fr 2fr ;
+        grid-template-rows: max-content;
+        grid-gap: 10px;
+      
+}
+.colum{
+    min-width: 0px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+   background-color: wheat;
+   padding: 5px;
+   border: 1px solid whitesmoke;
+   border-radius: 15px;
+   font-size: 1.1em;
+}
+h1{
+    text-align: center;
+    justify-content: center;
+   align-content: center;
+    margin-left:120px ;
+    
+}
+.img{
+    background-color: lightcyan;
 }

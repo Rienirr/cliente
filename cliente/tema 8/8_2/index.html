@@ -9,7 +9,9 @@
     <title>Lista de los productos</title>
 </head>
 <body>
+  <div class="filtro">
   <button id="mostrar">Mostrar Todos los elementos</button>
+</div>
   <div class="filtro">
     <label for="filtrar">Elige por el precio o el peso  a filtrar:</label>
     <input type="number"  id="numero" name="as"  min="0.1">
@@ -21,10 +23,10 @@
     <button id="filtrar">Filtrar </button>
   </div>
   <div class="filtro">
-    <label for="busqueda"> Busca por nombre:</label>
-    <input type="search" id="busqueda" placeholder="palabra a buscar"> 
-    <button id="buscar">Buscar</button>
-  </div>
+     <label for="busqueda"> Busca por nombre:</label>
+     <input type="search" id="busqueda" placeholder="palabra a buscar"> 
+      <button id="buscar">Buscar</button>
+   </div>
   <div class="filtro">
 
     <label for="eleccion">Ordena la lista según precio, nombre o peso.</label>
@@ -39,12 +41,12 @@
     </select> 
     <button id="ordenar">Ordenar</button>
   </div>
-  <div>
-    <h1 >Listado de la compra </h1>
+  <div id="comunicacion_usuario" class="hidden"></div>
+  <div><h1 >Listado de la compra </h1>
     <div id="lista"></div>
     
 </div>
-    <div id="comunicacion_usuario" class="hidden"></div>
+    
     
     <script type="module" src="JS/listaDeCompra.js"> </script>
 </body>

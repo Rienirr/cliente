@@ -2,14 +2,15 @@
 "use strict;"
 export function crearfila(id,nombre,peso,precio,descripcion,imagen="nada"){//Para crear la fila con todos los componentes del producto.
     let div = document.createElement("div");
-    div.setAttribute("id",id)
-div.innerHTML =` <span>${nombre}</span>  <span>${peso} Kg </span> <span>${precio} €</span> <span>${descripcion} </span> <span> <img src=${imagen} alt="no se ha podido cargar la imagen" width="50" height="50"> </span> `;
+    div.setAttribute("id",id);
+    div.setAttribute("class","grid");
+div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${peso} Kg </span> <span class="colum">${precio} €</span> <span class="colum">${descripcion} </span> <span class="colum img"> <img  class="colum" src=${imagen} alt="no se ha podido cargar la imagen" width="100" height="100"> </span> `;
 return div;
 }
 export function cabecera(){//Para añadir la cabecera a los productos
     let div = document.createElement("div");
     div.setAttribute("id","cabecera_lista")
-    div.innerHTML="<span>Nombre</span>  <span>Peso </span> <span>Precio</span> <span>Descripción </span> <span>Imagen </span>";
+    div.innerHTML="<span>Nombre</span>  <span>Peso </span> <span>Precio</span> <span class='des'>Descripción </span> <span class='des'>Imagen </span>";
     return div;
 }
 

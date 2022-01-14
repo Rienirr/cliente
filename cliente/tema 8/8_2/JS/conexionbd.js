@@ -22,6 +22,7 @@ export const obtenerProductos = async (productos) => {    //Obtiene toda la list
 }
     return true;
   };
+ 
   export const buscarProducto = async (productos, palabra)=>{//Busca si hay alguna coincidencia si la hay lo muestra.
     lista.innerHTML="";  
     var busqueda= document.getElementById("busqueda");  
@@ -43,8 +44,8 @@ export const obtenerProductos = async (productos) => {    //Obtiene toda la list
 }
 if(semaforo){ mensajesUsuario(`Se han encontrado las siguientes coincidencias con ${busqueda.value}`);  
 busqueda.value="";return true;}//Si ha encontrado coincidencia.
-else {  mensajesUsuario(`No se han encontrado las siguientes coincidencias con ${busqueda.value}`);  
-busqueda.value="";return false;} //Fallo en la coincidencia.    
+else {  mensajesUsuario(`No se han encontrado las siguientes coincidencias con ${busqueda.value}`) ;    lista.innerHTML=""; busqueda.value="";return false;} //Fallo en la coincidencia.    
+
 } 
  
 };
@@ -58,7 +59,9 @@ busqueda.value="";return false;} //Fallo en la coincidencia.
     else if (valorFiltro==="peso") complemento= "kg";
     lista.innerHTML="";  
     var comparador="<="; 
+    var semaforo=false;
     try{
+      
       lista.insertAdjacentElement("beforeend", cabecera());
           const consulta = query(
             productos,
@@ -67,12 +70,14 @@ busqueda.value="";return false;} //Fallo en la coincidencia.
     ); 
     const productosDelDocumento = await getDocs(consulta);//Una vez filtrados los mostramos
     productosDelDocumento.docs.map((documento) => {
+      semaforo=true;
    lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) ); 
   });
 }catch(error) {
     console.log(error);
 }
-mensajesUsuario(`Productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`);
+if(semaforo)mensajesUsuario(`Productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`);
+else{ mensajesUsuario(`No hay productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`); lista.innerHTML="";  }//Para que no muestre la cabecera de la lista.
 return true;
   }
 
@@ -84,7 +89,7 @@ return true;
       lista.insertAdjacentElement("beforeend", cabecera());
       const consulta = query(
         productos,
-  orderBy(filtro, "asc"),
+  orderBy(filtro, "desc"),
 ); 
 const productosDelDocumento = await getDocs(consulta);//Los mostramos una vez ordenados como queremos.
 productosDelDocumento.docs.map((documento) => {
