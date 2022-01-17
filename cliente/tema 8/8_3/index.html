@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    
+    <title>Lista de los productos</title>
+</head>
+<body>
+  <div class="filtro">
+  <button id="mostrar">Mostrar Todos los elementos</button>
+</div>
+  <div class="filtro">
+    <label for="filtrar">Elige por el precio o el peso  a filtrar:</label>
+    <input type="number"  id="numero" name="as"  min="0.1">
+  <label >Precio</label> </label>
+  <input type="radio"  name="filtro" value="precio">
+  <label >Peso</label>
+  <input type="radio"  name="filtro" value="peso">
+
+    <button id="filtrar">Filtrar </button>
+  </div>
+  <div class="filtro">
+     <label for="busqueda"> Busca por nombre:</label>
+     <input type="search" id="busqueda" placeholder="palabra a buscar"> 
+      <button id="buscar">Buscar</button>
+   </div>
+  <div class="filtro">
+
+    <label for="eleccion">Ordena la lista según precio, nombre o peso.</label>
+ 
+
+    <select  id="eleccion">
+        <option value="nada">Elige una opción para ordenar</option>
+      <option value="nombre">Nombre</option>
+      <option value="precio">Precio</option>
+      <option value="peso">Peso</option>
+     
+    </select> 
+    <button id="ordenar">Ordenar</button>
+  </div>
+  <div class="filtro" >
+    <label>Puedes crear una lista o ver las que ya hay:</label>
+    <button id="crear"> Crear </button>
+    <button id="listar"> Ver Listas </button>
+  
+
+  </div>
+  <div id="comunicacion_usuario" class="hidden"></div>
+  <div><h1 >Listado de la compra </h1>
+    <div id="lista"></div>
+    
+</div>
+
+    
+    
+    <script type="module" src="JS/listaDeCompra.js"> </script>
+</body>
+</html>
