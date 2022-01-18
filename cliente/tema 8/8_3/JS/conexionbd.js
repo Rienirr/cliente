@@ -1,7 +1,7 @@
 
 /*Esta biblioteca nos  permite hacer las consultas necesarias sobre la base de datos ahora es solo leer luego también nos permitirá escribir*/ 
 
-import { cabecera, crearfila, mensajesUsuario,formulario } from "./plantillas.js";
+import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista } from "./plantillas.js";
 
 import {getDocs,query,  where,orderBy,
  
@@ -16,6 +16,20 @@ export const obtenerProductos = async (productos) => {    //Obtiene toda la list
     productosDelDocumento.docs.map((documento) => {
 
         lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) );
+    });
+}catch(error) {
+    console.log(error);
+}
+    return true;
+  };
+
+  export const obtenerListas= async(listas)=>{
+   
+    lista.innerHTML="";   
+    try{
+    const todasListas = await getDocs(listas);
+    todasListas.docs.map((documento) => {
+        lista.insertAdjacentElement("beforeend", crearfilaLista(documento.id,documento.data().nombre, documento.data().fecha , documento.data().creador, documento.data().productos));
     });
 }catch(error) {
     console.log(error);
@@ -64,19 +78,23 @@ export const nuevaLista = (ListaCompra)=>{
       let nombreLista= document.getElementById("nombreLista");
       let nombreCreador=document.getElementById("nombreCreador");
       if(comprobarDatos(nombreLista,nombreCreador)){
-
+        crearListaCompra(ListaCompra, nombreLista, nombreCreador);
       }else{
         mensajesUsuario(`Tienes que rellenar todos los campos `) ;    return false; //Fallo en la coincidencia.    
       }
     },false);
   }
   
-   const crearListaCompra = async(ListaCompra,nombre)=>{
-      
+   const crearListaCompra = async(ListaCompra,nombre, creador)=>{
+   let listaCreada = 
     const cestas = await getDocs(ListaCompra);
     cestas.docs.map((documento) => {
      if(documento.data().nombre.toUpperCase() != nombre.toUpperCase()){
       //Creamos la Lista de productos.
+      const guardarlista = async () => {
+        const feoGuardado = await addDoc(ListaCompra, listaCreada);
+        console.log(`Feo guardado con el id ${feoGuardado.id}`);
+      };
      }else{
       mensajesUsuario(`Esa lista ya existe !! Introduce otro nombre  `) ;    return false; //Fallo en la coincidencia.
      }

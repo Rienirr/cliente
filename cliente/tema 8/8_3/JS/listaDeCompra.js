@@ -6,7 +6,7 @@ import {
   getFirestore,
   collection,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista } from "./conexionbd.js";
+import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
   var eleccion = d.getElementById("eleccion");
@@ -48,6 +48,9 @@ obtenerProductos(productos);//Mostramos todos los productos al iniciar.
 
   crearLista.addEventListener("click", (event)=>{
     nuevaLista(ListaCompra);
+  },false);
+  listar.addEventListener("click", (event)=>{
+    obtenerListas(ListaCompra);
   },false);
 
   
