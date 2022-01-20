@@ -1,9 +1,9 @@
 
 /*Esta biblioteca nos  permite hacer las consultas necesarias sobre la base de datos ahora es solo leer luego también nos permitirá escribir*/ 
 
-import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista } from "./plantillas.js";
+import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON } from "./plantillas.js";
 
-import {getDocs,query,  where,orderBy,
+import {getDocs,query,  where,orderBy,addDoc
  
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 var  lista= document.getElementById("lista");
@@ -72,33 +72,44 @@ const comprobarDatos=(nombreLista,nombreCreador)=>{
 
 export const nuevaLista = (ListaCompra)=>{
     lista.innerHTML="";
-    lista.appendChild(formulario(ListaCompra));
+    lista.appendChild(formulario());
     let boton=document.getElementById("CrearLista");
     boton.addEventListener("click",(event)=>{
       let nombreLista= document.getElementById("nombreLista");
       let nombreCreador=document.getElementById("nombreCreador");
       if(comprobarDatos(nombreLista,nombreCreador)){
-        crearListaCompra(ListaCompra, nombreLista, nombreCreador);
+        crearListaCompra(ListaCompra, nombreLista.value, nombreCreador.value);
       }else{
         mensajesUsuario(`Tienes que rellenar todos los campos `) ;    return false; //Fallo en la coincidencia.    
       }
+      let botoneslista= document.getElementsByClassName("verLista");
+      for(let i=0; i<botoneslista.length;i++){
+        console.log("");
+        //añadir funcionalidad a añadir productos lista
+      }
     },false);
   }
-  
+  const guardarlista = async (ListaCompra,listaCreada) => {
+    const ListaGuardada = await addDoc(ListaCompra, listaCreada);
+    console.log(`Lista guardado con el id ${ListaGuardada.id}`);
+  };
    const crearListaCompra = async(ListaCompra,nombre, creador)=>{
-   let listaCreada = 
-    const cestas = await getDocs(ListaCompra);
-    cestas.docs.map((documento) => {
-     if(documento.data().nombre.toUpperCase() != nombre.toUpperCase()){
-      //Creamos la Lista de productos.
-      const guardarlista = async () => {
-        const feoGuardado = await addDoc(ListaCompra, listaCreada);
-        console.log(`Feo guardado con el id ${feoGuardado.id}`);
-      };
-     }else{
-      mensajesUsuario(`Esa lista ya existe !! Introduce otro nombre  `) ;    return false; //Fallo en la coincidencia.
-     }
-  });
+    const consulta = query(
+      ListaCompra,
+where("nombre", "==", nombre)
+
+); 
+   let listaCreada = ListaJSON(nombre, creador);
+   console.log(listaCreada);
+   const cestas = await getDocs(consulta);
+   let semaforo= true;// para filtrar que el nombre no este 
+   cestas.docs.map((documento) => {
+   semaforo= false;
+ });
+ if(semaforo) guardarlista(ListaCompra,listaCreada);
+      else mensajesUsuario(`Esa lista ya existe !! Introduce otro nombre  `) ;    //Fallo en la coincidencia.
+     
+ 
 };
   
   export const filtrarPor = async (productos,filtro,condicion) => {//Nos filtra por precio y peso.

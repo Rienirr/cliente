@@ -7,11 +7,26 @@ export function crearfila(id,nombre,peso,precio,descripcion,imagen="nada"){//Par
 div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${peso} Kg </span> <span class="colum">${precio} €</span> <span class="colum">${descripcion} </span> <span class="colum img"> <img  class="colum" src=${imagen} alt="no se ha podido cargar la imagen" width="100" height="100"> </span> <button class="anyadirALaLista" > Añadir a la lista</button> `;
 return div;
 }
+
 export function crearfilaLista(id,nombre,fecha,creador, arrayP){//Para crear la fila con todos los componentes del producto.
     let div = document.createElement("div");
     div.setAttribute("id",id);
     div.setAttribute("class","grid");
-div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${fecha}  </span> <span class="colum">${creador} </span> <span class="colum">${arrayP} productos > <button class="verLista" > Añadir Productos</button>  `; 
+div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${fecha}  </span> <span class="colum">${creador} </span> `;
+let productos="";
+if(arrayP.length==1){//No hay productos en la lista.
+ productos+="No hay productos en la lista";
+}else{
+    arrayP.map((v,i,a)=>{//
+        if(i%3==0)productos+=`Nombre: ${v},`;
+        else if(i%3==1)productos+=`Peso: ${v},`;
+        else if(i%3==2)productos+=`Precio: ${v}`;
+    });
+}
+   
+
+div.innerHTML+= `<span class="colum">${productos} </span> `;
+div.innerHTML+=` <button class="verLista" > Añadir Productos</button> `;
 return div;
 }
 export function cabecera(){//Para añadir la cabecera a los productos
@@ -31,9 +46,15 @@ export function mensajesUsuario(texto){//Para comunicar al usuario todo lo que v
 }
 export function ListaJSON(nombreL, creadorL){//añadirfechas!!!
     return {nombre: nombreL,
-            creador: creadorL}
+            creador: creadorL,
+            productos: [""],
+            fecha: new Date().toLocaleDateString(),
+        }
+            
+
+
 }
-export function formulario(ListaCompra,crearListaCompra ){
+export function formulario(){
 let form= document.createElement("form");
 
 
