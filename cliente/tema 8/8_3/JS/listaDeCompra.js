@@ -18,14 +18,15 @@ window.onload =()=> {
   var ordenar= d.getElementById("ordenar");
   var crearLista = d.getElementById("crear");
   var listar= d.getElementById("listar");
+  var ListaElegida="";
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
     const ListaCompra = collection(db,"Listas");
 
-obtenerProductos(productos);//Mostramos todos los productos al iniciar.
+obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
 
    mostrar.addEventListener("click", (event)=>{//Mostramos todos los productos por si el usuario los quiere volver a ver.
-    obtenerProductos(productos);
+    obtenerProductos(ListaCompra,productos,ListaElegida);
    },false);
 
     filtrar.addEventListener("click",(event)=>{ // Filtrar por peso o precio.
@@ -50,7 +51,7 @@ obtenerProductos(productos);//Mostramos todos los productos al iniciar.
     nuevaLista(ListaCompra);
   },false);
   listar.addEventListener("click", (event)=>{
-    obtenerListas(ListaCompra);
+    obtenerListas(ListaCompra,productos,ListaElegida);
   },false);
 
   

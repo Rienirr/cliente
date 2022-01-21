@@ -3,11 +3,11 @@
 
 import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON } from "./plantillas.js";
 
-import {getDocs,query,  where,orderBy,addDoc
+import {getDocs,query,  where,orderBy,addDoc,doc,getDoc,updateDoc,arrayUnion,
  
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 var  lista= document.getElementById("lista");
-export const obtenerProductos = async (productos) => {    //Obtiene toda la lista de productos.
+export const obtenerProductos = async (listas,productos,listaElegida) => {    //Obtiene toda la lista de productos.
     
     lista.innerHTML="";   
     try{
@@ -17,13 +17,38 @@ export const obtenerProductos = async (productos) => {    //Obtiene toda la list
 
         lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) );
     });
+    var botonesAñadirProductos=document.getElementsByClassName("anyadirALaLista");
+for(let i=0; i<botonesAñadirProductos.length;i++){
+  botonesAñadirProductos[i].addEventListener("click",(event)=>{
+  if(listaElegida!==""){
+    let arrays= [event.target.parentNode.children[0].textContent,event.target.parentNode.children[1].textContent,event.target.parentNode.children[2].textContent,1];//nombre, peso, precio , cantidad
+    
+    ActulizarLista(listas,listaElegida,arrays);
+  }else{
+    mensajesUsuario(`Para añadir productos elige una lista primero`) ; 
+  }
+  
+  },false);
+
+
+}
 }catch(error) {
     console.log(error);
 }
     return true;
   };
+  const ActulizarLista = async (Coleccion,id,array) => {
+    const listaId = await doc(Coleccion, id);
+    let arrayNuevosProductos=[];
+    console.log(arrayNuevosProductos);
+    await updateDoc(listaId, {
+      productos: arrayUnion(`${array[0]}, ${array[1]},${array[2]}, ${array[3]}`),
+    });
+   
+  };
 
-  export const obtenerListas= async(listas)=>{
+
+  export const obtenerListas= async(listas,productos,listaElegida)=>{
    
     lista.innerHTML="";   
     try{
@@ -34,6 +59,13 @@ export const obtenerProductos = async (productos) => {    //Obtiene toda la list
 }catch(error) {
     console.log(error);
 }
+var botonesAñadirProductosLista=document.getElementsByClassName("verLista");
+for(let i=0; i<botonesAñadirProductosLista.length;i++){
+  botonesAñadirProductosLista[i].addEventListener("click",(event)=>{
+ listaElegida = (event.target.parentNode.id);//Cada vez Elegimos una Lista
+ obtenerProductos(listas,productos,listaElegida);
+  },false);
+} 
     return true;
   };
  
