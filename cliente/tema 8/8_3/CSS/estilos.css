@@ -75,6 +75,9 @@ margin-left: 10px;
    .grid span:first-of-type{
        font-size: 1.5em;
    }
+   b{
+    font-weight:normal;;
+    }
 span{
    
     font-style: italic;
@@ -98,7 +101,7 @@ button:first-of-type{
 
 .grid{
         display: grid;
-        grid-template-columns: 1.4fr 1.4fr 1.3fr 3fr 3fr 0.9fr;
+        grid-template-columns: 1.4fr 1.4fr 1.3fr 3fr 2fr 1.4fr;
        
         grid-gap: 10px;
       

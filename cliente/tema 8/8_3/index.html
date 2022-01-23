@@ -9,7 +9,10 @@
     <title>Lista de los productos</title>
 </head>
 <body>
+  <div class="menuProducto">
+    
   <div class="filtro">
+    <button id="crearProducto"> Crear producto</button>
   <button id="mostrar">Mostrar Todos los elementos</button>
 </div>
   <div class="filtro">
@@ -41,18 +44,27 @@
     </select> 
     <button id="ordenar">Ordenar</button>
   </div>
+</div>
+<div class="menuLista">
   <div class="filtro" >
     <label>Puedes crear una lista o ver las que ya hay:</label>
     <button id="crear"> Crear </button>
     <button id="listar"> Ver Listas </button>
-  
-
   </div>
+  <div class="filtro" >
+    <label for="fecha">Busca las listas por fecha</label>
+    <input type="date" id="fecha" > 
+      <button id="buscarFecha">filtrar</button>
+  </div>
+
+</div>
   <div id="comunicacion_usuario" class="hidden"></div>
-  <div><h1 >Listado de la compra </h1>
+  <div><h1 id="titulo" > </h1>
     <div id="lista"></div>
     
 </div>
+
+
 
     
     
