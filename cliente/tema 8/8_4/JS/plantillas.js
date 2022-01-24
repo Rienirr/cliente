@@ -88,3 +88,8 @@ export function formularioParaEditarLista(nombreLista,nombresProductos){
        
         return form;
         }
+        export function formularioLogin(){
+            let form= document.createElement("form");
+            form.innerHTML= "<label>Correo </label> <input type='text' id='correo'> <label> contraseña</label> <input type='password' id='password'> <label> Admin</label> <input type='radio' name='rol' value='admin'> <label> Usuario</label><input type='radio' name='rol' value='usuario' checked><input type='button' value='Log in' id='login'>";
+            return form;
+            }

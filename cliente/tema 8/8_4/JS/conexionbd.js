@@ -1,7 +1,7 @@
 
 /*Esta biblioteca nos  permite hacer las consultas necesarias sobre la base de datos ahora es solo leer luego también nos permitirá escribir*/ 
 
-import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON, formularioParaEditarLista, formularioParaEditarProductos, ProductoJSON } from "./plantillas.js";
+import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON, formularioParaEditarLista, formularioParaEditarProductos, ProductoJSON,formularioLogin} from "./plantillas.js";
 
 import {getDocs,query,  where,orderBy,addDoc,doc,getDoc,updateDoc,arrayUnion,arrayRemove,deleteDoc 
  
@@ -448,5 +448,19 @@ lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data()
 
 botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
 botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
+}
+export const datosLogin =async()=>{
+  lista.innerHTML="";
+  lista.appendChild(formularioLogin());
+  var correoLogin=document.getElementById("correo");
+  var password=document.getElementById("password");
+     var botonlogin=document.getElementById("login");
+
+     
+      botonlogin.addEventListener("click",(event)=>{
+        var rol=  document.querySelector('input[name=rol]:checked').value;
+        console.log(`correo:${correoLogin.value}  password:${password.value} rol: ${rol}`);
+      },false);
+
 }
   

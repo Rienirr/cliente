@@ -12,6 +12,18 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.Sesiones{
+    float: right;
+   
+    border: 2px solid red;
+    border-radius: 12px;
+   padding: 15px;
+   background-color: rgba(0, 0, 0, .62);
+   
+   color: white;
+   text-align: center;
+   text-decoration: dotted;
+}
 
 /* Firefox */
 input[type=number] {
@@ -23,13 +35,14 @@ input[type=number] {
     border-radius: 12px;
    padding: 15px;
    margin: 20px 100px  ;
-   background-color: rgba(0, 0, 0, .80);
-   max-width: 800px;  
+   background-color: rgba(0, 0, 0, .62);
+   max-width: 750px;  
    color: white;
 }
 
 .menuLista{
-    margin:  10px 200px ;
+    margin:  10px 10px ;
+    max-width: 500px; 
 }
  .menuLista p, .menuProducto p {
      text-align: center;

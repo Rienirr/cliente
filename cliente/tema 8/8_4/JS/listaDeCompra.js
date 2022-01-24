@@ -6,7 +6,7 @@ import {
   getFirestore,
   collection,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto } from "./conexionbd.js";
+import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
   var eleccion = d.getElementById("eleccion");
@@ -23,12 +23,14 @@ window.onload =()=> {
   var crearLista = d.getElementById("crear");
   var listar= d.getElementById("listar");
   var ListaElegida="";
+  var crearUsuario=d.getElementById("Registrarse");
+  var login=d.getElementById("IniciarSesion");
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
     const ListaCompra = collection(db,"Listas");
     
 
-obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
+//obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
 
    mostrar.addEventListener("click", (event)=>{//Mostramos todos los productos por si el usuario los quiere volver a ver.
     obtenerProductos(ListaCompra,productos,ListaElegida);
@@ -60,11 +62,11 @@ obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los produ
   crearLista.addEventListener("click", (event)=>{//Para crear una nueva Lista.
     nuevaLista(ListaCompra);
   },false);
-  listar.addEventListener("click", (event)=>{
+  listar.addEventListener("click", (event)=>{//Muestra las listas por orden de creación las más recientes primero.
     obtenerListas(ListaCompra,productos,ListaElegida);
   },false);
 
-crear.addEventListener("click", (event)=>{
+crear.addEventListener("click", (event)=>{//Para crear nuevos productos.
   var  lista= document.getElementById("lista");
 var titulo = document.getElementById("titulo");
 titulo.innerHTML="Crear Producto";
@@ -72,6 +74,23 @@ lista.innerHTML="";
 lista.appendChild(formularioParaEditarProductos());
   anyadirProducto(ListaCompra,productos,ListaElegida);
 
-
   },false);
+
+
+  login.addEventListener("click",(event)=>{
+    datosLogin();
+  /*   lista.innerHTML="";
+lista.appendChild(formularioLogin());
+correoLogin=d.getElementById("correo");
+password=d.getElementById("password");
+    botonlogin=d.getElementById("login");
+ 
+    botonlogin.addEventListener("click",(event)=>{
+      console.log(`correo:${correoLogin.value}  password:${password.value}`);
+    },false); */
+    
+ 
+  },false);
+  
+  
 }
