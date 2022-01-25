@@ -90,6 +90,12 @@ export function formularioParaEditarLista(nombreLista,nombresProductos){
         }
         export function formularioLogin(){
             let form= document.createElement("form");
-            form.innerHTML= "<label>Correo </label> <input type='text' id='correo'> <label> contraseña</label> <input type='password' id='password'> <label> Admin</label> <input type='radio' name='rol' value='admin'> <label> Usuario</label><input type='radio' name='rol' value='usuario' checked><input type='button' value='Log in' id='login'>";
+            form.innerHTML= "<label>Correo </label> <input type='text' id='correo'>  <label>Nombre Completo </label> <input type='text' id='nombre'><label> contraseña</label> <input type='password' id='password'> <label> Admin</label> <input type='radio' name='rol' value='admin'> <label> Usuario</label><input type='radio' name='rol' value='usuario' checked><input type='button' value='Registrarse' id='login'>";
             return form;
             }
+            export function registrarse(){
+                let form= document.createElement("form");
+                form.innerHTML= "<label>Correo </label> <input type='text' id='correo'>  contraseña</label> <input type='password' id='password'> <input type='button' value='Iniciar sesión' id='iniciarSesion'>";
+                return form;
+            }
+            

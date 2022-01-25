@@ -1,7 +1,7 @@
 
 /*Esta biblioteca nos  permite hacer las consultas necesarias sobre la base de datos ahora es solo leer luego también nos permitirá escribir*/ 
 
-import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON, formularioParaEditarLista, formularioParaEditarProductos, ProductoJSON,formularioLogin} from "./plantillas.js";
+import { cabecera, crearfila, mensajesUsuario,formulario,crearfilaLista, ListaJSON, formularioParaEditarLista, formularioParaEditarProductos, ProductoJSON,formularioLogin,registrarse} from "./plantillas.js";
 
 import {getDocs,query,  where,orderBy,addDoc,doc,getDoc,updateDoc,arrayUnion,arrayRemove,deleteDoc 
  
@@ -349,12 +349,8 @@ if(semaforo){
   obtenerProductos(listas,Coleccion,listaElegida);
 } 
     else mensajesUsuario(`Ese producto ya existe !! Introduce otro nombre  `) ;    //Fallo en la coincidencia.
-   
-
 };
 
-
-  
   export const filtrarPor = async (productos,filtro,condicion,listaElegida,listas) => {//Nos filtra por precio y peso.
     var valorFiltro= filtro.value;
     if(parseFloat(condicion)<=0 || condicion.trim()==""){mensajesUsuario(`Tienes que poner un número positivo`);   return false;}
@@ -449,18 +445,75 @@ lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data()
 botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
 botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
 }
-export const datosLogin =async()=>{
+export const datosLogin =async(autentificacion)=>{//Creamos los datos necesarios para el login.
   lista.innerHTML="";
   lista.appendChild(formularioLogin());
-  var correoLogin=document.getElementById("correo");
-  var password=document.getElementById("password");
      var botonlogin=document.getElementById("login");
-
-     
       botonlogin.addEventListener("click",(event)=>{
+        var correoLogin=document.getElementById("correo").value;
+  var password=document.getElementById("password").value;
+  var nombre=document.getElementById("nombre").value;
+  if(password.length<4 && nombre.length<4 &&  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correoLogin))){ // De esta forma controlamos el email, nombre, y contraseña.
+    mensajesUsuario("Debes introducir los datos correctos (Nombre y contraseña al menos 4 caracteres)");
+  }
         var rol=  document.querySelector('input[name=rol]:checked').value;
-        console.log(`correo:${correoLogin.value}  password:${password.value} rol: ${rol}`);
+        console.log(`correo:${correoLogin}  password:${password} rol: ${rol} nombre:${nombre}`);
       },false);
 
 }
-  
+export const iniciarSesion= async(autentificacion)=>{//Para iniciar pediomos el usuario y contraseña.
+  lista.innerHTML="";
+  lista.appendChild(registrarse());
+ 
+     var botonInicio=document.getElementById("iniciarSesion");
+
+     botonInicio.addEventListener("click",(event)=>{
+      var correoLogin=document.getElementById("correo").value;
+      var password=document.getElementById("password").value;
+      //(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correoLogin));
+      
+        if(password.length<4 &&  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correoLogin))){ // De esta forma controlamos el email y contraseña.
+          mensajesUsuario("Debes introducir los datos correctos(Contraseña al menos 4 caracteres)")
+        }else{
+          console.log(`correo:${correoLogin}  password:${password} `);
+        }
+        
+      },false);
+
+}
+const crearUsuario = (usuario, contra) => {//Para crear el usuario.
+  createUserWithEmailAndPassword(autentificacion, usuario, contra)
+    .then((credenciales) => {
+      console.log("Usuario creado");
+      console.log(credenciales); // Credenciales del usuario creado.
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const iniciarSesionComprobacion = (usuario, contra) => { //Para iniciar sesión
+  signInWithEmailAndPassword(autentificacion, usuario, contra)
+    .then((credenciales) => {
+      console.log("Sesión Iniciada");
+      const actual = credenciales.user;
+      informe.innerHTML = `Ficha del usuario:<br>
+      Correo: ${actual.email}<br>
+      Nombre: ${actual.displayName}<br>
+      Correo verificado: ${actual.emailVerified}`;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const cerrarSesion = () => {//Para cerrar la sesión indicada.
+  autentificacion
+    .signOut()
+    .then(() => {
+      console.log("Salir");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

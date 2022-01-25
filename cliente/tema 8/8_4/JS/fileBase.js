@@ -2,7 +2,7 @@
 "use strict";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 const firebaseConfig = {
     apiKey: "AIzaSyC4TxXcMo1SY2m3UDH9YNNgZjMo6bVLBkg",
     authDomain: "lista-de-la-compra-83c82.firebaseapp.com",
@@ -13,3 +13,4 @@ const firebaseConfig = {
   };
 
 export const app = initializeApp(firebaseConfig);
+export const autentificacion = getAuth(app);

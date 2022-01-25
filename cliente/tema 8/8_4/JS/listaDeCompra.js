@@ -1,12 +1,18 @@
 /*Es el script principal y se encarga de manejar los eventos. */
 "use strict;"
-import { app } from "./fileBase.js";
+import { app,autentificacion} from "./fileBase.js";
 import { mensajesUsuario,formularioParaEditarProductos } from "./plantillas.js";
 import {
   getFirestore,
   collection,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin } from "./conexionbd.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+}from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin,iniciarSesion } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
   var eleccion = d.getElementById("eleccion");
@@ -23,8 +29,8 @@ window.onload =()=> {
   var crearLista = d.getElementById("crear");
   var listar= d.getElementById("listar");
   var ListaElegida="";
-  var crearUsuario=d.getElementById("Registrarse");
-  var login=d.getElementById("IniciarSesion");
+  var login=d.getElementById("Registrarse");
+  var crearUsuario=d.getElementById("IniciarSesion");
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
     const ListaCompra = collection(db,"Listas");
@@ -78,18 +84,12 @@ lista.appendChild(formularioParaEditarProductos());
 
 
   login.addEventListener("click",(event)=>{
-    datosLogin();
-  /*   lista.innerHTML="";
-lista.appendChild(formularioLogin());
-correoLogin=d.getElementById("correo");
-password=d.getElementById("password");
-    botonlogin=d.getElementById("login");
- 
-    botonlogin.addEventListener("click",(event)=>{
-      console.log(`correo:${correoLogin.value}  password:${password.value}`);
-    },false); */
-    
- 
+    datosLogin(autentificacion);
+
+  },false);
+
+  crearUsuario.addEventListener("click",(event)=>{
+    iniciarSesion(autentificacion);
   },false);
   
   
