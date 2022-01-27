@@ -36,13 +36,13 @@ input[type=number] {
    padding: 15px;
    margin: 20px 100px  ;
    background-color: rgba(0, 0, 0, .62);
-   max-width: 750px;  
+   max-width: 450px;  
    color: white;
 }
 
 .menuLista{
     margin:  10px 10px ;
-    max-width: 500px; 
+    
 }
  .menuLista p, .menuProducto p {
      text-align: center;
@@ -117,13 +117,14 @@ span{
    
     font-style: italic;
     display: inline-block;
-    margin: 25px 20px ;
-    min-width: 200px;
    
+    min-width: 200px;
 }
 div{
     margin-left:70px ;
+    margin-top: 10px;
 }
+
 
  h1:first-of-type{
     text-align:center;
@@ -137,8 +138,8 @@ button:first-of-type{
 .grid{
         display: grid;
         grid-template-columns: 1.4fr 1.4fr 1.3fr 3fr 2fr 1.4fr;
-       
-        grid-gap: 10px;
+        grid-template-rows:  max-content ;
+        grid-gap: 25px;
       
 }
 .colum{

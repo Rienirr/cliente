@@ -6,12 +6,7 @@ import {
   getFirestore,
   collection,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-}from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
 import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin,iniciarSesion } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
@@ -34,7 +29,7 @@ window.onload =()=> {
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
     const ListaCompra = collection(db,"Listas");
-    
+    const usuariosBD= collection(db,"Usuarios");
 
 //obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
 
@@ -84,12 +79,12 @@ lista.appendChild(formularioParaEditarProductos());
 
 
   login.addEventListener("click",(event)=>{
-    datosLogin(autentificacion);
+    datosLogin(autentificacion, usuariosBD);
 
   },false);
 
   crearUsuario.addEventListener("click",(event)=>{
-    iniciarSesion(autentificacion);
+    iniciarSesion(autentificacion,usuariosBD);
   },false);
   
   
