@@ -7,7 +7,7 @@ import {
   collection,
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin,iniciarSesion } from "./conexionbd.js";
+import { obtenerProductos,filtrarPor, ordenarPor, buscarProducto, nuevaLista, obtenerListas, filtrarPorFecha, anyadirProducto, datosLogin,iniciarSesion, cerrarSesion } from "./conexionbd.js";
 window.onload =()=> {
   var d= document;
   var eleccion = d.getElementById("eleccion");
@@ -26,6 +26,7 @@ window.onload =()=> {
   var ListaElegida="";
   var login=d.getElementById("Registrarse");
   var crearUsuario=d.getElementById("IniciarSesion");
+  var logout= document.getElementById("logout");
     const db= getFirestore(app);
     const productos = collection(db,"Productos");
     const ListaCompra = collection(db,"Listas");
@@ -61,7 +62,7 @@ window.onload =()=> {
   },false);
   
   crearLista.addEventListener("click", (event)=>{//Para crear una nueva Lista.
-    nuevaLista(ListaCompra);
+    nuevaLista(ListaCompra,productos,ListaElegida);
   },false);
   listar.addEventListener("click", (event)=>{//Muestra las listas por orden de creación las más recientes primero.
     obtenerListas(ListaCompra,productos,ListaElegida);
@@ -86,6 +87,8 @@ lista.appendChild(formularioParaEditarProductos());
   crearUsuario.addEventListener("click",(event)=>{
     iniciarSesion(autentificacion,usuariosBD);
   },false);
-  
+  logout.addEventListener("click",(event)=>{
+    cerrarSesion(autentificacion);
+  },false);
   
 }

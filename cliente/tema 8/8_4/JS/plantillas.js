@@ -4,7 +4,7 @@ export function crearfila(id,nombre,peso,precio,descripcion,imagen="nada"){//Par
     let div = document.createElement("div");
     div.setAttribute("id",id);
     div.setAttribute("class","grid");
-div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${peso} Kg </span> <span class="colum">${precio} €</span> <span class="colum">${descripcion} </span> <span class="colum img"> <img  class="colum" src=${imagen} alt="error en la imagen" width="50" height="50"> </span><div> <button  class="anyadirALaLista" > Añadir a la lista</button><img  class="EditarProducto" src="./imagenes/editar.png" alt="Editar producto" width="15" height="15"> </div>`;
+div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${peso} Kg </span> <span class="colum">${precio} €</span> <span class="colum">${descripcion} </span> <span class="colum img"> <img  class="colum" src=${imagen} alt="error en la imagen" width="50" height="50"> </span><div> <button  class="anyadirALaLista hidden" > Añadir a la lista</button><img  class="EditarProducto hidden" src="./imagenes/editar.png" alt="Editar producto" width="15" height="15"> </div>`;
 return div;
 }
 
@@ -64,7 +64,7 @@ export function ProductoJSON(Nombre,Precio,Peso,Descripcion,Imagen){
 }
 export function formulario(){
 let form= document.createElement("form");
-form.innerHTML= "<label> Nombre de la lista </label> <input type='text' id='nombreLista'> <label> Nombre del propietario</label> <input type='text' id='nombreCreador'> <input type='button' value='Crear' id='CrearLista'>";
+form.innerHTML= "<label> Nombre de la lista </label> <input type='text' id='nombreLista'> <input type='button' value='Crear' id='CrearLista'>";
 return form;
 }
 export function formularioParaEditarLista(nombreLista,nombresProductos){

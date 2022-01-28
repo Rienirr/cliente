@@ -29,7 +29,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-.menuProducto, .menuLista{
+.menuProducto{
     display: inline-block;
     border: 2px solid red;
     border-radius: 12px;
@@ -40,11 +40,17 @@ input[type=number] {
    color: white;
 }
 
-.menuLista{
+#menuLista{
+    border: 2px solid red;
+    border-radius: 12px;
+   padding: 15px;
+   background-color: rgba(0, 0, 0, .62);
+   max-width: 450px;  
+   color: white;
     margin:  10px 10px ;
     
 }
- .menuLista p, .menuProducto p {
+#menuLista p, .menuProducto p {
      text-align: center;
     text-decoration: underline;
     font-size: 2em;
@@ -110,17 +116,22 @@ margin-left: 10px;
    .grid span:first-of-type{
        font-size: 1.5em;
    }
+   .grid span{
+    font-size: 0.875em;
+}
    b{
     font-weight:normal;;
     }
 span{
    
     font-style: italic;
+    
     display: inline-block;
    
     min-width: 200px;
 }
 div{
+    display: inline-block;
     margin-left:70px ;
     margin-top: 10px;
 }
@@ -137,14 +148,13 @@ button:first-of-type{
 
 .grid{
         display: grid;
-        grid-template-columns: 1.4fr 1.4fr 1.3fr 3fr 2fr 1.4fr;
+        grid-template-columns: 1.4fr 1fr 1.8fr 3fr 2fr 1.4fr;
         grid-template-rows:  max-content ;
         grid-gap: 25px;
       
 }
 .colum{
     min-width: 0px;
- 
     align-content: center;
     justify-content: center;
    background-color: wheat;

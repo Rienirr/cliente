@@ -9,15 +9,17 @@
     <title>Lista de los productos</title>
 </head>
 <body>
-  <div class="Sesiones">
+  <div id="Estado"  class="Sesiones">
     <p> Opciones Login</p>
     <button id="IniciarSesion"> Iniciar Sesión</button>
   <button id="Registrarse">Registrarse</button>
+  <button id="logout" class="hidden">Cerrar Sesión</button>
+  
   </div>
   <div class="menuProducto">
     <p> Productos</p>
   <div class="filtro">
-    <button id="crearProducto"> Crear producto</button>
+    <button id="crearProducto" class="hidden"> Crear producto</button>
   <button id="mostrar">Mostrar Todos los elementos</button>
 </div>
   <div class="filtro">
@@ -50,7 +52,7 @@
     <button id="ordenar">Ordenar</button>
   </div>
 </div>
-<div class="menuLista">
+<div id="menuLista" class="hidden">
   <p>Lista</p>
   <div class="filtro" >
     <label>Puedes crear una lista o ver las que ya hay:</label>

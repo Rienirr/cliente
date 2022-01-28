@@ -28,17 +28,24 @@ export const obtenerProductos = async (listas,productos,listaElegida) => {    //
 
         lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) );
     });
-
-botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
-botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
+    console.log(rol);
+    if(rol=="admin"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+      botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);//Al ser usuario puede editar
+    }
+    else if(rol=="usuario"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+    }
 }catch(error) {
     console.log(error);
 }
     return true;
   };
   function botonesAñadirProductos(listas,listaElegida){
+    
     var botonesAñadirProductos=document.getElementsByClassName("anyadirALaLista");
 for(let i=0; i<botonesAñadirProductos.length;i++){
+  botonesAñadirProductos[i].classList.remove("hidden");
   botonesAñadirProductos[i].addEventListener("click",(event)=>{
   if(listaElegida!==""){
     let arrays= [event.target.parentNode.parentNode.children[0].textContent,event.target.parentNode.parentNode.children[1].textContent,event.target.parentNode.parentNode.children[2].textContent,1];//nombre, peso, precio , cantidad
@@ -53,6 +60,7 @@ for(let i=0; i<botonesAñadirProductos.length;i++){
 function botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento){
   var botonesEditarProductos=document.getElementsByClassName("EditarProducto");
 for(let i=0; i<botonesEditarProductos.length;i++){
+  botonesEditarProductos[i].classList.remove("hidden");
   botonesEditarProductos[i].addEventListener("click",(event)=>{
     lista.innerHTML="";  
     lista.appendChild(formularioParaEditarProductos(productosDelDocumento.docs[i].id,productosDelDocumento.docs[i].data().nombre,productosDelDocumento.docs[i].data().peso,productosDelDocumento.docs[i].data().precio,productosDelDocumento.docs[i].data().descripcion,productosDelDocumento.docs[i].data().imagen));
@@ -136,12 +144,19 @@ const ActulizarProducto = async (Coleccion,id,nuevoNombre,nuevoPeso,nuevoPrecio,
 
   export const obtenerListas= async(listas,productos,listaElegida)=>{//Obtiene y muestra las listas con el estilo que queremos.
     titulo.innerHTML="Listas de la compra";
-    lista.innerHTML="";  
-    const consulta = query(
+    lista.innerHTML=""; 
+    var consulta = query(
       listas,
-      where("creador" , "==", CorreoUsuarioLogeado),
-orderBy("fecha", "desc"),
-);  
+where("creador", "==", CorreoUsuarioLogeado),
+);
+ 
+    if(rol=="admin"){//El admin puede editar todas las listas.
+      consulta = query(
+        listas,
+        orderBy("fecha", "desc"),
+  );
+    }
+ 
     try{
     const todasListas = await getDocs(consulta);
     todasListas.docs.map((documento) => {
@@ -162,7 +177,6 @@ ListaEditarProductos(listas,listaElegida, productos);
       botonesEditarProductosLista[i].addEventListener("click",(event)=>{//Añade a cada lista la funcionalidad
      listaElegida = event.target.parentNode.parentNode.id;//Cada vez Elegimos una Lista
    var productosParaEditar=event.target.parentNode.parentNode.querySelectorAll(` .nombreProducto`);
-   console.log(productosParaEditar);
    var nombreListaParaEditar=event.target.parentNode.parentNode.children[0].textContent;
 lista.innerHTML="";
    lista.appendChild(formularioParaEditarLista(nombreListaParaEditar,productosParaEditar));
@@ -272,8 +286,13 @@ const editarLista = async (Coleccion,id,arrayProductosSelecionados,nuevoNombre,p
         lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) );
       }       
     });
-    botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos
-    botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
+    if(rol=="admin"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+      botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);//Al ser usuario puede editar
+    }
+    else if(rol=="usuario"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+    }
 }catch(error) {
     console.log(error);
 }
@@ -286,22 +305,22 @@ else {  mensajesUsuario(`No se han encontrado las siguientes coincidencias con $
 };
 
 const comprobarDatos=(nombreLista,nombreCreador)=>{
-  if(nombreLista.value.trim()!="" && nombreCreador.value.trim()!="")    return true;
+  if(nombreLista.value.trim()!="" && nombreCreador.trim()!="")    return true;
   else return false;
 };
 
-export const nuevaLista = (ListaCompra)=>{
+export const nuevaLista = (ListaCompra,producto,ListaElegida)=>{
   titulo.innerHTML="Listas de la compra";
     lista.innerHTML="";
     lista.appendChild(formulario());
     let boton=document.getElementById("CrearLista");
     boton.addEventListener("click",(event)=>{
       let nombreLista= document.getElementById("nombreLista");
-      let nombreCreador=document.getElementById("nombreCreador");
-      if(comprobarDatos(nombreLista,nombreCreador)){
-        crearListaCompra(ListaCompra, nombreLista.value,CorreoUsuarioLogeado );
+     
+      if(comprobarDatos(nombreLista,CorreoUsuarioLogeado)){
+        crearListaCompra(ListaCompra, nombreLista.value,CorreoUsuarioLogeado ,producto,ListaElegida);
       }else{
-        mensajesUsuario(`Tienes que rellenar todos los campos `) ;    return false; //Fallo en la coincidencia.    
+        mensajesUsuario(`Tienes que rellenar todos los campos`) ;    return false; //Fallo en la coincidencia.    
       }
       let botoneslista= document.getElementsByClassName("verLista");
       for(let i=0; i<botoneslista.length;i++){
@@ -310,27 +329,32 @@ export const nuevaLista = (ListaCompra)=>{
       }
     },false);
   }
-  const guardarlista = async (ListaCompra,listaCreada) => {
+  const guardarlista = async (ListaCompra,listaCreada, u="") => {
     const ListaGuardada = await addDoc(ListaCompra, listaCreada);
     console.log(`Lista guardado con el id ${ListaGuardada.id}`);
-    mensajesUsuario(`Lista añadida con éxito `) ;
+    if(u=="")      mensajesUsuario(`Lista añadida con éxito `) ;
+    else mensajesUsuario("Usuario registrado con éxito. Ahora ya puedes Iniciar sesión con tu cuenta")  ;
+   
   };
-   const crearListaCompra = async(ListaCompra,nombre, creador)=>{
+   const crearListaCompra = async(ListaCompra,nombre, creador,producto,ListaElegida)=>{
     const consulta = query(
       ListaCompra,
-where("nombre", "==", nombre)
-
+ where("nombre", "==", nombre), 
 ); 
    let listaCreada = ListaJSON(nombre, creador);
    console.log(listaCreada);
    const cestas = await getDocs(consulta);
    let semaforo= true;// para filtrar que el nombre no este 
    cestas.docs.map((documento) => {
-   semaforo= false;
+     console.log(documento.data().creador);
+     if(documento.data().creador==creador){
+      semaforo= false;
+     }
+  
  });
  if(semaforo){
   guardarlista(ListaCompra,listaCreada);  
-   obtenerListas(ListaCompra);
+   obtenerListas(ListaCompra,producto,ListaElegida);
  } 
       else mensajesUsuario(`Esa lista ya existe !! Introduce otro nombre  `) ;    //Fallo en la coincidencia.
      
@@ -344,7 +368,7 @@ const guardarProducto = async (productos,productoCreado) => {
 const crearProducto = async(Coleccion,nuevoNombre,nuevoPeso,nuevoPrecio,nuevoDescripcion,nuevoImagen,listas,listaElegida )=>{
   const consulta = query(
     Coleccion,
-where("nombre", "==", nuevoNombre)
+where("nombre", "==", nuevoNombre),
 
 ); 
  let pruductoCreados =ProductoJSON(nuevoNombre,nuevoPeso,nuevoPrecio,nuevoDescripcion,nuevoImagen);
@@ -383,15 +407,21 @@ if(semaforo){
       semaforo=true;
    lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data().nombre,documento.data().peso,documento.data().precio,documento.data().descripcion, documento.data().imagen) ); 
   });
+  if(semaforo){
+    mensajesUsuario(`Productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`);
+    if(rol=="admin"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+      botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);//Al ser usuario puede editar
+    }
+    else if(rol=="usuario"){
+      botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+    }
+  }
+  else{ mensajesUsuario(`No hay productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`); lista.innerHTML="";  }//Para que no muestre la cabecera de la lista.
 }catch(error) {
     console.log(error);
 }
-if(semaforo){
-  mensajesUsuario(`Productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`);
-  botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
-  botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
-}
-else{ mensajesUsuario(`No hay productos con  ${valorFiltro} menor igual a  ${numero.value} ${complemento}`); lista.innerHTML="";  }//Para que no muestre la cabecera de la lista.
+
 return true;
   };
 
@@ -421,6 +451,7 @@ return true;
     const productosDelDocumento = await getDocs(consulta);//Una vez filtrados los mostramos
     productosDelDocumento.docs.map((documento) => {
       semaforo=true;
+      if(documento.data().creador==CorreoUsuarioLogeado);
       lista.insertAdjacentElement("beforeend", crearfilaLista(documento.id,documento.data().nombre, documento.data().fecha , documento.data().creador, documento.data().productos)); 
   });
   ListaAnyadirProducto(ListaCompra,productos,listaElegida);
@@ -451,9 +482,14 @@ lista.insertAdjacentElement("beforeend", crearfila(documento.id,documento.data()
   }catch(error) {
     console.log(error);
 }
+if(rol=="admin"){
+  botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+  botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);//Al ser usuario puede editar
+}
+else if(rol=="usuario"){
+  botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
+}
 
-botonesAñadirProductos(listas,listaElegida);//para añadir la funcionalidad de añadir productos;
-botonesEditarProductos(listas,productos,listaElegida,productosDelDocumento);
 }
 export const datosLogin =async(autentificacion, usuariosBD)=>{//Creamos los datos necesarios para el login.
   lista.innerHTML="";
@@ -501,7 +537,7 @@ const crearUsuario = (autentificacion,usuario, contra,nombre,rol,usuariosBD) => 
   createUserWithEmailAndPassword(autentificacion, usuario, contra)
     .then((credenciales) => {
       console.log(credenciales); // Credenciales del usuario creado.
-      guardarlista(usuariosBD,usuarioJSON(nombre,rol,usuario));
+      guardarlista(usuariosBD,usuarioJSON(nombre,rol,usuario),"u");
     })
     .catch((error) => {
       console.log(error);
@@ -531,18 +567,47 @@ const obtenerDatosDeSesion = async(usuariosBD, usuario)=>{
  usuarioLogeado=documento.data().nombre;
  rol=documento.data().rol;
  CorreoUsuarioLogeado=documento.data().correo;
+ console.log(CorreoUsuarioLogeado);
+ mensajesUsuario(`Hola ${usuarioLogeado} bienvenido otra vez. Esperamos que disfrutes de nuestra tienda`);
+ cambiarseccionLogin(true, rol);
 },false);
   }catch(error) {
     console.log(error);
 }
 
 }
+const cambiarseccionLogin=(tipo, rol)=>{
+  var ini= document.getElementById("IniciarSesion");
+  var reg= document.getElementById("Registrarse");
+  var cerr= document.getElementById("logout");
+  var lista= document.getElementById("menuLista");
+  var crear= document.getElementById("crearProducto");
+  if(tipo){
+    if(rol=="admin") {crear.classList.remove("hidden");}//Para que así los admin tengan la opción de crear los nuevos productos.
+    ini.classList.add("hidden");
+    reg.classList.add("hidden");
+    cerr.classList.remove("hidden");
+    lista.classList.remove("hidden");
 
-const cerrarSesion = () => {//Para cerrar la sesión indicada.
+  }else{
+    ini.classList.remove("hidden");
+    reg.classList.remove("hidden");
+    cerr.classList.add("hidden");
+    lista.classList.add("hidden");
+    crear.classList.add("hidden");
+  }
+}
+
+export const cerrarSesion = (autentificacion) => {//Para cerrar la sesión indicada.
   autentificacion
     .signOut()
     .then(() => {
-      console.log("Salir");
+      cambiarseccionLogin(false);
+      mensajesUsuario("Sesión cerrada correctamente");
+      usuarioLogeado="";
+ rol="";
+ CorreoUsuarioLogeado="";
+
     })
     .catch((error) => {
       console.log(error);
