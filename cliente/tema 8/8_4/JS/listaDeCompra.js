@@ -32,7 +32,7 @@ window.onload =()=> {
     const ListaCompra = collection(db,"Listas");
     const usuariosBD= collection(db,"Usuarios");
 
-//obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
+obtenerProductos(ListaCompra,productos,ListaElegida);//Mostramos todos los productos al iniciar.
 
    mostrar.addEventListener("click", (event)=>{//Mostramos todos los productos por si el usuario los quiere volver a ver.
     obtenerProductos(ListaCompra,productos,ListaElegida);

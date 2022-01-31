@@ -7,10 +7,8 @@ import {getDocs,query,  where,orderBy,addDoc,doc,getDoc,updateDoc,arrayUnion,arr
  
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
 }from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 var  lista= document.getElementById("lista");
 var titulo = document.getElementById("titulo");
@@ -611,8 +609,8 @@ export const cerrarSesion = (autentificacion) => {//Para cerrar la sesión indic
       lista.innerHTML="";  
       titulo.innerHTML="";
       usuarioLogeado="";
- rol="";
- CorreoUsuarioLogeado="";
+      rol="";
+      CorreoUsuarioLogeado="";
 
     })
     .catch((error) => {
