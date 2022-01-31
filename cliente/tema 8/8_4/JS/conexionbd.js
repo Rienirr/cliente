@@ -144,6 +144,7 @@ const ActulizarProducto = async (Coleccion,id,nuevoNombre,nuevoPeso,nuevoPrecio,
 
   export const obtenerListas= async(listas,productos,listaElegida)=>{//Obtiene y muestra las listas con el estilo que queremos.
     titulo.innerHTML="Listas de la compra";
+    let semaforo= true;
     lista.innerHTML=""; 
     var consulta = query(
       listas,
@@ -160,8 +161,10 @@ where("creador", "==", CorreoUsuarioLogeado),
     try{
     const todasListas = await getDocs(consulta);
     todasListas.docs.map((documento) => {
+      semaforo= false;
         lista.insertAdjacentElement("beforeend", crearfilaLista(documento.id,documento.data().nombre, documento.data().fecha , documento.data().creador, documento.data().productos));
     });
+    if(semaforo) lista.innerHTML="<h1>Todavía no has creado listas. Crea nuevas listas y aparecerán aquí</h1>";
 }catch(error) {
     console.log(error);
 }
@@ -537,7 +540,8 @@ const crearUsuario = (autentificacion,usuario, contra,nombre,rol,usuariosBD) => 
   createUserWithEmailAndPassword(autentificacion, usuario, contra)
     .then((credenciales) => {
       console.log(credenciales); // Credenciales del usuario creado.
-      guardarlista(usuariosBD,usuarioJSON(nombre,rol,usuario),"u");
+      guardarlista(usuariosBD,usuarioJSON(nombre,rol,usuario),"u");//Para guardar el usuario.
+      iniciarSesion(autentificacion,usuariosBD);//Para que nos dirija al registrarnos al formulario de inicio de sesión.
     })
     .catch((error) => {
       console.log(error);
@@ -576,7 +580,7 @@ const obtenerDatosDeSesion = async(usuariosBD, usuario)=>{
 }
 
 }
-const cambiarseccionLogin=(tipo, rol)=>{
+const cambiarseccionLogin=(tipo, rol)=>{//Para cambiar la sección de Login dependiendo del estado.
   var ini= document.getElementById("IniciarSesion");
   var reg= document.getElementById("Registrarse");
   var cerr= document.getElementById("logout");
@@ -604,6 +608,8 @@ export const cerrarSesion = (autentificacion) => {//Para cerrar la sesión indic
     .then(() => {
       cambiarseccionLogin(false);
       mensajesUsuario("Sesión cerrada correctamente");
+      lista.innerHTML="";  
+      titulo.innerHTML="";
       usuarioLogeado="";
  rol="";
  CorreoUsuarioLogeado="";

@@ -14,20 +14,40 @@ export function crearfilaLista(id,nombre,fecha,creador, arrayP){//Para crear la 
     div.setAttribute("class","grid");
 div.innerHTML =` <span class="colum">${nombre}</span>  <span class="colum">${fecha}  </span> <span class="colum">${creador} </span> `;
 let productos="";
+let pesoDeLaCompra=0;//Para hacer las recomendaciones.
+let costeTotal=0;
 if(arrayP.length==1){//No hay productos en la lista.
  productos+="No hay productos en la lista";
 }else{
     arrayP.map((v,i,a)=>{//Hay y los recorremos cada posicion es un string con todos los campos.
-      if(i>0){
-          
-         let pcompleto= v.split(",");
-    productos+= ` Nombre: <b class="nombreProducto">${pcompleto[0]}</b>, Peso: ${pcompleto[1]}, Precio: ${pcompleto[2]} Cantidad: ${pcompleto[3]}.`;//poner clase al peso y al precio para luego pillarlo en laconsulta.
-        }
+      if(i>0){ //La primera posición siempre está vacía.
+         let pcompleto= v.split(",");//Producto completo.
+    productos+= ` Nombre: <b class="nombreProducto">${pcompleto[0]}</b>, Peso: ${pcompleto[1]}, Precio: ${pcompleto[2]} Cantidad: ${pcompleto[3]}.<br>`;//poner clase al peso y al precio para luego pillarlo en laconsulta.
+        let price= pcompleto[2].split(" ");
+        let weight =  pcompleto[1].split(" ");
+        costeTotal+= parseFloat(price[0]);
+     pesoDeLaCompra+=parseFloat(weight[1]);
+}
 });
 }
-div.innerHTML+= `<span class="colum">${productos} </span> `;
+let recomendacionAlUsuario= recomendaciones(costeTotal,pesoDeLaCompra);
+div.innerHTML+= `<span class="colum">${productos} ${recomendacionAlUsuario} </span> `;
 div.innerHTML+=`<div> <button class="verLista" > Añadir Productos</button> <img  class="EditarLista" src="./imagenes/editar.png" alt="Editar lista" width="15" height="15"> </div>`;
 return div;
+}
+function recomendaciones(costeTotal, pesoDeLaCompra){
+    let recomendacion=` El coste total de tu compra es ${costeTotal}€ .`;
+    if(pesoDeLaCompra>0 && pesoDeLaCompra<10)//Es decir el peso es menor a 10kg 
+        recomendacion+=` El peso total de tu compra es ${pesoDeLaCompra} Kg<b> puedes ir andando.</b>`;
+else if(pesoDeLaCompra>=10)//Si es mayor a 10kg y eres un valiente adelante.
+ recomendacion+=` El peso total de tu compra es ${pesoDeLaCompra}Kg <b> puedes ir andando o coger el coche ya que es un peso considerable.</b>`;
+
+else if(pesoDeLaCompra>=20)//Si es mayor a 20kg recomendamos ir en coche.
+    recomendacion+=` El peso total de tu compra es ${costeTotal}Kg <b> te recomendamos ir en coche.</b>`;
+
+else if(pesoDeLaCompra==0 ) //No decimos nada ya que no hayu productos.
+recomendacion="";
+return recomendacion;
 }
 
 
@@ -47,14 +67,14 @@ export function mensajesUsuario(texto){//Para comunicar al usuario todo lo que v
     div.classList.add("hidden");   
  }, 3000);
 }
-export function ListaJSON(nombreL, creadorL){
+export function ListaJSON(nombreL, creadorL){//Creamos la lista con los parametros necesarios
     return {nombre: nombreL,
             creador: creadorL,
             productos: [""],
             fecha: new Date().toLocaleDateString(),//Nos devuelve la fecha en el formato dd/mm/aaaa
         }
 }
-export function ProductoJSON(Nombre,Precio,Peso,Descripcion,Imagen){
+export function ProductoJSON(Nombre,Precio,Peso,Descripcion,Imagen){//Creamos los objetos que recibimos por formulario.
     return {nombre: Nombre,
             precio: Precio,
             peso: Peso,
@@ -62,12 +82,12 @@ export function ProductoJSON(Nombre,Precio,Peso,Descripcion,Imagen){
             imagen: Imagen,
         }
 }
-export function formulario(){
+export function formulario(){//Para crear Lista.
 let form= document.createElement("form");
 form.innerHTML= "<label> Nombre de la lista </label> <input type='text' id='nombreLista'> <input type='button' value='Crear' id='CrearLista'>";
 return form;
 }
-export function formularioParaEditarLista(nombreLista,nombresProductos){
+export function formularioParaEditarLista(nombreLista,nombresProductos){//Así podemos editar Lista
     let form= document.createElement("form");
     form.innerHTML= `<label> Nuevo nombre de la lista </label> <input type='text' id='nombreLista' value="${nombreLista}"> <label> Productos a eliminar de la lista</label>  `;
     for(let i=0;i<nombresProductos.length;i++){
