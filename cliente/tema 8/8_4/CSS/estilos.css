@@ -1,6 +1,8 @@
 .hidden{
     display:  none;
 }
+
+
 body{
     background-color: rgba(0, 255, 255, 0.24);
    
@@ -119,7 +121,7 @@ margin-left: 10px;
    .grid span{
     font-size: 0.875em;
 }
-   b{
+   .nombreProducto{
     font-weight:normal;;
     }
 span{
